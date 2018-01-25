@@ -4,7 +4,61 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.MedicalcardDao">
+    <!--查询所有-->
     <select id="queryList" resultType="com.entity.Medicalcard">
         select * from medicalcard
     </select>
+
+    <!--带分页的查询-->
+    <select id="queryLists" resultType="com.entity.Medicalcard">
+        select * from medicalcard
+        <where>
+            <if test="param1 != null and param1 != ''">
+                  where jzno = #{param1}
+            </if>
+            <if test="param1 != null and param1 != ''">
+                where name like CONCAT(CONCAT('%',#{param1}),'%')
+            </if>
+            <if test="param2" > -1 and param3 > 0">
+                limit #{param2},#{param3}
+            </if>
+
+        </where>
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" parameterType="int" resultType="com.dao.MedicalcardDao">
+             select * from medicalcard where id = #{id}
+    </select>
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.entity.Medicalcard">
+        INSERT INTO medicalcard
+        (jzno, name, password, card, sex, age, profession, address, money,createdate, phone, yyno, ybno, subscribe) VALUES
+        (#{jzno},#{name},#{password},#{card},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone},#{yyno},#{ybno},#{subscribe})
+    </insert>
+
+    <!--修改-->
+    <update id="update" parameterType="com.entity.Medicalcard">
+        update medicalcard SET
+        (jzno, name = #{name}, password = #{password}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},
+         address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}, yyno = #{yyno}, ybno = #{ybno}, subscribe = #{subscribe}) where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="int">
+        delete from medicalcard where id = #{id}
+    </delete>
+
+    <!--查询表总行数-->
+    <select id="getCount" parameterType="String" resultType="int">
+        select  count(*) from medicalcard
+        <if test="_parameter != null and _parameter != ''">
+            where jzno = #{_parameter}
+        </if>
+        <if test="_parameter != null and _parameter != ''">
+            where name like CONCAT(CONCAT('%',#{_parameter}),'%')
+        </if>
+    </select>
+
 </mapper>

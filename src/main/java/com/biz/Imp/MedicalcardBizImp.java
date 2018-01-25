@@ -23,7 +23,7 @@ public class MedicalcardBizImp implements MedicalcardBiz {
         List<Medicalcard> list = medicalcardDao.queryLists(sql,begin,end);
         int maxCount = medicalcardDao.getCount(sql);
         int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
-        map.put("list",list);
+        map.put("listData",list);
         map.put("maxPage",maxPage);
         return map;
     }
