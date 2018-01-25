@@ -34,7 +34,7 @@ public interface DoctorcardDao extends BaseDao<Doctorcard>{
      * @param serializable
      * @return
      */
-    Doctorcard QueryById(Serializable serializable);
+    Doctorcard queryById(Serializable serializable);
 
     /**
      * 增加

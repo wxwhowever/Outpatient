@@ -36,8 +36,8 @@ public class MedicalcardBizImp implements MedicalcardBiz {
         return medicalcardDao.queryLists(sql,begin,end);
     }
 
-    public Medicalcard QueryById(Serializable serializable) {
-        return medicalcardDao.QueryById(serializable);
+    public Medicalcard queryById(Serializable serializable) {
+        return medicalcardDao.queryById(serializable);
     }
 
     public boolean insert(Object object) {

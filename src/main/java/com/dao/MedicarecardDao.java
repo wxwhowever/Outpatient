@@ -35,7 +35,7 @@ public interface MedicarecardDao extends BaseDao<Medicarecard> {
      * @param serializable
      * @return
      */
-    Medicarecard QueryById(Serializable serializable);
+    Medicarecard queryById(Serializable serializable);
 
     /**
      * 增加

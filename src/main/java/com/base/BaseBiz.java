@@ -32,7 +32,7 @@ public interface BaseBiz<T> {
      * @param serializable
      * @return
      */
-    public T QueryById(Serializable serializable);
+    public T queryById(Serializable serializable);
 
     /**
      * 增加
