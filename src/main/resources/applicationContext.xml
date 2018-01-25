@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                          http://www.springframework.org/schema/beans/spring-beans.xsd
+                          http://www.springframework.org/schema/context
+                          http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 引入 c3p0 连接池-->
+    <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+
+    <!-- 配置连接池的属性-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--配置对应的用户名-->
+        <property name="user" value="${name}"></property>
+        <!--配置对应的密码-->
+        <property name="password" value="${password}"></property>
+        <!--配置对应的连接词-->
+        <property name="jdbcUrl" value="${url}"></property>
+        <!--配置对应的驱动类-->
+        <property name="driverClass" value="${driverClass}"></property>
+        <!--初始化连接池的大小-->
+        <property name="initialPoolSize" value="${initPoolSize}"></property>
+        <!--配置连接池的最大同时连接数-->
+        <property name="maxPoolSize" value="${maxPoolSize}"></property>
+    </bean>
+
+    <!-- 配置 Mybatis 的数据源、配置文件、映射文件-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <!--配置数据源-->
+            <property name="dataSource" ref="dataSource"></property>
+            <!--加载配置文件-->
+            <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+            <!-- 加载映射文件 -->
+            <property name="mapperLocations" value="classpath:com/mapper/*.xml"></property>
+    </bean>
+
+    <!-- 加载 Mybatis 对应的接口包-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dao"></property>
+    </bean>
+</beans>
