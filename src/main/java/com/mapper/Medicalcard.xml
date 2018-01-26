@@ -14,16 +14,10 @@
         select * from medicalcard
         <where>
             <if test="param1 != null and param1 != ''">
-                where jzno = #{param1}
+                 name like '%${param1}%' OR jzno = #{param1}
             </if>
-            <if test="param1 != null and param1 != ''">
-                where name like CONCAT(CONCAT('%',#{param1}),'%')
-            </if>
-            <if test="param2" > -1 and param3 > 0">
-                limit #{param2},#{3}
-            </if>
-
         </where>
+         limit #{param2},#{param3}
     </select>
 
     <!--查询单个-->
@@ -57,7 +51,7 @@
             where jzno = #{_parameter}
         </if>
         <if test="_parameter != null and _parameter != ''">
-            where name like CONCAT(CONCAT('%',#{_parameter}),'%')
+            where name like '%${param1}%' OR jzno = #{param1}
         </if>
     </select>
 

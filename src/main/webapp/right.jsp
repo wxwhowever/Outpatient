@@ -57,7 +57,7 @@ $(document).ready(function(){
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <input id="search" class="form-control" placeholder="输入就诊卡编号或姓名查询">
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-default"><img src="images/ico06.png"  style="margin-top: -5px"/>搜索</button>
+            <button class="btn btn-default" onclick="searchMedicalcard()"><img src="images/ico06.png"  style="margin-top: -5px"/>搜索</button>
         </ul>
 
 
@@ -104,16 +104,16 @@ $(document).ready(function(){
         <%-- 分页 begin--%>
         <div class="form-inline page-style">
             <div style="float: left;">
-            <h4>每页条数:<select class="pagedown" id="pagedown">
+            <h4>每页条数:<select id="pagedown">
                 <option class="pagedown">10</option>
                 <option class="pagedown">15</option>
                 <option class="pagedown">20</option>
             </select></h4></div>
-            <button class="btn btn-default">首页</button>
-            <button class="btn btn-default">上一页</button>
+            <button class="btn btn-default page pageBackground" id="firstpage">首页</button>
+            <button class="btn btn-default page">上一页</button>
             <input class="form-control" v-bind:value = "currnetIndex +'/'+ maxPage" readonly="readonly" style="width: 100px;text-align: center">
-            <button class="btn btn-default">下一页</button>
-            <button class="btn btn-default">末页</button>
+            <button class="btn btn-default page">下一页</button>
+            <button class="btn btn-default page " id="lastpage">末页</button>
         </div>
         <%-- 分页 end--%>
 
@@ -220,6 +220,7 @@ $(document).ready(function(){
 <script src="js/vue.js"></script>
 </body>
      <script>
+            var pageIndex = 1;
             var medicalcardVue = new Vue({
                 el : "#medicalcardList",
                 data : {
@@ -293,7 +294,83 @@ $(document).ready(function(){
                     this.queryMap();
                 }
             })
+
+//            分页
+            $(function(){
+                //    控制每页条数
+                $(".page").click(function(){
+                    var selectPage = $(this).text();
+                    var maxPage = medicalcardVue._data.maxPage;
+                    if(selectPage == "首页"){
+                        pageIndex = 1;
+                        $("#lastpage").removeClass("pageBackground");
+                        $("#firstpage").addClass("pageBackground");
+                    }
+                    else if(selectPage == "上一页"){
+                        if(pageIndex > 1){
+                            pageIndex = pageIndex - 1;
+                        }
+                       if(pageIndex == 1){
+                            $("#lastpage").removeClass("pageBackground");
+                            $("#firstpage").addClass("pageBackground");
+                        }
+                    }
+                    else if(selectPage == "下一页"){
+                        if(pageIndex < maxPage){
+                            pageIndex = pageIndex + 1;
+                        }
+                        if(pageIndex == maxPage){
+                            $("#lastpage").addClass("pageBackground");
+                            $("#firstpage").removeClass("pageBackground");
+                        }
+                    }
+                    else if(selectPage == "末页"){
+                        if(pageIndex !=  maxPage){
+                            pageIndex = maxPage;
+                            $("#lastpage").addClass("pageBackground");
+                            $("#firstpage").removeClass("pageBackground");
+                        }
+                    }
+                    var searchValue = $("#search").val();//得到搜索框中的值
+                    $.ajax({
+                        url : "/queryMap.action",
+                        data : "page="+pageIndex+"&search="+searchValue,
+                        type : "post",
+                        success : function(data){
+                            medicalcardVue._data.medicalcard_List = data.listData;
+                            medicalcardVue._data.maxPage = data.maxPage;
+                            medicalcardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                        }
+                    })
+                })
+            })
+
+
+           $(function(){
+               //    控制每页条数
+               $(".pagedown").click(function(){
+                   var pageCount = $(this).text();
+                   alert(pageCount);
+               })
+           })
+
+//            模糊查询的方法
+           function searchMedicalcard () {
+                var searchValue = $("#search").val();//得到搜索框中的值
+                alert(searchValue);
+                $.ajax({
+                    url : "/queryMap.action",
+                    data : {search : searchValue},
+                    success : function(data){
+                        medicalcardVue._data.medicalcard_List = data.listData;
+                        medicalcardVue._data.maxPage = data.maxPage;
+                    }
+                })
+           }
+
      </script>
+
+
 
 <style>
     <%--表格居中--%>
@@ -306,11 +383,19 @@ $(document).ready(function(){
         text-align: center;
         margin-top: 10px;
     }
+    .page{
+        border-color: #2aabd2;
+    }
+    /*每页条数*/
     .pagedown{
         border-color: #2aabd2;
         font-size: 16px;
         height: 30px;
         width: 50px;
+    }
+    /*分页后*/
+    .pageBackground{
+        background-color: #00a4ac;
     }
 </style>
 </html>

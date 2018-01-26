@@ -27,11 +27,12 @@ public class MedicalcardController {
     public Map<String,Object> queryMap(HttpServletRequest request){
         String search = request.getParameter("search");
         String page = request.getParameter("page");
+        String count = request.getParameter("count");
         String sql = "";
         int begin = 0;
         int end = 3;
         if(page != null && page != ""){
-            end = Integer.parseInt(page);
+            begin = (Integer.parseInt(page)-1)*end;
         }
         if(search != null && search != ""){
             sql = search;
