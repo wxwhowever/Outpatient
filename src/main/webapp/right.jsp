@@ -104,10 +104,10 @@ $(document).ready(function(){
         <%-- 分页 begin--%>
         <div class="form-inline page-style">
             <div style="float: left;">
-            <h4>每页条数:<select id="pagedown">
-                <option class="pagedown">10</option>
-                <option class="pagedown">15</option>
-                <option class="pagedown">20</option>
+            <h4>每页条数:<select class="pagedown" >
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
             </select></h4></div>
             <button class="btn btn-default page pageBackground" id="firstpage">首页</button>
             <button class="btn btn-default page">上一页</button>
@@ -127,21 +127,9 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group">
-                                <label  class="control-label">就诊卡编号:</label>
-                                <input type="text" class="form-control" id="jzno" v-model="medicalcard.jzno">
-                            </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">姓名:</label>
                                 <input type="text" class="form-control" id="name" v-model="medicalcard.name">
-                                <div style="float: right;">
-                                <label class="control-label">密码:</label>
-                                <input type="text" class="form-control" id="password" v-model="medicalcard.password">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label class="control-label">密码:</label>
-                                <input type="text" class="form-control" id="password" v-model="medicalcard.password">
                                 <div style="float: right;">
                                 <label class="control-label">密码:</label>
                                 <input type="text" class="form-control" id="password" v-model="medicalcard.password">
@@ -178,6 +166,10 @@ $(document).ready(function(){
                                 <label class="control-label">医保卡卡号:</label>
                                 <input type="text" class="form-control" id="ybno" v-model="medicalcard.ybno">
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">身份证:</label>
+                                <input type="text" class="form-control" id="card" v-model="medicalcard.card">
                             </div>
                             <div class="form-group form-inline">
                                 <label  class="control-label">是否预约:</label>
@@ -248,7 +240,7 @@ $(document).ready(function(){
                     queryById : function (id) {
                         var _this = this;
                       $.ajax({
-                          url : "/queryMap.action",
+                          url : "/queryById.action",
                           data : {id :id},
                           type : "post",
                           success : function(data){
@@ -261,6 +253,7 @@ $(document).ready(function(){
                         var _this = this;
                         $.ajax({
                             url : _this.url,
+                            data :{medicalcard : JSON.stringify(_this.medicalcard)},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
                                 _this.queryMap();//刷新页面
@@ -332,9 +325,25 @@ $(document).ready(function(){
                         }
                     }
                     var searchValue = $("#search").val();//得到搜索框中的值
+                    var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
                         url : "/queryMap.action",
-                        data : "page="+pageIndex+"&search="+searchValue,
+                        data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
+                        type : "post",
+                        success : function(data){
+                            medicalcardVue._data.medicalcard_List = data.listData;
+                            medicalcardVue._data.maxPage = data.maxPage;
+                            medicalcardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                        }
+                    })
+                })
+
+//                控制每页条数
+                $(".pagedown").change(function(){
+                    var selectPageCount = $(".pagedown").val();//得到每页显示条数
+                    $.ajax({
+                        url : "/queryMap.action",
+                        data : "count="+selectPageCount,
                         type : "post",
                         success : function(data){
                             medicalcardVue._data.medicalcard_List = data.listData;
@@ -346,26 +355,36 @@ $(document).ready(function(){
             })
 
 
-           $(function(){
-               //    控制每页条数
-               $(".pagedown").click(function(){
-                   var pageCount = $(this).text();
-                   alert(pageCount);
-               })
-           })
+//           $(function(){
+//               //    控制每页条数
+//               $(".pagedown").click(function(){
+//                   var pageCount = $(this).text();
+//                   alert(pageCount);
+//               })
+//           })
+
+//            $(function(){
+//
+//            })
+
 
 //            模糊查询的方法
            function searchMedicalcard () {
                 var searchValue = $("#search").val();//得到搜索框中的值
-                alert(searchValue);
-                $.ajax({
-                    url : "/queryMap.action",
-                    data : {search : searchValue},
-                    success : function(data){
-                        medicalcardVue._data.medicalcard_List = data.listData;
-                        medicalcardVue._data.maxPage = data.maxPage;
-                    }
-                })
+                console.log(searchValue);
+                if(searchValue != null && searchValue != ""){
+                    $.ajax({
+                        url : "/queryMap.action",
+                        data : {search : searchValue},
+                        success : function(data){
+                            medicalcardVue._data.medicalcard_List = data.listData;
+                            console.log(medicalcardVue._data.medicalcard_List);
+                            medicalcardVue._data.maxPage = data.maxPage;
+                        }
+                    })
+                }else{
+                    alert("请输入你要搜索的值");
+                }
            }
 
      </script>

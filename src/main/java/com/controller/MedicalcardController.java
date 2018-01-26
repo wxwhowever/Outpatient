@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,12 +31,15 @@ public class MedicalcardController {
         String count = request.getParameter("count");
         String sql = "";
         int begin = 0;
-        int end = 3;
+        int end = 10;
         if(page != null && page != ""){
             begin = (Integer.parseInt(page)-1)*end;
         }
         if(search != null && search != ""){
             sql = search;
+        }
+        if(count != null && count!= ""){
+            end = Integer.parseInt(count);
         }
         Map<String,Object> map = medicalcardBiz.queryMap(sql,begin, end);
 
@@ -45,7 +49,7 @@ public class MedicalcardController {
     @ResponseBody
     @RequestMapping("queryById")
     public Medicalcard queryById(HttpServletRequest request){
-        Medicalcard medicalcard = medicalcardBiz.queryById(request.getParameter("id"));
+        Medicalcard medicalcard = medicalcardBiz.queryById(Integer.parseInt(request.getParameter("id")));
         return medicalcard;
     }
 
@@ -53,6 +57,13 @@ public class MedicalcardController {
     @RequestMapping("insertMedicalcard")
     public String insert(HttpServletRequest request) throws IOException {
         Medicalcard medicalcard = new ObjectMapper().readValue(request.getParameter("medicalcard"), Medicalcard.class);
+        String jzno = medicalcardBiz.queryMaxNo();
+        String newJzno = jzno.substring((jzno.length()-1)+1);
+        System.out.println(jzno+newJzno);
+        System.out.println(new Date().toLocaleString());
+
+        medicalcard.setJZNO(jzno+newJzno);
+        medicalcard.setCreatedate(new Date().toLocaleString());
         String result = "";
         boolean insert = medicalcardBiz.insert(medicalcard);
         if(insert) {
