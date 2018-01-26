@@ -50,6 +50,8 @@ $(function(){
         <li class="active"><cite></cite><a href="right.jsp" target="rightFrame">挂号管理</a><i></i></li>
         <li><cite></cite><a href="imgtable.jsp" target="rightFrame">建立病案</a><i></i></li>
         <li><cite></cite><a href="form.jsp" target="rightFrame">添加编辑</a><i></i></li>
+        <li><cite></cite><a href="medicarecard.jsp" target="rightFrame">建立病案</a><i></i></li>
+        <li><cite></cite><a href="doctorcard.jsp" target="rightFrame">添加编辑</a><i></i></li>
         </ul>
     </dd>
         
