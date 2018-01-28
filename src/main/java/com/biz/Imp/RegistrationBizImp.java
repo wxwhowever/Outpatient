@@ -1,52 +1,52 @@
 package com.biz.Imp;
 
-import com.biz.MedicalcardBiz;
-import com.dao.MedicalcardDao;
-import com.entity.Medicalcard;
+import com.biz.RegistrationBiz;
+import com.dao.RegistrationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.entity.Registration;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
-public class MedicalcardBizImp implements MedicalcardBiz {
+public class RegistrationBizImp implements RegistrationBiz {
 
     @Autowired
-    MedicalcardDao medicalcardDao;
+    RegistrationDao registrationDao;
 
     public Map<String, Object> queryMap(String sql, int begin, int end) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Medicalcard> list = medicalcardDao.queryLists(sql,begin,end);
-        int maxCount = medicalcardDao.getCount(sql);
+        List<Registration> list = registrationDao.queryLists(sql,begin,end);
+        int maxCount = registrationDao.getCount(sql);
         int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
         map.put("listData",list);
         map.put("maxPage",maxPage);
         return map;
     }
 
-    public List<Medicalcard> queryList() {
-        return medicalcardDao.queryList();
+    public List<Registration> queryList() {
+        return registrationDao.queryList();
     }
 
-    public List<Medicalcard> queryLists(String sql, int begin, int end) {
-        return medicalcardDao.queryLists(sql,begin,end);
+    public List<Registration> queryLists(String sql, int begin, int end) {
+        return registrationDao.queryLists(sql,begin,end);
     }
 
-    public Medicalcard queryById(Serializable serializable) {
-        return medicalcardDao.queryById(serializable);
+    public Registration queryById(Serializable serializable) {
+        return registrationDao.queryById(serializable);
     }
 
     public String queryMaxNo() {
-        return medicalcardDao.queryMaxNo();
+        return registrationDao.queryMaxNo();
     }
 
     public boolean insert(Object object) {
         boolean f = false;
         try {
-            medicalcardDao.insert(object);
+            registrationDao.insert(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -58,7 +58,7 @@ public class MedicalcardBizImp implements MedicalcardBiz {
     public boolean update(Object object) {
         boolean f = false;
         try {
-            medicalcardDao.update(object);
+            registrationDao.update(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -70,7 +70,7 @@ public class MedicalcardBizImp implements MedicalcardBiz {
     public boolean delete(Object object) {
         boolean f = false;
         try {
-            medicalcardDao.delete(object);
+            registrationDao.delete(object);
             f = true;
         }catch (Exception e){
             f =false;

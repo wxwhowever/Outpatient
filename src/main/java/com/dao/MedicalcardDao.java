@@ -38,6 +38,12 @@ public interface MedicalcardDao extends BaseDao<Medicalcard> {
     Medicalcard queryById(Serializable serializable);
 
     /**
+     * 查询最大的编号
+     * @return
+     */
+    public String queryMaxNo();
+
+    /**
      * 增加
      * @param object
      * @return

@@ -41,7 +41,7 @@ $(document).ready(function(){
 
 <body>
 
-<div id="medicalcardList">
+<div id="medicarecardList">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -52,12 +52,12 @@ $(document).ready(function(){
     <div class="rightinfo">
     <div class="tools form-inline">
     	<ul class="toolbar">
-        <button class="btn btn-default" id="insertMedicalcard" v-on:click="insertMedicalcard()">
+        <button class="btn btn-default" id="insertMedicarecard" v-on:click="insertMedicarecard()">
             <img src="images/t01.png" />新建就诊卡</button>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <input id="search" class="form-control" placeholder="输入就诊卡编号或姓名查询">
+            <input id="search" class="form-control" placeholder="输入医保卡编号或姓名查询">
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-default" onclick="searchMedicalcard()"><img src="images/ico06.png"  style="margin-top: -5px"/>搜索</button>
+            <button class="btn btn-default" onclick="searchMedicarecard()"><img src="images/ico06.png"  style="margin-top: -5px"/>搜索</button>
         </ul>
 
 
@@ -67,37 +67,27 @@ $(document).ready(function(){
     	<thead>
         <th>编号<i class="sort"><img src="images/px.gif" /></i></th>
         <th>姓名</th>
-        <th>身份证号</th>
         <th>性别</th>
         <th>年龄</th>
         <th>职业</th>
         <th>住址</th>
         <th>账户余额</th>
         <th>开卡时间</th>
-        <th>开卡人电话</th>
-        <th>银医卡</th>
-        <th>医保卡</th>
-        <th>是否预约</th>
         <th>操作</th>
         </thead>
 
-        <tr v-for="medical in medicalcard_List">
-        <td>{{medical.jzno}}</td>
-        <td>{{medical.name}}</td>
-        <td>{{medical.card}}</td>
-        <td>{{medical.sex}}</td>
-        <td>{{medical.age}}</td>
-        <td>{{medical.profession}}</td>
-        <td>{{medical.address}}</td>
-        <td>{{medical.money}}</td>
-        <td>{{medical.createdate}}</td>
-        <td>{{medical.phone}}</td>
-        <td>{{medical.YYNO}}</td>
-        <td>{{medical.YBNO}}</td>
-        <td>{{medical.subscribe}}</td>
+        <tr v-for="medicare in medicare_List">
+        <td>{{medicare.ybno}}</td>
+        <td>{{medicare.name}}</td>
+        <td>{{medicare.sex}}</td>
+        <td>{{medicare.age}}</td>
+        <td>{{medicare.profession}}</td>
+        <td>{{medicare.address}}</td>
+        <td>{{medicare.money}}</td>
+        <td>{{medicare.createdate}}</td>
         <td class="toolbar">
-            <button class="btn btn-default"><img src="images/t02.png" v-on:click="updateMedicalcard(medical.id)">修改</button>
-            <button class="btn btn-default"><img src="images/t03.png" v-on:click="deleteById(medical.id)"> 删除</button>
+            <button class="btn btn-default"><img src="images/t02.png" v-on:click="updateMedicarecard(medicare.id)">修改</button>
+            <button class="btn btn-default"><img src="images/t03.png" v-on:click="deleteById(medicare.id)"> 删除</button>
         </td>
         </tr>
     </table>
@@ -118,7 +108,7 @@ $(document).ready(function(){
         <%-- 分页 end--%>
 
         <!-- 模态弹出框 begin -->
-        <div class="modal fade" id="medicalcardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="medicarecardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -129,51 +119,51 @@ $(document).ready(function(){
                         <form>
                             <div class="form-group form-inline">
                                 <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="medicalcard.name">
+                                <input type="text" class="form-control" id="name" v-model="medicarecard.name">
                                 <div style="float: right;">
                                 <label class="control-label">密码:</label>
-                                <input type="text" class="form-control" id="password" v-model="medicalcard.password">
+                                <input type="text" class="form-control" id="password" v-model="medicarecard.password">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">性别:</label>
-                                <input type="text" class="form-control" id="sex" v-model="medicalcard.sex">
+                                <input type="text" class="form-control" id="sex" v-model="medicarecard.sex">
                                 <div style="float: right;">
                                 <label class="control-label">年龄:</label>
-                                <input type="text" class="form-control" id="age" v-model="medicalcard.age">
+                                <input type="text" class="form-control" id="age" v-model="medicarecard.age">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label  class="control-label">职业:</label>
-                                <input type="text" class="form-control" id="profession" v-model="medicalcard.profession">
+                                <input type="text" class="form-control" id="profession" v-model="medicarecard.profession">
                                 <div style="float: right;">
                                 <label class="control-label">住址:</label>
-                                <input type="text" class="form-control" id="address" v-model="medicalcard.address">
+                                <input type="text" class="form-control" id="address" v-model="medicarecard.address">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">余额:</label>
-                                <input type="text" class="form-control" id="money" v-model="medicalcard.money">
+                                <input type="text" class="form-control" id="money" v-model="medicarecard.money">
                                 <div style="float: right;">
                                 <label  class="control-label">电话:</label>
-                                <input type="text" class="form-control" id="phone" v-model="medicalcard.phone">
+                                <input type="text" class="form-control" id="phone" v-model="medicarecard.phone">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">银医卡卡号:</label>
-                                <input type="text" class="form-control" id="yyno" v-model="medicalcard.yyno">
+                                <input type="text" class="form-control" id="yyno" v-model="medicarecard.yyno">
                                 <div style="float: right;">
                                 <label class="control-label">医保卡卡号:</label>
-                                <input type="text" class="form-control" id="ybno" v-model="medicalcard.ybno">
+                                <input type="text" class="form-control" id="ybno" v-model="medicarecard.ybno">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">身份证:</label>
-                                <input type="text" class="form-control" id="card" v-model="medicalcard.card">
+                                <input type="text" class="form-control" id="card" v-model="medicarecard.card">
                             </div>
                             <div class="form-group form-inline">
                                 <label  class="control-label">是否预约:</label>
-                                <input type="text" class="form-control" id="Subscribe" v-model="medicalcard.subscribe">
+                                <input type="text" class="form-control" id="Subscribe" v-model="medicarecard.subscribe">
                             </div>
                         </form>
                     </div>
@@ -213,11 +203,11 @@ $(document).ready(function(){
 </body>
      <script>
             var pageIndex = 1;
-            var medicalcardVue = new Vue({
-                el : "#medicalcardList",
+            var medicarecardVue = new Vue({
+                el : "#medicarecardList",
                 data : {
-                    medicalcard_List : [],
-                    medicalcard : {jzno:"", name:"", password:"", card:"", sex:"", age:"", profession:"", address:"", money:"",createdate:"", phone:"", yyno:"", ybno:"", subscribe:""},
+                    medicare_List : [],
+                    medicarecard : {name:"", password:"", sex:"", age:"", profession:"", address:"", money:"",createdate:""},
                     modalTitle : "",
                     maxPage : "",
                     url : "",
@@ -228,10 +218,10 @@ $(document).ready(function(){
                     queryMap : function () {
                         var _this = this;
                         $.ajax({
-                            url : "/queryMap-medicalcard.action",
+                            url : "/queryMap-medicarecard.action",
                             type : "post",
                             success : function(data){
-                                _this.medicalcard_List = data.listData;
+                                _this.medicare_List = data.listData;
                                 _this.maxPage = data.maxPage;
                             }
                         })
@@ -240,11 +230,11 @@ $(document).ready(function(){
                     queryById : function (id) {
                         var _this = this;
                       $.ajax({
-                          url : "/queryById-medicalcard.action",
+                          url : "/queryById-medicarecard.action",
                           data : {id :id},
                           type : "post",
                           success : function(data){
-                              _this.medicalcard = data;
+                              _this.medicarecard = data;
                           }
                       })
                     },
@@ -253,32 +243,32 @@ $(document).ready(function(){
                         var _this = this;
                         $.ajax({
                             url : _this.url,
-                            data :{medicalcard : JSON.stringify(_this.medicalcard)},
+                            data :{medicarecard : JSON.stringify(_this.medicarecard)},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
                                 _this.queryMap();//刷新页面
                             }
                         })
                     },
-                    insertMedicalcard : function(){
+                    insertMedicarecard : function(){
                         this.modalTitle = "新建就诊卡";//设置 modal 标题
-                        this.url = "/insertMedicalcard.action";//设置请求路径
-                        this.medicalcard = {};//初始化就诊卡
+                        this.url = "/insertMedicarecard.action";//设置请求路径
+                        this.medicarecard = {};//初始化就诊卡
                         this.showModal();//调用显示modal 的方法
                     },
-                    updateMedicalcard : function(id){
+                    updateMedicarecard : function(id){
                         this.modalTitle = "修改就诊卡";//设置 modal 标题
-                        this.url = "/updateMedicalcard.action";//设置请求路径
+                        this.url = "/updateMedicarecard.action";//设置请求路径
                         this.queryById(id);
                         this.showModal();//调用显示modal 的方法
                     },
 //                    隐藏模态框
                     hideModal : function(){
-                        $("#medicalcardModal").modal("hide");
+                        $("#medicarecardModal").modal("hide");
                     },
 //                    显示模态框
                     showModal : function (){
-                        $("#medicalcardModal").modal("show");
+                        $("#medicarecardModal").modal("show");
                     },
 
                 },
@@ -293,7 +283,7 @@ $(document).ready(function(){
                 //    控制每页条数
                 $(".page").click(function(){
                     var selectPage = $(this).text();
-                    var maxPage = medicalcardVue._data.maxPage;
+                    var maxPage = medicarecardVue._data.maxPage;
                     if(selectPage == "首页"){
                         pageIndex = 1;
                         $("#lastpage").removeClass("pageBackground");
@@ -327,13 +317,13 @@ $(document).ready(function(){
                     var searchValue = $("#search").val();//得到搜索框中的值
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
-                        url : "/queryMap-medicalcard.action",
+                        url : "/queryMap-medicarecard.action",
                         data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            medicalcardVue._data.medicalcard_List = data.listData;
-                            medicalcardVue._data.maxPage = data.maxPage;
-                            medicalcardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                            medicarecardVue._data.medicare_List = data.listData;
+                            medicarecardVue._data.maxPage = data.maxPage;
+                            medicarecardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
@@ -342,30 +332,31 @@ $(document).ready(function(){
                 $(".pagedown").change(function(){
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
-                        url : "/queryMap-medicalcard.action",
+                        url : "/queryMap-medicarecard.action",
                         data : "count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            medicalcardVue._data.medicalcard_List = data.listData;
-                            medicalcardVue._data.maxPage = data.maxPage;
-                            medicalcardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                            medicarecardVue._data.medicare_List = data.listData;
+                            medicarecardVue._data.maxPage = data.maxPage;
+                            medicarecardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
             })
 
+
+
 //            模糊查询的方法
-           function searchMedicalcard () {
+           function searchMedicarecard () {
                 var searchValue = $("#search").val();//得到搜索框中的值
                 console.log(searchValue);
                 if(searchValue != null && searchValue != ""){
                     $.ajax({
-                        url : "/queryMap-medicalcard.action",
+                        url : "/queryMap-medicarecard.action",
                         data : {search : searchValue},
                         success : function(data){
-                            medicalcardVue._data.medicalcard_List = data.listData;
-                            console.log(medicalcardVue._data.medicalcard_List);
-                            medicalcardVue._data.maxPage = data.maxPage;
+                            medicarecardVue._data.medicare_List = data.listData;
+                            medicarecardVue._data.maxPage = data.maxPage;
                         }
                     })
                 }else{

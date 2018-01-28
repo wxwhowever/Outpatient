@@ -1,37 +1,36 @@
 package com.controller;
 
 import com.biz.MedicalcardBiz;
+import com.biz.MedicarecardBiz;
 import com.entity.Medicalcard;
+import com.entity.Medicarecard;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.xml.internal.stream.events.EndDocumentEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @Controller
-public class MedicalcardController {
+public class MedicarecardController {
 
     @Autowired
-    MedicalcardBiz medicalcardBiz;
+    MedicarecardBiz medicarecardBiz;
 
 
     @ResponseBody
-    @RequestMapping("queryMap-medicalcard")
+    @RequestMapping("queryMap-medicarecard")
     public Map<String,Object> queryMap(HttpServletRequest request){
         String search = request.getParameter("search");
         String page = request.getParameter("page");
         String count = request.getParameter("count");
         String sql = "";
         int begin = 0;
-        int end = 5;
+        int end = 10;
         if(page != null && page != ""){
             begin = (Integer.parseInt(page)-1)*end;
         }
@@ -41,31 +40,31 @@ public class MedicalcardController {
         if(count != null && count!= ""){
             end = Integer.parseInt(count);
         }
-        Map<String,Object> map = medicalcardBiz.queryMap(sql,begin, end);
+        Map<String,Object> map = medicarecardBiz.queryMap(sql,begin, end);
 
         return map;
     }
 
     @ResponseBody
-    @RequestMapping("queryById-medicalcard")
-    public Medicalcard queryById(HttpServletRequest request){
-        Medicalcard medicalcard = medicalcardBiz.queryById(Integer.parseInt(request.getParameter("id")));
-        return medicalcard;
+    @RequestMapping("queryById-medicarecard")
+    public Medicarecard queryById(HttpServletRequest request){
+        Medicarecard medicarecard = medicarecardBiz.queryById(Integer.parseInt(request.getParameter("id")));
+        return medicarecard;
     }
 
     @ResponseBody
-    @RequestMapping("insertMedicalcard")
+    @RequestMapping("insertMedicarecard")
     public String insert(HttpServletRequest request) throws IOException {
-        Medicalcard medicalcard = new ObjectMapper().readValue(request.getParameter("medicalcard"), Medicalcard.class);
-        String jzno = medicalcardBiz.queryMaxNo();
-        String newJzno = jzno.substring((jzno.length()-1)+1);
-        System.out.println(jzno+newJzno);
+        Medicarecard medicarecard = new ObjectMapper().readValue(request.getParameter("medicarecard"), Medicarecard.class);
+        String ybno = medicarecardBiz.queryMaxNo();
+        String newYbno = ybno.substring((ybno.length()-1)+1);
+        System.out.println(ybno+newYbno);
         System.out.println(new Date().toLocaleString());
 
-        medicalcard.setJZNO(jzno+newJzno);
-        medicalcard.setCreatedate(new Date().toLocaleString());
+        medicarecard.setYBNO(ybno+newYbno);
+        medicarecard.setCreatedate(new Date().toLocaleString());
         String result = "";
-        boolean insert = medicalcardBiz.insert(medicalcard);
+        boolean insert = medicarecardBiz.insert(medicarecard);
         if(insert) {
             result = "success";
         }
@@ -73,11 +72,11 @@ public class MedicalcardController {
     }
 
     @ResponseBody
-    @RequestMapping("updateMedicalcard")
+    @RequestMapping("updateMedicarecard")
     public String update(HttpServletRequest request) throws IOException {
-        Medicalcard medicalcard = new ObjectMapper().readValue(request.getParameter("medicalcard"), Medicalcard.class);
+        Medicarecard medicarecard = new ObjectMapper().readValue(request.getParameter("medicarecard"), Medicarecard.class);
         String result = "";
-        boolean update = medicalcardBiz.update(medicalcard);
+        boolean update = medicarecardBiz.update(medicarecard);
         if(update) {
             result = "success";
         }
@@ -85,11 +84,11 @@ public class MedicalcardController {
     }
 
     @ResponseBody
-    @RequestMapping("deleteMedicalcard")
+    @RequestMapping("deleteMedicarecard")
     public String delete(HttpServletRequest request) throws IOException {
-        Medicalcard medicalcard = medicalcardBiz.queryById(request.getParameter("id"));
+        Medicarecard medicarecard = medicarecardBiz.queryById(request.getParameter("id"));
         String result = "";
-        boolean delete = medicalcardBiz.delete(medicalcard);
+        boolean delete = medicarecardBiz.delete(medicarecard);
         if(delete) {
             result = "success";
         }

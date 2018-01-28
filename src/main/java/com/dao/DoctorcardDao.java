@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface DoctorcardDao extends BaseDao<Doctorcard>{
+
     /**
      * 查询所有的集合 + 分页
      * @param sql
@@ -27,7 +28,7 @@ public interface DoctorcardDao extends BaseDao<Doctorcard>{
      * 查询所有带参
      * @return
      */
-    public List<Doctorcard> queryLists (String sql,int begin,int end);
+    public List<Doctorcard> queryLists (String sql, int begin, int end);
 
     /**
      * 查询单个
@@ -35,6 +36,12 @@ public interface DoctorcardDao extends BaseDao<Doctorcard>{
      * @return
      */
     Doctorcard queryById(Serializable serializable);
+
+    /**
+     * 查询最大的编号
+     * @return
+     */
+    public String queryMaxNo();
 
     /**
      * 增加

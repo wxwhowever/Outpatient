@@ -1,8 +1,8 @@
 package com.biz.Imp;
 
-import com.biz.MedicalcardBiz;
-import com.dao.MedicalcardDao;
-import com.entity.Medicalcard;
+import com.biz.DoctorcardBiz;
+import com.dao.DoctorcardDao;
+import com.entity.Doctorcard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,41 +12,41 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class MedicalcardBizImp implements MedicalcardBiz {
+public class DoctorcardBizImp implements DoctorcardBiz {
 
     @Autowired
-    MedicalcardDao medicalcardDao;
+    DoctorcardDao doctorcardDao;
 
     public Map<String, Object> queryMap(String sql, int begin, int end) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Medicalcard> list = medicalcardDao.queryLists(sql,begin,end);
-        int maxCount = medicalcardDao.getCount(sql);
+        List<Doctorcard> list = doctorcardDao.queryLists(sql,begin,end);
+        int maxCount = doctorcardDao.getCount(sql);
         int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
         map.put("listData",list);
         map.put("maxPage",maxPage);
         return map;
     }
 
-    public List<Medicalcard> queryList() {
-        return medicalcardDao.queryList();
+    public List<Doctorcard> queryList() {
+        return doctorcardDao.queryList();
     }
 
-    public List<Medicalcard> queryLists(String sql, int begin, int end) {
-        return medicalcardDao.queryLists(sql,begin,end);
+    public List<Doctorcard> queryLists(String sql, int begin, int end) {
+        return doctorcardDao.queryLists(sql,begin,end);
     }
 
-    public Medicalcard queryById(Serializable serializable) {
-        return medicalcardDao.queryById(serializable);
+    public Doctorcard queryById(Serializable serializable) {
+        return doctorcardDao.queryById(serializable);
     }
 
     public String queryMaxNo() {
-        return medicalcardDao.queryMaxNo();
+        return doctorcardDao.queryMaxNo();
     }
 
     public boolean insert(Object object) {
         boolean f = false;
         try {
-            medicalcardDao.insert(object);
+            doctorcardDao.insert(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -58,7 +58,7 @@ public class MedicalcardBizImp implements MedicalcardBiz {
     public boolean update(Object object) {
         boolean f = false;
         try {
-            medicalcardDao.update(object);
+            doctorcardDao.update(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -70,7 +70,7 @@ public class MedicalcardBizImp implements MedicalcardBiz {
     public boolean delete(Object object) {
         boolean f = false;
         try {
-            medicalcardDao.delete(object);
+            doctorcardDao.delete(object);
             f = true;
         }catch (Exception e){
             f =false;
