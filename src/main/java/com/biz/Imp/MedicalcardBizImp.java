@@ -1,6 +1,5 @@
 package com.biz.Imp;
 
-import com.base.BaseBiz;
 import com.biz.MedicalcardBiz;
 import com.dao.MedicalcardDao;
 import com.entity.Medicalcard;

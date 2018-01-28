@@ -1,13 +1,13 @@
 package com.biz;
 
 import com.base.BaseBiz;
-import com.entity.Medicarecard;
+import com.entity.Patient;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface MedicarecardBiz extends BaseBiz<Medicarecard>{
+public interface PatientBiz extends BaseBiz<Patient>{
 
     /**
      * 查询所有 + 分页
@@ -22,20 +22,20 @@ public interface MedicarecardBiz extends BaseBiz<Medicarecard>{
      * 查询所有不带参
      * @return
      */
-    List<Medicarecard> queryList();
+    List<Patient> queryList();
 
     /**
      * 查询所有带参
      * @return
      */
-    List<Medicarecard> queryLists(String sql, int begin, int end);
+    List<Patient> queryLists(String sql, int begin, int end);
 
     /**
      * 查询单个
      * @param serializable
      * @return
      */
-    Medicarecard queryById(Serializable serializable);
+    Patient queryById(Serializable serializable);
 
     /**
      * 查询最大的编号

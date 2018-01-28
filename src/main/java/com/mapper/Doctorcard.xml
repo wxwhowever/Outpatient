@@ -3,58 +3,58 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dao.MedicalcardDao">
+<mapper namespace="com.dao.DoctorcardDao">
     <!--查询所有-->
-    <select id="queryList" resultType="com.entity.Medicalcard">
-        select * from medicalcard
+    <select id="queryList" resultType="com.entity.Doctorcard">
+        select * from doctorcard
     </select>
 
     <!--带分页的查询-->
-    <select id="queryLists" resultType="com.entity.Medicalcard">
-        select * from medicalcard
+    <select id="queryLists" resultType="com.entity.Doctorcard">
+        select * from doctorcard
         <where>
             <if test="param1 != null and param1 != ''">
-                name like '%${param1}%' or jzno like '%${param1}%' or sex like '%${param1}%'
+                name like '%${param1}%' or yyno like '%${param1}%' or sex like '%${param1}%'
             </if>
         </where>
         limit #{param2},#{param3}
     </select>
 
     <!--查询单个-->
-    <select id="queryById" parameterType="int" resultType="com.entity.Medicalcard">
-        select * from medicalcard where id = #{id}
+    <select id="queryById" parameterType="int" resultType="com.entity.Doctorcard">
+        select * from doctorcard where id = #{id}
     </select>
 
     <!--查询最大的编号-->
     <select id="queryMaxNo" parameterType="java.lang.String" resultType="java.lang.String">
-        select * from medicalcard where jzno = #{jzno}
+        select * from doctorcard where yyno = #{yyno}
     </select>
 
 
     <!--增加-->
-    <insert id="insert" parameterType="com.entity.Medicalcard">
-        INSERT INTO medicalcard
-        (jzno, name, password, card, sex, age, profession, address, money,createdate, phone, yyno, ybno, subscribe) VALUES
-        (#{jzno},#{name},#{password},#{card},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone},#{yyno},#{ybno},#{subscribe})
+    <insert id="insert" parameterType="com.entity.Doctorcard">
+        INSERT INTO doctorcard
+        (jzno, name, password,sex, age, profession, address, money,createdate,phone) VALUES
+        (#{jzno},#{name},#{password},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone})
     </insert>
 
     <!--修改-->
-    <update id="update" parameterType="com.entity.Medicalcard">
-        update medicalcard SET
-        (jzno, name = #{name}, password = #{password}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},
-        address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}, yyno = #{yyno}, ybno = #{ybno}, subscribe = #{subscribe}) where id = #{id}
+    <update id="update" parameterType="com.entity.Doctorcard">
+        update doctorcard SET
+        (yyno, name = #{name}, password = #{password},sex = #{sex}, age = #{age}, profession = #{profession},
+        address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}) where id = #{id}
     </update>
 
     <!--删除-->
     <delete id="delete" parameterType="int">
-        delete from medicalcard where id = #{id}
+        delete from doctorcard where id = #{id}
     </delete>
 
     <!--查询表总行数-->
     <select id="getCount" parameterType="java.lang.String" resultType="int">
-        select  count(*) from medicalcard
+        select  count(*) from doctorcard
         <if test="_parameter != null and _parameter != ''">
-            where name like '%${_parameter}%' OR jzno like '%${_parameter}%'  or sex like '%${_parameter}%'
+            where name like '%${_parameter}%' OR yyno like '%${_parameter}%'  or sex like '%${_parameter}%'
         </if>
     </select>
 

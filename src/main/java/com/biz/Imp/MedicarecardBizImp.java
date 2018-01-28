@@ -1,10 +1,7 @@
 package com.biz.Imp;
 
-import com.biz.MedicalcardBiz;
 import com.biz.MedicarecardBiz;
-import com.dao.MedicalcardDao;
 import com.dao.MedicarecardDao;
-import com.entity.Medicalcard;
 import com.entity.Medicarecard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

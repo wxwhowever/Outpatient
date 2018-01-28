@@ -1,17 +1,17 @@
-package com.biz;
+package com.dao;
 
-import com.base.BaseBiz;
-import com.entity.Doctorcard;
-import com.entity.Medicarecard;
+import com.base.BaseDao;
+import com.entity.Medicalcard;
+import com.entity.Registration;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface DoctorBiz extends BaseBiz<Doctorcard>{
+public interface RegistrationDao extends BaseDao<Registration> {
 
     /**
-     * 查询所有 + 分页
+     * 查询所有的集合 + 分页
      * @param sql
      * @param begin
      * @param end
@@ -23,20 +23,20 @@ public interface DoctorBiz extends BaseBiz<Doctorcard>{
      * 查询所有不带参
      * @return
      */
-    List<Doctorcard> queryList();
+    List<Registration> queryList();
 
     /**
      * 查询所有带参
      * @return
      */
-    List<Doctorcard> queryLists(String sql, int begin, int end);
+    public List<Registration> queryLists(String sql, int begin, int end);
 
     /**
      * 查询单个
      * @param serializable
      * @return
      */
-    Doctorcard queryById(Serializable serializable);
+    Registration queryById(Serializable serializable);
 
     /**
      * 查询最大的编号
@@ -66,7 +66,7 @@ public interface DoctorBiz extends BaseBiz<Doctorcard>{
     boolean delete(Object object);
 
     /**
-     * 查询表的总行数
+     * 查询表最大行数
      * @param sql
      * @return
      */

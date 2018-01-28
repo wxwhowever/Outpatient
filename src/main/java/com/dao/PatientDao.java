@@ -1,16 +1,17 @@
-package com.biz;
+package com.dao;
 
-import com.base.BaseBiz;
-import com.entity.Medicarecard;
+import com.base.BaseDao;
+import com.entity.Medicalcard;
+import com.entity.Patient;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface MedicarecardBiz extends BaseBiz<Medicarecard>{
+public interface PatientDao extends BaseDao<Patient> {
 
     /**
-     * 查询所有 + 分页
+     * 查询所有的集合 + 分页
      * @param sql
      * @param begin
      * @param end
@@ -22,20 +23,20 @@ public interface MedicarecardBiz extends BaseBiz<Medicarecard>{
      * 查询所有不带参
      * @return
      */
-    List<Medicarecard> queryList();
+    List<Patient> queryList();
 
     /**
      * 查询所有带参
      * @return
      */
-    List<Medicarecard> queryLists(String sql, int begin, int end);
+    public List<Patient> queryLists(String sql, int begin, int end);
 
     /**
      * 查询单个
      * @param serializable
      * @return
      */
-    Medicarecard queryById(Serializable serializable);
+    Patient queryById(Serializable serializable);
 
     /**
      * 查询最大的编号
@@ -65,7 +66,7 @@ public interface MedicarecardBiz extends BaseBiz<Medicarecard>{
     boolean delete(Object object);
 
     /**
-     * 查询表的总行数
+     * 查询表最大行数
      * @param sql
      * @return
      */
