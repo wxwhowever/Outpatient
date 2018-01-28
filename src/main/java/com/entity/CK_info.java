@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * 产科信息记录表
+ * sdsads
  */
 public class CK_info {
 
