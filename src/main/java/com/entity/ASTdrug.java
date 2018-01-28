@@ -1,6 +1,6 @@
 package com.entity;
 
-//皮试用药单
+//皮试用药单2222222
 public class ASTdrug {
     private int id;
 
