@@ -1,10 +1,13 @@
 package com.entity;
 
-public class Doctor {
+/**
+ * 产科表
+ */
+public class Department {
 
     private int id;
-//    医生编号
-    private String DNO;
+//    科室编号
+    private String officeno;
 //    姓名
     private String name;
 //    性别
@@ -13,29 +16,26 @@ public class Doctor {
     private int age;
 //    职位
     private String  position;
-//   科室编号
-    private String officeno;
 
-    public Doctor() {
+
+    public Department() {
     }
 
-    public Doctor(int id, String DNO, String name, String sex, int age, String position, String officeno) {
+    public Department(int id, String officeno, String name, String sex, int age, String position) {
         this.id = id;
-        this.DNO = DNO;
+        this.officeno = officeno;
         this.name = name;
         this.sex = sex;
         this.age = age;
         this.position = position;
-        this.officeno = officeno;
     }
 
-    public Doctor(String DNO, String name, String sex, int age, String position, String officeno) {
-        this.DNO = DNO;
+    public Department(String officeno, String name, String sex, int age, String position) {
+        this.officeno = officeno;
         this.name = name;
         this.sex = sex;
         this.age = age;
         this.position = position;
-        this.officeno = officeno;
     }
 
     public int getId() {
@@ -46,12 +46,12 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getDNO() {
-        return DNO;
+    public String getOfficeno() {
+        return officeno;
     }
 
-    public void setDNO(String DNO) {
-        this.DNO = DNO;
+    public void setOfficeno(String officeno) {
+        this.officeno = officeno;
     }
 
     public String getName() {
@@ -86,24 +86,15 @@ public class Doctor {
         this.position = position;
     }
 
-    public String getOfficeno() {
-        return officeno;
-    }
-
-    public void setOfficeno(String officeno) {
-        this.officeno = officeno;
-    }
-
     @Override
     public String toString() {
-        return "Doctor{" +
+        return "Department{" +
                 "id=" + id +
-                ", DNO='" + DNO + '\'' +
+                ", officeno='" + officeno + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", position='" + position + '\'' +
-                ", officeno='" + officeno + '\'' +
                 '}';
     }
 }
