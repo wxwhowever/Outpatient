@@ -1,6 +1,8 @@
 package com.entity;
 
-public class Patient {
+import java.io.Serializable;
+
+public class Patient{
 
     private int id;
 //    病人编号

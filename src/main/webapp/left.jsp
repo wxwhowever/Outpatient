@@ -46,9 +46,10 @@ $(function(){
     <span><img src="images/leftico01.png" /></span>建卡挂号管理
     </div>
     	<ul class="menuson">
-        <li><cite></cite><a href="right.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
-        <li class="active"><cite></cite><a href="registration.jsp" target="rightFrame">挂号管理</a><i></i></li>
-        <li><cite></cite><a href="patient.jsp" target="rightFrame">建立病案</a><i></i></li>
+        <li class="active"><cite></cite><a href="right.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
+        <li><cite></cite><a href="registration.jsp" target="rightFrame">挂号管理</a><i></i></li>
+        <li><cite></cite><a href="patient.jsp" target="rightFrame">病人管理</a><i></i></li>
+        <li><cite></cite><a href="medical.jsp" target="rightFrame">病案管理</a><i></i></li>
         <li><cite></cite><a href="medicarecard.jsp" target="rightFrame">医保卡</a><i></i></li>
         <li><cite></cite><a href="doctorcard.jsp" target="rightFrame">银医卡</a><i></i></li>
         </ul>
