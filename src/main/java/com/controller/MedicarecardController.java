@@ -61,7 +61,7 @@ public class MedicarecardController {
         System.out.println(ybno+newYbno);
         System.out.println(new Date().toLocaleString());
 
-        medicarecard.setYBNO(ybno+newYbno);
+        medicarecard.setYbno(ybno+newYbno);
         medicarecard.setCreatedate(new Date().toLocaleString());
         String result = "";
         boolean insert = medicarecardBiz.insert(medicarecard);
@@ -86,9 +86,8 @@ public class MedicarecardController {
     @ResponseBody
     @RequestMapping("deleteMedicarecard")
     public String delete(HttpServletRequest request) throws IOException {
-        Medicarecard medicarecard = medicarecardBiz.queryById(request.getParameter("id"));
         String result = "";
-        boolean delete = medicarecardBiz.delete(medicarecard);
+        boolean delete = medicarecardBiz.delete(Integer.parseInt(request.getParameter("id")));
         if(delete) {
             result = "success";
         }

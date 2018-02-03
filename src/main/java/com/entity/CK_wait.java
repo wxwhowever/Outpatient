@@ -3,13 +3,13 @@ package com.entity;
 import java.util.List;
 
 /**
- * 产科表
+ * 产科候诊表
  */
 public class CK_wait {
 
     private int id;
 //    候诊编号
-    private String WNO;
+    private String wno;
 //    病人编号
     private List<Patient> patientList;
 //    姓名
@@ -35,9 +35,9 @@ public class CK_wait {
     public CK_wait() {
     }
 
-    public CK_wait(int id, String WNO, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
+    public CK_wait(int id, String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
         this.id = id;
-        this.WNO = WNO;
+        this.wno = wno;
         this.patientList = patientList;
         this.name = name;
         this.sex = sex;
@@ -49,8 +49,8 @@ public class CK_wait {
         this.medicalcard = medicalcard;
         this.doctor = doctor;
     }
-    public CK_wait( String WNO, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
-        this.WNO = WNO;
+    public CK_wait( String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
+        this.wno = wno;
         this.patientList = patientList;
         this.name = name;
         this.sex = sex;
@@ -71,12 +71,12 @@ public class CK_wait {
         this.id = id;
     }
 
-    public String getWNO() {
-        return WNO;
+    public String getWno() {
+        return wno;
     }
 
-    public void setWNO(String WNO) {
-        this.WNO = WNO;
+    public void setWno(String wno) {
+        this.wno = wno;
     }
 
     public List<Patient> getPatientList() {
@@ -163,7 +163,7 @@ public class CK_wait {
     public String toString() {
         return "CK_wait{" +
                 "id=" + id +
-                ", WNO='" + WNO + '\'' +
+                ", wno='" + wno + '\'' +
                 ", patientList=" + patientList +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +

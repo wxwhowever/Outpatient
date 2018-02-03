@@ -1,17 +1,20 @@
 package com.entity;
 
+/**
+ * 医生表
+ */
 public class Doctor {
 
     private int id;
 //    医生编号
-    private String DNO;
+    private String dno;
 //    姓名
     private String name;
 //    性别
     private String sex;
-//    年龄
+//
     private int age;
-//    职位
+//    职位年龄
     private String  position;
 //   科室编号
     private String officeno;
@@ -19,9 +22,9 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(int id, String DNO, String name, String sex, int age, String position, String officeno) {
+    public Doctor(int id, String dno, String name, String sex, int age, String position, String officeno) {
         this.id = id;
-        this.DNO = DNO;
+        this.dno = dno;
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -29,8 +32,8 @@ public class Doctor {
         this.officeno = officeno;
     }
 
-    public Doctor(String DNO, String name, String sex, int age, String position, String officeno) {
-        this.DNO = DNO;
+    public Doctor(String dno, String name, String sex, int age, String position, String officeno) {
+        this.dno = dno;
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -46,12 +49,12 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getDNO() {
-        return DNO;
+    public String getDno() {
+        return dno;
     }
 
-    public void setDNO(String DNO) {
-        this.DNO = DNO;
+    public void setDno(String dno) {
+        this.dno = dno;
     }
 
     public String getName() {
@@ -98,7 +101,7 @@ public class Doctor {
     public String toString() {
         return "Doctor{" +
                 "id=" + id +
-                ", DNO='" + DNO + '\'' +
+                ", dno='" + dno + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +

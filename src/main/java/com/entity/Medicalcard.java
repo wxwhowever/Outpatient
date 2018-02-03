@@ -2,11 +2,14 @@ package com.entity;
 
 import java.util.HashMap;
 
+/**
+ * 就诊卡表
+ */
 public class Medicalcard {
 
     private int id;
 //    就诊卡号
-    private String JZNO;
+    private String jzno;
 //    姓名
     private String name;
 //    密码
@@ -37,8 +40,8 @@ public class Medicalcard {
 
     public Medicalcard() {
     }
-    public Medicalcard(String JZNO, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, Medicarecard medicarecard, Doctorcard doctorcard) {
-        this.JZNO = JZNO;
+    public Medicalcard(String jzno, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, Medicarecard medicarecard, Doctorcard doctorcard) {
+        this.jzno = jzno;
         this.name = name;
         this.password = password;
         this.card = card;
@@ -54,9 +57,9 @@ public class Medicalcard {
         this.doctorcard = doctorcard;
     }
 
-    public Medicalcard(int id, String JZNO, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, Medicarecard medicarecard, Doctorcard doctorcard) {
+    public Medicalcard(int id, String jzno, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, Medicarecard medicarecard, Doctorcard doctorcard) {
         this.id = id;
-        this.JZNO = JZNO;
+        this.jzno = jzno;
         this.name = name;
         this.password = password;
         this.card = card;
@@ -80,12 +83,12 @@ public class Medicalcard {
         this.id = id;
     }
 
-    public String getJZNO() {
-        return JZNO;
+    public String getJzno() {
+        return jzno;
     }
 
-    public void setJZNO(String JZNO) {
-        this.JZNO = JZNO;
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
     }
 
     public String getName() {
@@ -196,7 +199,7 @@ public class Medicalcard {
     public String toString() {
         return "Medicalcard{" +
                 "id=" + id +
-                ", JZNO='" + JZNO + '\'' +
+                ", jzno='" + jzno + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", card='" + card + '\'' +

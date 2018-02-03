@@ -1,11 +1,13 @@
 package com.entity;
 
-// 医保卡
+/**
+ * 医保卡
+ */
 public class Medicarecard {
 
     private int id;
 //    医保卡号
-    private String YBNO;
+    private String ybno;
 //    姓名
     private String name;
 //    密码
@@ -26,8 +28,8 @@ public class Medicarecard {
     public Medicarecard() {
     }
 
-    public Medicarecard(String YBNO, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
-        this.YBNO = YBNO;
+    public Medicarecard(String ybno, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
+        this.ybno = ybno;
         this.name = name;
         this.password = password;
         this.sex = sex;
@@ -38,9 +40,9 @@ public class Medicarecard {
         this.createdate = createdate;
     }
 
-    public Medicarecard(int id, String YBNO, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
+    public Medicarecard(int id, String ybno, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
         this.id = id;
-        this.YBNO = YBNO;
+        this.ybno = ybno;
         this.name = name;
         this.password = password;
         this.sex = sex;
@@ -59,12 +61,12 @@ public class Medicarecard {
         this.id = id;
     }
 
-    public String getYBNO() {
-        return YBNO;
+    public String getYbno() {
+        return ybno;
     }
 
-    public void setYBNO(String YBNO) {
-        this.YBNO = YBNO;
+    public void setYbno(String ybno) {
+        this.ybno = ybno;
     }
 
     public String getName() {
@@ -135,7 +137,7 @@ public class Medicarecard {
     public String toString() {
         return "Medicarecard{" +
                 "id=" + id +
-                ", YBNO='" + YBNO + '\'' +
+                ", ybno='" + ybno + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +

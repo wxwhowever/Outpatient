@@ -1,8 +1,7 @@
 package com.controller;
 
-import com.biz.DoctorcardBiz;
-import com.entity.Doctorcard;
-import com.entity.Medicalcard;
+import com.biz.MedicalBiz;
+import com.entity.Medical;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,21 +14,21 @@ import java.util.Date;
 import java.util.Map;
 
 @Controller
-public class DoctorcardController {
+public class MedicalController {
 
     @Autowired
-    DoctorcardBiz doctorcardBiz;
+    MedicalBiz medicalBiz;
 
 
     @ResponseBody
-    @RequestMapping("queryMap-doctorcard")
+    @RequestMapping("queryMap-medical")
     public Map<String,Object> queryMap(HttpServletRequest request){
         String search = request.getParameter("search");
         String page = request.getParameter("page");
         String count = request.getParameter("count");
         String sql = "";
         int begin = 0;
-        int end = 10;
+        int end = 5;
         if(page != null && page != ""){
             begin = (Integer.parseInt(page)-1)*end;
         }
@@ -39,32 +38,31 @@ public class DoctorcardController {
         if(count != null && count!= ""){
             end = Integer.parseInt(count);
         }
-        Map<String,Object> map = doctorcardBiz.queryMap(sql,begin, end);
+        Map<String,Object> map = medicalBiz.queryMap(sql,begin, end);
 
         return map;
     }
 
     @ResponseBody
-    @RequestMapping("queryById-doctorcard")
-    public Doctorcard queryById(HttpServletRequest request){
-        Doctorcard doctorcard = doctorcardBiz.queryById(Integer.parseInt(request.getParameter("id")));
-        return doctorcard;
+    @RequestMapping("queryById-medical")
+    public Medical queryById(HttpServletRequest request){
+        Medical medical = medicalBiz.queryById(Integer.parseInt(request.getParameter("id")));
+        return medical;
     }
 
     @ResponseBody
-    @RequestMapping("insertDoctorcard")
+    @RequestMapping("insertMedical")
     public String insert(HttpServletRequest request) throws IOException {
-        System.out.println(request.getParameter("doctorcard"));
-        Doctorcard doctorcard = new ObjectMapper().readValue(request.getParameter("doctorcard"), Doctorcard.class);
-//        查询出最大编号
-        String yyno = doctorcardBiz.queryMaxNo();
-//        将最大编号加一,加到数据库
-        int newYyno = Integer.parseInt(yyno)+1;
-        System.out.println(newYyno);
-        doctorcard.setYyno("YY0"+newYyno);
-        doctorcard.setCreatedate(new Date().toLocaleString());
+        Medical medical = new ObjectMapper().readValue(request.getParameter("medical"), Medical.class);
+
+//        查询最大的病案号
+        String mcno = medicalBiz.queryMaxNo();
+//        将最大的病案号加一，添加到数据库
+        int newMcno = Integer.parseInt(mcno) + 1;
+        medical.setMcno("MC2018"+newMcno);
+        medical.setCreatedate(new Date().toLocaleString());
         String result = "";
-        boolean insert = doctorcardBiz.insert(doctorcard);
+        boolean insert = medicalBiz.insert(medical);
         if(insert) {
             result = "success";
         }
@@ -72,11 +70,11 @@ public class DoctorcardController {
     }
 
     @ResponseBody
-    @RequestMapping("updateDoctorcard")
+    @RequestMapping("updateMedical")
     public String update(HttpServletRequest request) throws IOException {
-        Doctorcard doctorcard = new ObjectMapper().readValue(request.getParameter("doctorcard"), Doctorcard.class);
+        Medical medical = new ObjectMapper().readValue(request.getParameter("medical"), Medical.class);
         String result = "";
-        boolean update = doctorcardBiz.update(doctorcard);
+        boolean update = medicalBiz.update(medical);
         if(update) {
             result = "success";
         }
@@ -84,10 +82,10 @@ public class DoctorcardController {
     }
 
     @ResponseBody
-    @RequestMapping("deleteDoctorcard")
+    @RequestMapping("deleteMedical")
     public String delete(HttpServletRequest request) throws IOException {
         String result = "";
-        boolean delete = doctorcardBiz.delete(Integer.parseInt(request.getParameter("id")));
+        boolean delete = medicalBiz.delete(Integer.parseInt(request.getParameter("id")));
         if(delete) {
             result = "success";
         }

@@ -2,6 +2,7 @@ package com.controller;
 
 import com.biz.MedicalcardBiz;
 import com.entity.Medicalcard;
+import com.entity.Medicarecard;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.xml.internal.stream.events.EndDocumentEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +58,11 @@ public class MedicalcardController {
     @RequestMapping("insertMedicalcard")
     public String insert(HttpServletRequest request) throws IOException {
         Medicalcard medicalcard = new ObjectMapper().readValue(request.getParameter("medicalcard"), Medicalcard.class);
+//        查询出最大编号
         String jzno = medicalcardBiz.queryMaxNo();
-        String newJzno = jzno.substring((jzno.length()-1)+1);
-        System.out.println(jzno+newJzno);
-        System.out.println(new Date().toLocaleString());
-
-        medicalcard.setJZNO(jzno+newJzno);
+//        将最大编号加一,加到数据库
+        int newJzno = Integer.parseInt(jzno)+1;
+        medicalcard.setJzno("GZ"+newJzno);
         medicalcard.setCreatedate(new Date().toLocaleString());
         String result = "";
         boolean insert = medicalcardBiz.insert(medicalcard);
@@ -87,9 +87,8 @@ public class MedicalcardController {
     @ResponseBody
     @RequestMapping("deleteMedicalcard")
     public String delete(HttpServletRequest request) throws IOException {
-        Medicalcard medicalcard = medicalcardBiz.queryById(request.getParameter("id"));
         String result = "";
-        boolean delete = medicalcardBiz.delete(medicalcard);
+        boolean delete = medicalcardBiz.delete(Integer.parseInt(request.getParameter("id")));
         if(delete) {
             result = "success";
         }

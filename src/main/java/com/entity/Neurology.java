@@ -1,9 +1,9 @@
 package com.entity;
 
 /**
- *口腔科表
+ * 神经科表
  */
-public class Stomatology {
+public class Neurology {
 
     private int id;
 //    科室编号
@@ -18,10 +18,10 @@ public class Stomatology {
     private String  position;
 
 
-    public Stomatology() {
+    public Neurology() {
     }
 
-    public Stomatology(int id, String officeno, String name, String sex, int age, String position) {
+    public Neurology(int id, String officeno, String name, String sex, int age, String position) {
         this.id = id;
         this.officeno = officeno;
         this.name = name;
@@ -30,7 +30,7 @@ public class Stomatology {
         this.position = position;
     }
 
-    public Stomatology(String officeno, String name, String sex, int age, String position) {
+    public Neurology(String officeno, String name, String sex, int age, String position) {
         this.officeno = officeno;
         this.name = name;
         this.sex = sex;

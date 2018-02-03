@@ -5,7 +5,7 @@ public class Doctorcard {
 
     private int id;
 //    银医卡号
-    private String YYNO;
+    private String yyno;
 //    姓名
     private String name;
 //    密码
@@ -22,12 +22,14 @@ public class Doctorcard {
     private float money;
 //    创建时间
     private String createdate;
+//    电话
+    private String phone;
 
     public Doctorcard() {
     }
 
-    public Doctorcard(String YYNO, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
-        this.YYNO = YYNO;
+    public Doctorcard(String phone,String yyno, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
+        this.yyno = yyno;
         this.name = name;
         this.password = password;
         this.sex = sex;
@@ -36,11 +38,12 @@ public class Doctorcard {
         this.address = address;
         this.money = money;
         this.createdate = createdate;
+        this.phone = phone;
     }
 
-    public Doctorcard(int id, String YYNO, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
+    public Doctorcard(String phone,int id, String yyno, String name, String password, String sex, int age, String profession, String address, float money, String createdate) {
         this.id = id;
-        this.YYNO = YYNO;
+        this.yyno = yyno;
         this.name = name;
         this.password = password;
         this.sex = sex;
@@ -49,6 +52,7 @@ public class Doctorcard {
         this.address = address;
         this.money = money;
         this.createdate = createdate;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -59,12 +63,12 @@ public class Doctorcard {
         this.id = id;
     }
 
-    public String getYYNO() {
-        return YYNO;
+    public String getYyno() {
+        return yyno;
     }
 
-    public void setYYNO(String YYNO) {
-        this.YYNO = YYNO;
+    public void setYyno(String yyno) {
+        this.yyno = yyno;
     }
 
     public String getName() {
@@ -131,11 +135,19 @@ public class Doctorcard {
         this.createdate = createdate;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
-        return "Medicarecard{" +
+        return "Doctorcard{" +
                 "id=" + id +
-                ", YYNO='" + YYNO + '\'' +
+                ", yyno='" + yyno + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +
@@ -144,6 +156,7 @@ public class Doctorcard {
                 ", address='" + address + '\'' +
                 ", money=" + money +
                 ", createdate='" + createdate + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

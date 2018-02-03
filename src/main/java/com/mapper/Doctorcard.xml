@@ -26,23 +26,23 @@
     </select>
 
     <!--查询最大的编号-->
-    <select id="queryMaxNo" parameterType="java.lang.String" resultType="java.lang.String">
-        select * from doctorcard where yyno = #{yyno}
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select count(yyno) from doctorcard
     </select>
 
 
     <!--增加-->
     <insert id="insert" parameterType="com.entity.Doctorcard">
         INSERT INTO doctorcard
-        (jzno, name, password,sex, age, profession, address, money,createdate,phone) VALUES
-        (#{jzno},#{name},#{password},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone})
+        (yyno, name, password,sex, age, profession, address, money,createdate,phone) VALUES
+        (#{yyno},#{name},#{password},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Doctorcard">
         update doctorcard SET
-        (yyno, name = #{name}, password = #{password},sex = #{sex}, age = #{age}, profession = #{profession},
-        address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}) where id = #{id}
+         name = #{name}, password = #{password},sex = #{sex}, age = #{age}, profession = #{profession},
+        address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone} where id = #{id}
     </update>
 
     <!--删除-->

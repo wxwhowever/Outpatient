@@ -56,12 +56,12 @@ public class RegistrationController {
     @RequestMapping("insertRegistration")
     public String insert(HttpServletRequest request) throws IOException {
         Registration registration = new ObjectMapper().readValue(request.getParameter("registration"), Registration.class);
-//        String jzno = registrationBiz.queryMaxNo();
-//        String newJzno = jzno.substring((jzno.length()-1)+1);
-//        System.out.println(jzno+newJzno);
-//        System.out.println(new Date().toLocaleString());
-//
-//        registration.setJZNO(jzno+newJzno);
+//        查询最大的挂号编号
+        String rsno = registrationBiz.queryMaxNo();
+
+//      将最大的编号加一，添加到数据库
+        int newRsno = Integer.parseInt(rsno)+1;
+        registration.setRsno("RS"+newRsno);
         registration.setCreatedate(new Date().toLocaleString());
         String result = "";
         boolean insert = registrationBiz.insert(registration);
@@ -86,9 +86,8 @@ public class RegistrationController {
     @ResponseBody
     @RequestMapping("deleteRegistration")
     public String delete(HttpServletRequest request) throws IOException {
-        Registration registration = registrationBiz.queryById(request.getParameter("id"));
         String result = "";
-        boolean delete = registrationBiz.delete(registration);
+        boolean delete = registrationBiz.delete(Integer.parseInt(request.getParameter("id")));
         if(delete) {
             result = "success";
         }

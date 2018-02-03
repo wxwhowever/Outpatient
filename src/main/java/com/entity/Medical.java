@@ -1,19 +1,22 @@
 package com.entity;
 
+
 /**
- * 挂号表
+ * 病案表
  */
-public class Registration {
+public class Medical {
 
     private int id;
-//    挂号编号
-    private String rsno;
-//    姓名
+//    病案编号
+    private String mcno;
+//    患者姓名
     private String name;
 //    身份证号
     private String card;
-//    挂号类型
+//    患病类型
     private String type;
+//    患病描述
+    private String remark;
 //    性别
     private String sex;
 //    年龄
@@ -22,53 +25,50 @@ public class Registration {
     private String  profession;
 //    地址
     private String address;
+//    病案时间
+    private String createdate;
 //    电话
     private String phone;
- //    创建时间
-    private String createdate;
 //    就诊卡
     private Medicalcard medicalcard;
 //    医保卡
     private Medicarecard medicarecard;
-//    银医卡
-    private Doctorcard doctorcard;
 
-    public Registration() {
+    public Medical() {
     }
 
-    public Registration(String rsno, String name, String card, String type, String sex, int age, String profession, String address, String phone, String createdate, Medicalcard medicalcard, Medicarecard medicarecard, Doctorcard doctorcard) {
-        this.rsno = rsno;
-        this.name = name;
-        this.card = card;
-        this.type = type;
-        this.sex = sex;
-        this.age = age;
-        this.profession = profession;
-        this.address = address;
-        this.phone = phone;
-        this.createdate = createdate;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
-    }
-
-    public Registration(int id, String rsno, String name, String card, String type, String sex, int age, String profession, String address, String phone, String createdate, Medicalcard medicalcard, Medicarecard medicarecard, Doctorcard doctorcard) {
+    public Medical(int id, String mcno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, Medicalcard medicalcard, Medicarecard medicarecard) {
         this.id = id;
-        this.rsno = rsno;
+        this.mcno = mcno;
         this.name = name;
         this.card = card;
         this.type = type;
+        this.remark = remark;
         this.sex = sex;
         this.age = age;
         this.profession = profession;
         this.address = address;
-        this.phone = phone;
         this.createdate = createdate;
+        this.phone = phone;
         this.medicalcard = medicalcard;
         this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
     }
 
+    public Medical(String mcno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, Medicalcard medicalcard, Medicarecard medicarecard) {
+        this.mcno = mcno;
+        this.name = name;
+        this.card = card;
+        this.type = type;
+        this.remark = remark;
+        this.sex = sex;
+        this.age = age;
+        this.profession = profession;
+        this.address = address;
+        this.createdate = createdate;
+        this.phone = phone;
+        this.medicalcard = medicalcard;
+        this.medicarecard = medicarecard;
+    }
 
     public int getId() {
         return id;
@@ -78,12 +78,12 @@ public class Registration {
         this.id = id;
     }
 
-    public String getRsno() {
-        return rsno;
+    public String getMcno() {
+        return mcno;
     }
 
-    public void setRsno(String rsno) {
-        this.rsno = rsno;
+    public void setMcno(String mcno) {
+        this.mcno = mcno;
     }
 
     public String getName() {
@@ -108,6 +108,14 @@ public class Registration {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getSex() {
@@ -142,20 +150,20 @@ public class Registration {
         this.address = address;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getCreatedate() {
         return createdate;
     }
 
     public void setCreatedate(String createdate) {
         this.createdate = createdate;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Medicalcard getMedicalcard() {
@@ -174,31 +182,23 @@ public class Registration {
         this.medicarecard = medicarecard;
     }
 
-    public Doctorcard getDoctorcard() {
-        return doctorcard;
-    }
-
-    public void setDoctorcard(Doctorcard doctorcard) {
-        this.doctorcard = doctorcard;
-    }
-
     @Override
     public String toString() {
-        return "Registration{" +
+        return "Medical{" +
                 "id=" + id +
-                ", rsno='" + rsno + '\'' +
+                ", mcno='" + mcno + '\'' +
                 ", name='" + name + '\'' +
                 ", card='" + card + '\'' +
                 ", type='" + type + '\'' +
+                ", remark='" + remark + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", profession='" + profession + '\'' +
                 ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
                 ", createdate='" + createdate + '\'' +
+                ", phone='" + phone + '\'' +
                 ", medicalcard=" + medicalcard +
                 ", medicarecard=" + medicarecard +
-                ", doctorcard=" + doctorcard +
                 '}';
     }
 }

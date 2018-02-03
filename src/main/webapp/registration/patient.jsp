@@ -9,10 +9,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>建卡管理</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<title>病人管理</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -41,23 +41,23 @@ $(document).ready(function(){
 
 <body>
 
-<div id="doctorcardList">
+<div id="patientList">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
     <li><a href="#">建卡挂号管理</a></li>
-    <li><a href="#">建卡数据展示</a></li>
+    <li><a href="#">病人数据展示</a></li>
     </ul>
     </div>
     <div class="rightinfo">
     <div class="tools form-inline">
     	<ul class="toolbar">
-        <button class="btn btn-default" id="insertDotorcard" v-on:click="insertDoctorcard()">
-            <img src="images/t01.png" />新建就诊卡</button>
+        <button class="btn btn-default" id="insertPatient" v-on:click="insertPatient()">
+            <img src="../images/t01.png" />添加病人记录</button>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <input id="search" class="form-control" placeholder="输入就诊卡编号或姓名查询">
+            <input id="search" class="form-control" placeholder="输入病人编号或姓名查询">
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-default" onclick="searchDoctorcard()"><img src="images/ico06.png"  style="margin-top: -5px"/>搜索</button>
+            <button class="btn btn-default" onclick="searchPatient()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
         </ul>
 
 
@@ -65,39 +65,43 @@ $(document).ready(function(){
     
     <table class="tablelist table">
     	<thead>
-        <th>编号<i class="sort"><img src="images/px.gif" /></i></th>
+        <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
         <th>姓名</th>
         <th>身份证号</th>
+        <th>患病类型</th>
+        <th>患病描述</th>
         <th>性别</th>
         <th>年龄</th>
         <th>职业</th>
         <th>住址</th>
-        <th>账户余额</th>
-        <th>开卡时间</th>
-        <th>开卡人电话</th>
-        <th>银医卡</th>
+        <th>患病时间</th>
+        <th>病人电话</th>
+        <th>挂号编号</th>
+        <th>就诊卡</th>
         <th>医保卡</th>
-        <th>是否预约</th>
+        <th>银医卡</th>
         <th>操作</th>
         </thead>
 
-        <tr v-for="doctor in doctorcard_List">
-        <td>{{doctor.jzno}}</td>
-        <td>{{doctor.name}}</td>
-        <td>{{doctor.card}}</td>
-        <td>{{doctor.sex}}</td>
-        <td>{{doctor.age}}</td>
-        <td>{{doctor.profession}}</td>
-        <td>{{doctor.address}}</td>
-        <td>{{doctor.money}}</td>
-        <td>{{doctor.createdate}}</td>
-        <td>{{doctor.phone}}</td>
-        <td>{{doctor.YYNO}}</td>
-        <td>{{doctor.YBNO}}</td>
-        <td>{{doctor.subscribe}}</td>
+        <tr v-for="patient in patient_List">
+        <td>{{patient.pno}}</td>
+        <td>{{patient.name}}</td>
+        <td>{{patient.card}}</td>
+        <td>{{patient.type}}</td>
+        <td>{{patient.remark}}</td>
+        <td>{{patient.sex}}</td>
+        <td>{{patient.age}}</td>
+        <td>{{patient.profession}}</td>
+        <td>{{patient.address}}</td>
+        <td>{{patient.createdate}}</td>
+        <td>{{patient.phone}}</td>
+        <td>{{patient.RSNO}}</td>
+        <td>{{patient.JZNO}}</td>
+        <td>{{patient.YBNO}}</td>
+        <td>{{patient.YYNO}}</td>
         <td class="toolbar">
-            <button class="btn btn-default"><img src="images/t02.png" v-on:click="updateDoctorcard(doctor.id)">修改</button>
-            <button class="btn btn-default"><img src="images/t03.png" v-on:click="deleteById(doctor.id)"> 删除</button>
+            <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updatePtient(patient.id)">修改</button>
+            <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=patient.id)"> 删除</button>
         </td>
         </tr>
     </table>
@@ -118,7 +122,7 @@ $(document).ready(function(){
         <%-- 分页 end--%>
 
         <!-- 模态弹出框 begin -->
-        <div class="modal fade" id="doctorcardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -129,52 +133,57 @@ $(document).ready(function(){
                         <form>
                             <div class="form-group form-inline">
                                 <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="doctorcard.name">
+                                <input type="text" class="form-control" id="name" v-model="patient.name">
                                 <div style="float: right;">
-                                <label class="control-label">密码:</label>
-                                <input type="text" class="form-control" id="password" v-model="doctorcard.password">
+                                <label class="control-label">身份证:</label>
+                                <input type="text" class="form-control" id="card" v-model="patient.card">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">性别:</label>
-                                <input type="text" class="form-control" id="sex" v-model="doctorcard.sex">
+                                <input type="text" class="form-control" id="sex" v-model="patient.sex">
                                 <div style="float: right;">
                                 <label class="control-label">年龄:</label>
-                                <input type="text" class="form-control" id="age" v-model="doctorcard.age">
+                                <input type="text" class="form-control" id="age" v-model="patient.age">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label  class="control-label">职业:</label>
-                                <input type="text" class="form-control" id="profession" v-model="doctorcard.profession">
+                                <input type="text" class="form-control" id="profession" v-model="patient.profession">
                                 <div style="float: right;">
                                 <label class="control-label">住址:</label>
-                                <input type="text" class="form-control" id="address" v-model="doctorcard.address">
+                                <input type="text" class="form-control" id="address" v-model="patient.address">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
-                                <label class="control-label">余额:</label>
-                                <input type="text" class="form-control" id="money" v-model="doctorcard.money">
-                                <div style="float: right;">
+                                <div >
                                 <label  class="control-label">电话:</label>
-                                <input type="text" class="form-control" id="phone" v-model="doctorcard.phone">
+                                <input type="text" class="form-control" id="phone" v-model="patient.phone">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
-                                <label class="control-label">银医卡卡号:</label>
-                                <input type="text" class="form-control" id="yyno" v-model="doctorcard.yyno">
+                                <label class="control-label">患病类型:</label>
+                                <input type="text" class="form-control" id="type" v-model="patient.type">
                                 <div style="float: right;">
-                                <label class="control-label">医保卡卡号:</label>
-                                <input type="text" class="form-control" id="ybno" v-model="doctorcard.ybno">
+                                    <label class="control-label">患病描述:</label>
+                                    <input type="text" class="form-control" id="remark" v-model="patient.remark">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">身份证:</label>
-                                <input type="text" class="form-control" id="card" v-model="doctorcard.card">
+                            <div class="form-group form-inline">
+                                <label class="control-label">银医卡号:</label>
+                                <input type="text" class="form-control" id="yyno" v-model="patient.yyno">
+                                <div style="float: right;">
+                                <label class="control-label">医保卡号:</label>
+                                <input type="text" class="form-control" id="ybno" v-model="patient.ybno">
+                                </div>
                             </div>
                             <div class="form-group form-inline">
-                                <label  class="control-label">是否预约:</label>
-                                <input type="text" class="form-control" id="Subscribe" v-model="doctorcard.subscribe">
-                            </div>
+                                <label class="control-label">就诊卡号:</label>
+                                <input type="text" class="form-control" id="jzno" v-model="patient.jzno">
+                            <div class="form-group" style="float: right;">
+                                <label  class="control-label">挂号编号:</label>
+                                <input type="text" class="form-control" id="rsno" v-model="patient.rsno">
+                            </div></div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -192,14 +201,14 @@ $(document).ready(function(){
     	<div class="tiptop"><span>提示信息</span><a></a></div>
         
       <div class="tipinfo">
-        <span><img src="images/ticon.png" /></span>
+        <span><img src="../images/ticon.png" /></span>
         <div class="tipright">
         <p>是否确认 ？</p>
         <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
         </div>
         </div>
         <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+        <input name="" type="button"  class="sure" value="确定" v-on:click="deletePatient()"/>&nbsp;
         <input name="" type="button"  class="cancel" value="取消" />
         </div>
     </div>
@@ -208,77 +217,93 @@ $(document).ready(function(){
 <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 </script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/vue.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/vue.js"></script>
 </body>
      <script>
             var pageIndex = 1;
-            var doctorcardVue = new Vue({
-                el : "#doctorcardList",
+            var patientVue = new Vue({
+                el : "#patientList",
                 data : {
-                    doctorcard_List : [],
-                    doctorcard : {jzno:"", name:"", password:"", card:"", sex:"", age:"", profession:"", address:"", money:"",createdate:"", phone:"", yyno:"", ybno:"", subscribe:""},
+                    patient_List : [],
+                    patient : { name:"",card:"",remark:"",tyep :"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"",rsgistration:{rsno:""},doctorcard: {yyno: ""},
+                        medicarecard: {ybno: ""}, medicalcard:{jzno:""}},
                     modalTitle : "",
                     maxPage : "",
                     url : "",
                     currnetIndex : 1,
+                    deleteId:"",
                 },
                 methods : {
 //                   查询所有的方法
                     queryMap : function () {
                         var _this = this;
                         $.ajax({
-                            url : "/queryMap-doctorcard.action",
+                            url : "/queryMap-patient.action",
                             type : "post",
                             success : function(data){
-                                _this.doctorcard_List = data.listData;
+                                _this.patient_List = data.listData;
                                 _this.maxPage = data.maxPage;
                             }
                         })
                     },
-//                  查询单个就诊卡
+//                  查询单个
                     queryById : function (id) {
                         var _this = this;
                       $.ajax({
-                          url : "/queryById-doctorcard.action",
+                          url : "/queryById-patient.action",
                           data : {id :id},
                           type : "post",
                           success : function(data){
-                              _this.doctorcard = data;
+                              _this.patient = data;
                           }
                       })
                     },
-//                  增加、修改就诊卡
+//                  增加、修改
                     save :function(){
                         var _this = this;
                         $.ajax({
                             url : _this.url,
-                            data :{doctorcard : JSON.stringify(_this.doctorcard)},
+                            data :{patient : JSON.stringify(_this.patient)},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
                                 _this.queryMap();//刷新页面
                             }
                         })
                     },
-                    insertDoctorcard : function(){
-                        this.modalTitle = "新建就诊卡";//设置 modal 标题
-                        this.url = "/insertDoctorcard.action";//设置请求路径
-                        this.doctorcard = {};//初始化就诊卡
+                    //            退卡
+                    deleteById : function(id){
+                        $(".tip").attr("style","display:block;");
+                    },
+                    deletePatient: function(){
+                        var _this = this;
+                        $.ajax({
+                            url: "/deletePatient.action",
+                            data: {id: _this.deleteId},
+                            success: function (data) {
+                                _this.queryMap();//刷新页面
+                            }
+                        })
+                    },
+                    insertPatient : function(){
+                        this.modalTitle = "新建病人信息";//设置 modal 标题
+                        this.url = "/insertPatient.action";//设置请求路径
+                        this.patient = {};//初始化
                         this.showModal();//调用显示modal 的方法
                     },
-                    updateDoctorcard : function(id){
-                        this.modalTitle = "修改就诊卡";//设置 modal 标题
-                        this.url = "/updateDoctorcard.action";//设置请求路径
+                    updatePtient : function(id){
+                        this.modalTitle = "修改病人信息";//设置 modal 标题
+                        this.url = "/updatePatient.action";//设置请求路径
                         this.queryById(id);
                         this.showModal();//调用显示modal 的方法
                     },
 //                    隐藏模态框
                     hideModal : function(){
-                        $("#doctorcardModal").modal("hide");
+                        $("#patientModal").modal("hide");
                     },
 //                    显示模态框
                     showModal : function (){
-                        $("#doctorcardModal").modal("show");
+                        $("#patientModal").modal("show");
                     },
 
                 },
@@ -293,7 +318,7 @@ $(document).ready(function(){
                 //    控制每页条数
                 $(".page").click(function(){
                     var selectPage = $(this).text();
-                    var maxPage = doctorcardVue._data.maxPage;
+                    var maxPage = patientVue._data.maxPage;
                     if(selectPage == "首页"){
                         pageIndex = 1;
                         $("#lastpage").removeClass("pageBackground");
@@ -327,13 +352,13 @@ $(document).ready(function(){
                     var searchValue = $("#search").val();//得到搜索框中的值
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
-                        url : "/queryMap-doctorcard.action",
+                        url : "/queryMap-patient.action",
                         data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            doctorcardVue._data.doctorcard_List = data.listData;
-                            doctorcardVue._data.maxPage = data.maxPage;
-                            doctorcardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                            patientVue._data.patient_List = data.listData;
+                            patientVue._data.maxPage = data.maxPage;
+                            patientVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
@@ -342,31 +367,29 @@ $(document).ready(function(){
                 $(".pagedown").change(function(){
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
-                        url : "/queryMap-doctorcard.action",
+                        url : "/queryMap-medicalcard.action",
                         data : "count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            doctorcardVue._data.doctorcard_List = data.listData;
-                            doctorcardVue._data.maxPage = data.maxPage;
-                            doctorcardVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                            patientVue._data.patient_List = data.listData;
+                            patientVue._data.maxPage = data.maxPage;
+                            patientVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
             })
 
-
-
 //            模糊查询的方法
-           function searchMedicalcard () {
+           function searchPatient () {
                 var searchValue = $("#search").val();//得到搜索框中的值
                 console.log(searchValue);
                 if(searchValue != null && searchValue != ""){
                     $.ajax({
-                        url : "/queryMap-doctorcard.action",
+                        url : "/queryMap-patient.action",
                         data : {search : searchValue},
                         success : function(data){
-                            doctorcardVue._data.doctorcard_List = data.listData;
-                            doctorcardVue._data.maxPage = data.maxPage;
+                            patientVue._data.patient_List = data.listData;
+                            patientVue._data.maxPage = data.maxPage;
                         }
                     })
                 }else{

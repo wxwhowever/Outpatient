@@ -26,23 +26,23 @@
     </select>
 
     <!--查询最大的编号-->
-    <select id="queryMaxNo" parameterType="java.lang.String" resultType="java.lang.String">
-        select * from registration where rsno = #{rsno}
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select count(rsno) from registration
     </select>
 
 
     <!--增加-->
     <insert id="insert" parameterType="com.entity.Registration">
         INSERT INTO registration
-        (rsno, name, password, card, sex, age, profession, address, money,createdate, phone, yyno, ybno, subscribe) VALUES
-        (#{rsno},#{name},#{password},#{card},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone},#{yyno},#{ybno},#{subscribe})
+        (rsno, name, type, card, sex, age, profession, address,createdate, phone, yyno, ybno,jzno) VALUES
+        (#{rsno},#{name},#{type},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{doctorcard.yyno},#{medicarecard.ybno},#{medicalcard.jzno})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Registration">
         update registration SET
-        (rsno=#{rsno}, name = #{name}, password = #{password}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},
-         address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}, yyno = #{yyno}, ybno = #{ybno}, subscribe = #{subscribe}) where id = #{id}
+         name = #{name}, type = #{type}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},
+         address = #{address},createdate = #{createdate}, phone = #{phone}, yyno = #{doctorcard.yyno}, ybno = #{medicarecard.ybno}, jzno = #{medicalcard.jzno} where id = #{id}
     </update>
 
     <!--删除-->

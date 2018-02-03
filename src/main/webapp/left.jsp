@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript" src="js/jquery.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="../js/jquery.js"></script>
 
 <script type="text/javascript">
 $(function(){	
@@ -46,12 +46,12 @@ $(function(){
     <span><img src="images/leftico01.png" /></span>建卡挂号管理
     </div>
     	<ul class="menuson">
-        <li class="active"><cite></cite><a href="right.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
-        <li><cite></cite><a href="registration.jsp" target="rightFrame">挂号管理</a><i></i></li>
-        <li><cite></cite><a href="patient.jsp" target="rightFrame">病人管理</a><i></i></li>
-        <li><cite></cite><a href="medical.jsp" target="rightFrame">病案管理</a><i></i></li>
-        <li><cite></cite><a href="medicarecard.jsp" target="rightFrame">医保卡</a><i></i></li>
-        <li><cite></cite><a href="doctorcard.jsp" target="rightFrame">银医卡</a><i></i></li>
+        <li class="active"><cite></cite><a href="registration/medicalcard.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
+        <li><cite></cite><a href="registration/registration.jsp" target="rightFrame">挂号管理</a><i></i></li>
+        <li><cite></cite><a href="registration/patient.jsp" target="rightFrame">病人管理</a><i></i></li>
+        <li><cite></cite><a href="registration/medical.jsp" target="rightFrame">病案管理</a><i></i></li>
+        <li><cite></cite><a href="registration/medicarecard.jsp" target="rightFrame">医保卡</a><i></i></li>
+        <li><cite></cite><a href="registration/doctorcard.jsp" target="rightFrame">银医卡</a><i></i></li>
         </ul>
     </dd>
         

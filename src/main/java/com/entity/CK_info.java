@@ -10,7 +10,7 @@ public class CK_info {
 
     private int id;
 //    产科记录编号
-    private String CKNO;
+    private String crno;
 //    病人编号
     private List<Patient> patientList;
 //    姓名
@@ -30,9 +30,9 @@ public class CK_info {
     public CK_info() {
     }
 
-    public CK_info(int id, String CKNO, List<Patient> patientList, String name, String height, int weight, Doctor doctor, Medicalcard medicalcard, String date) {
+    public CK_info(int id, String crno, List<Patient> patientList, String name, String height, int weight, Doctor doctor, Medicalcard medicalcard, String date) {
         this.id = id;
-        this.CKNO = CKNO;
+        this.crno = crno;
         this.patientList = patientList;
         this.name = name;
         this.height = height;
@@ -42,8 +42,8 @@ public class CK_info {
         this.date = date;
     }
 
-    public CK_info(String CKNO, List<Patient> patientList, String name, String height, int weight, Doctor doctor, Medicalcard medicalcard, String date) {
-        this.CKNO = CKNO;
+    public CK_info(String crno, List<Patient> patientList, String name, String height, int weight, Doctor doctor, Medicalcard medicalcard, String date) {
+        this.crno = crno;
         this.patientList = patientList;
         this.name = name;
         this.height = height;
@@ -61,12 +61,12 @@ public class CK_info {
         this.id = id;
     }
 
-    public String getCKNO() {
-        return CKNO;
+    public String getCrno() {
+        return crno;
     }
 
-    public void setCKNO(String CKNO) {
-        this.CKNO = CKNO;
+    public void setCrno(String crno) {
+        this.crno = crno;
     }
 
     public List<Patient> getPatientList() {
@@ -129,7 +129,7 @@ public class CK_info {
     public String toString() {
         return "CK_info{" +
                 "id=" + id +
-                ", CKNO='" + CKNO + '\'' +
+                ", crno='" + crno + '\'' +
                 ", patientList=" + patientList +
                 ", name='" + name + '\'' +
                 ", height='" + height + '\'' +

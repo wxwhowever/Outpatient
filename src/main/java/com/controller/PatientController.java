@@ -56,13 +56,13 @@ public class PatientController {
     @RequestMapping("insertPatient")
     public String insert(HttpServletRequest request) throws IOException {
         Patient patient = new ObjectMapper().readValue(request.getParameter("patient"), Patient.class);
-//        String jzno = patientBiz.queryMaxNo();
-//        String newJzno = jzno.substring((jzno.length()-1)+1);
-//        System.out.println(jzno+newJzno);
-//        System.out.println(new Date().toLocaleString());
-//
-//        medicalcard.setJZNO(jzno+newJzno);
-//        medicalcard.setCreatedate(new Date().toLocaleString());
+//        查询最大的编号
+        String pno = patientBiz.queryMaxNo();
+//        将最大的编号的加一，添加到数据库
+        int newJzno = Integer.parseInt(pno)+1;
+
+        patient.setPno("P2018"+newJzno);
+        patient.setCreatedate(new Date().toLocaleString());
         String result = "";
         boolean insert = patientBiz.insert(patient);
         if(insert) {
@@ -86,9 +86,8 @@ public class PatientController {
     @ResponseBody
     @RequestMapping("deletePatient")
     public String delete(HttpServletRequest request) throws IOException {
-        Patient patient = patientBiz.queryById(request.getParameter("id"));
         String result = "";
-        boolean delete = patientBiz.delete(patient);
+        boolean delete = patientBiz.delete(Integer.parseInt(request.getParameter("id")));
         if(delete) {
             result = "success";
         }

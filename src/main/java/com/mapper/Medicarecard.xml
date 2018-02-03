@@ -41,8 +41,8 @@
     <!--修改-->
     <update id="update" parameterType="com.entity.Medicarecard">
         update medicarecard SET
-        (jzno, name = #{name}, password = #{password}, sex = #{sex}, age = #{age}, profession = #{profession},
-        address = #{address}, money = #{money},createdate = #{createdate}) where id = #{id}
+        name = #{name}, password = #{password}, sex = #{sex}, age = #{age}, profession = #{profession},
+        address = #{address}, money = #{money},createdate = #{createdate} where id = #{id}
     </update>
 
     <!--删除-->
