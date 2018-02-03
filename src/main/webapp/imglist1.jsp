@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
 <script language="javascript">
 $(function(){	
 	//导航切换
@@ -45,18 +45,18 @@ $(function(){
         <li><span><img src="images/t03.png" /></span>删除</li>
         <li><span><img src="images/t04.png" /></span>统计</li>
         </ul>
-        
-        
+
+
         <ul class="toolbar1">
         <li><span><img src="images/t05.png" /></span>设置</li>
         </ul>
-    
+
     </div>
-    
-    
-    
+
+
+
     <ul class="classlist">
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -65,7 +65,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -74,7 +74,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -83,7 +83,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -92,7 +92,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -101,7 +101,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -110,7 +110,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -119,7 +119,7 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     <li>
     <span><img src="images/001.jpg" /></span>
     <div class="lright">
@@ -128,11 +128,11 @@ $(function(){
     <a class="enter">进入课程</a>
     </div>
     </li>
-    
+
     </ul>
-    
+
     <div class="clear"></div>
-   
+
     <div class="pagin">
     	<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
         <ul class="paginList">
@@ -147,11 +147,11 @@ $(function(){
         <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
         </ul>
     </div>
-    
-    
+
+
     <div class="tip">
     	<div class="tiptop"><span>提示信息</span><a></a></div>
-        
+
       <div class="tipinfo">
         <span><img src="images/ticon.png" /></span>
         <div class="tipright">

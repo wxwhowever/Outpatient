@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
 
 </head>
 
@@ -49,7 +49,7 @@
         <td class="tdlast">0 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f01.png" />Adobe Photoshop CS5</td>
         <td>2013/10/14 17:38</td>
@@ -57,7 +57,7 @@
         <td class="tdlast">30 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f01.png" />PS形状</td>
         <td>2013/10/14 17:38</td>
@@ -65,7 +65,7 @@
         <td class="tdlast">0 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f01.png" />Microsoft Office 2007中文版</td>
         <td>2013/10/14 17:38</td>
@@ -73,7 +73,7 @@
         <td class="tdlast">0 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f02.png" />SWiSHmax.rar</td>
         <td>2013/10/14 17:38</td>
@@ -81,7 +81,7 @@
         <td class="tdlast">125 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f02.png" />autodesk3dsmax.zip</td>
         <td>2013/10/14 17:38</td>
@@ -89,7 +89,7 @@
         <td class="tdlast">125 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f02.png" />Adobe Photoshop CS5.rar</td>
         <td>2013/10/14 17:38</td>
@@ -97,7 +97,7 @@
         <td class="tdlast">125 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f03.png" />Thunder7.2.7.3496.exe</td>
         <td>2013/10/14 17:38</td>
@@ -105,7 +105,7 @@
         <td class="tdlast">125 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f03.png" />福昕阅读器_5.1.0.1117.exe</td>
         <td>2013/10/14 17:38</td>
@@ -113,7 +113,7 @@
         <td class="tdlast">125 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f04.png" />libeay32.ai</td>
         <td>2013/10/14 17:38</td>
@@ -121,7 +121,7 @@
         <td class="tdlast">125 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f05.png" />php.ini.xls</td>
         <td>2013/10/14 17:38</td>
@@ -129,7 +129,7 @@
         <td class="tdlast">120 KB</td>
         <td></td>
         </tr>
-        
+
         <tr>
         <td><img src="images/f06.png" />pws-php5cgi.reg</td>
         <td>2013/10/14 17:38</td>

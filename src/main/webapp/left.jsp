@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript" src="../js/jquery.js"></script>
+<script language="JavaScript" src="..//js/jquery.js"></script>
 
 <script type="text/javascript">
 $(function(){	
@@ -54,17 +54,18 @@ $(function(){
         <li><cite></cite><a href="registration/doctorcard.jsp" target="rightFrame">银医卡</a><i></i></li>
         </ul>
     </dd>
-        
-    
+
+
     <dd>
     <div class="title">
     <span><img src="images/leftico02.png" /></span>分诊叫号管理
     </div>
     <ul class="menuson">
-        <li><cite></cite><a href="#">产科门诊</a><i></i></li>
-        <li><cite></cite><a href="#">外科门诊</a><i></i></li>
-        <li><cite></cite><a href="#">卫干门诊</a><i></i></li>
-        <li><cite></cite><a href="#">卫干门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/doctor.jsp" target="rightFrame">医生管理</a><i></i></li>
+        <li><cite></cite><a href="#" target="rightFrame">产科门诊</a><i></i></li>
+        <li><cite></cite><a href="#" target="rightFrame">外科门诊</a><i></i></li>
+        <li><cite></cite><a href="#" target="rightFrame">卫干门诊</a><i></i></li>
+        <li><cite></cite><a href="#" target="rightFrame">卫干门诊</a><i></i></li>
         <li><cite></cite><a href="imglist.jsp" target="rightFrame">口腔科门诊</a><i></i></li>
         <li><cite></cite><a href="imglist1.jsp" target="rightFrame">门诊治疗室</a><i></i></li>
         <li><cite></cite><a href="tools.jsp" target="rightFrame">神经科门诊</a><i></i></li>
@@ -75,18 +76,18 @@ $(function(){
         <li><cite></cite><a href="error.jsp" target="rightFrame">404页面</a><i></i></li>
     </ul>
     </dd>
-    
-    
+
+
     <dd><div class="title"><span><img src="images/leftico03.png" /></span>门诊处置治疗管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">自定义</a><i></i></li>
         <li><cite></cite><a href="#">常用资料</a><i></i></li>
         <li><cite></cite><a href="#">信息列表</a><i></i></li>
         <li><cite></cite><a href="#">其他</a><i></i></li>
-    </ul>    
-    </dd>  
-    
-    
+    </ul>
+    </dd>
+
+
     <dd><div class="title"><span><img src="images/leftico04.png" /></span>药房管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">自定义</a><i></i></li>

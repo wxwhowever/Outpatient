@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.DoctorDao">
+    <!--查询所有-->
+    <select id="queryList" resultType="com.entity.Doctor">
+        select * from doctor
+    </select>
+
+    <!--带分页的查询-->
+    <select id="queryLists" resultType="com.entity.Doctor">
+        select * from doctor
+        <where>
+            <if test="param1 != null and param1 != ''">
+                name like '%${param1}%' or dno like '%${param1}%' or sex like '%${param1}%'
+            </if>
+        </where>
+        limit #{param2},#{param3}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" parameterType="int" resultType="com.entity.Doctor">
+        select * from doctor where id = #{id}
+    </select>
+
+    <!--查询最大的编号-->
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select count(id) from doctor
+    </select>
+
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.entity.Doctor">
+        INSERT INTO doctor
+        (dno, name,sex, age, position,officeno) VALUES
+        (#{dno},#{name},#{sex},#{age},#{position},#{officeno})
+    </insert>
+
+    <!--修改-->
+    <update id="update" parameterType="com.entity.Doctor">
+        update doctor SET
+         name = #{name},sex = #{sex}, age = #{age}, position = #{position},
+         officeno = #{officeno} where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="int">
+        delete from doctor where id = #{id}
+    </delete>
+
+    <!--查询表总行数-->
+    <select id="getCount" parameterType="java.lang.String" resultType="int">
+        select  count(*) from doctor
+        <if test="_parameter != null and _parameter != ''">
+            where name like '%${_parameter}%' OR dno like '%${_parameter}%'  or sex like '%${_parameter}%'
+        </if>
+    </select>
+
+</mapper>

@@ -10,12 +10,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jsapi.js"></script>
-<script type="text/javascript" src="js/format+zh_CN,default,corechart.I.js"></script>		
-<script type="text/javascript" src="js/jquery.gvChart-1.0.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.ba-resize.min.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jsapi.js"></script>
+<script type="text/javascript" src="../js/format+zh_CN,default,corechart.I.js"></script>
+<script type="text/javascript" src="../js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.ba-resize.min.js"></script>
 
 <script type="text/javascript">
 		gvChartInit();
@@ -127,7 +127,7 @@
     <li><span><img src="images/d04.png" /></span><p><a href="#">任务日历</a></p></li>
     <li><span><img src="images/d05.png" /></span><p><a href="#">图片管理</a></p></li>
     <li><span><img src="images/d06.png" /></span><p><a href="#">交易</a></p></li>
-    <li><span><img src="images/d07.png" /></span><p><a href="#">档案袋</a></p></li>    
+    <li><span><img src="images/d07.png" /></span><p><a href="#">档案袋</a></p></li>
     </ul>
     
     </div>
