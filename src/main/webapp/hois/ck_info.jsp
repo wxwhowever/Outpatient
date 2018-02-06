@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>银医卡管理</title>
+<title>产科分诊</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
@@ -34,29 +34,25 @@ $(document).ready(function(){
 
 });
 </script>
-
-
 </head>
-
-
 <body>
-
-<div id="doctorList">
+<div id="ck_infoList">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">医生管理</a></li>
+    <li><a href="#">分诊叫号管理</a></li>
+    <li><a href="#">产科分诊</a></li>
     </ul>
     </div>
     <div class="rightinfo">
     <div class="tools form-inline">
     	<ul class="toolbar">
-        <button class="btn btn-default" id="insertDotorcard" v-on:click="insertDoctor()">
+        <button class="btn btn-default" id="insertCk_info" v-on:click="insertCk_info()">
             <img src="../images/t01.png" />添加医生</button>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <input id="search" class="form-control" placeholder="输入医生编号或姓名查询">
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-default" onclick="searchDoctor()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
+            <button class="btn btn-default" onclick="searchCk_info()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
         </ul>
 
 
@@ -73,16 +69,16 @@ $(document).ready(function(){
         <th>操作</th>
         </thead>
 
-        <tr v-for="doctor in doctor_List">
-        <td>{{doctor.dno}}</td>
-        <td>{{doctor.name}}</td>
-        <td>{{doctor.sex}}</td>
-        <td>{{doctor.age}}</td>
-        <td>{{doctor.position}}</td>
-        <td>{{doctor.officeno}}</td>
+        <tr v-for="ck_info in ck_info_List">
+        <td>{{ck_info.dno}}</td>
+        <td>{{ck_info.name}}</td>
+        <td>{{ck_info.sex}}</td>
+        <td>{{ck_info.age}}</td>
+        <td>{{ck_info.position}}</td>
+        <td>{{ck_info.officeno}}</td>
         <td class="toolbar" style="text-align: center">
-            <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateDoctor(doctor.id)">修改</button>
-            <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=doctor.id)"> 删除</button>
+            <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateCk_info(ck_info.id)">修改</button>
+            <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=ck_info.id)"> 删除</button>
         </td>
         </tr>
     </table>
@@ -103,7 +99,7 @@ $(document).ready(function(){
         <%-- 分页 end--%>
 
         <!-- 模态弹出框 begin -->
-        <div class="modal fade" id="doctorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="ck_infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -114,22 +110,22 @@ $(document).ready(function(){
                         <form>
                             <div class="form-group form-inline">
                                 <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="doctor.name">
+                                <input type="text" class="form-control" id="name" v-model="ck_info.name">
                             </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">性别:</label>
-                                <input type="text" class="form-control" id="sex" v-model="doctor.sex">
+                                <input type="text" class="form-control" id="sex" v-model="ck_info.sex">
                                 <div style="float: right;">
                                 <label class="control-label">年龄:</label>
-                                <input type="text" class="form-control" id="age" v-model="doctor.age">
+                                <input type="text" class="form-control" id="age" v-model="ck_info.age">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label  class="control-label">职位:</label>
-                                <input type="text" class="form-control" id="position" v-model="doctor.position">
+                                <input type="text" class="form-control" id="position" v-model="ck_info.position">
                                 <div style="float: right;">
                                 <label class="control-label">科室编号:</label>
-                                <input type="text" class="form-control" id="officeno" v-model="doctor.officeno">
+                                <input type="text" class="form-control" id="officeno" v-model="ck_info.officeno">
                                 </div>
                             </div>
                         </form>
@@ -156,7 +152,7 @@ $(document).ready(function(){
         </div>
         </div>
         <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" v-on:click="deleteDoctor()"/>&nbsp;
+        <input name="" type="button"  class="sure" value="确定" v-on:click="deleteCk_info()"/>&nbsp;
         <input name="" type="button"  class="cancel" value="取消" />
         </div>
     </div>
@@ -170,11 +166,11 @@ $(document).ready(function(){
 </body>
      <script>
             var pageIndex = 1;
-            var doctorVue = new Vue({
-                el : "#doctorList",
+            var ck_infoVue = new Vue({
+                el : "#ck_infoList",
                 data : {
-                    doctor_List : [],
-                    doctor : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
+                    ck_info_List : [],
+                    ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
                     modalTitle : "",
                     maxPage : "",
                     url : "",
@@ -186,10 +182,10 @@ $(document).ready(function(){
                     queryMap : function () {
                         var _this = this;
                         $.ajax({
-                            url : "/queryMap-doctor.action",
+                            url : "/queryMap-ck_info.action",
                             type : "post",
                             success : function(data){
-                                _this.doctor_List = data.listData;
+                                _this.ck_info_List = data.listData;
                                 _this.maxPage = data.maxPage;
                             }
                         })
@@ -198,7 +194,7 @@ $(document).ready(function(){
                     queryById : function (id) {
                         var _this = this;
                       $.ajax({
-                          url : "/queryById-doctor.action",
+                          url : "/queryById-ck_info.action",
                           data : {id :id},
                           type : "post",
                           success : function(data){
@@ -211,7 +207,7 @@ $(document).ready(function(){
                         var _this = this;
                         $.ajax({
                             url : _this.url,
-                            data :{doctor : JSON.stringify(_this.doctor)},
+                            data :{ck_info : JSON.stringify(_this.ck_info)},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
                                 _this.queryMap();//刷新页面
@@ -222,35 +218,35 @@ $(document).ready(function(){
                     deleteById : function(id){
                         $(".tip").attr("style","display:block;");
                     },
-                    deleteDoctor: function(){
+                    deleteCk_info: function(){
                         var _this = this;
                         $.ajax({
-                            url: "/deleteDoctor.action",
+                            url: "/deleteCk_info.action",
                             data: {id: _this.deleteId},
                             success: function (data) {
                                 _this.queryMap();//刷新页面
                             }
                         })
                     },
-                    insertDoctor : function(){
+                    insertCk_info : function(){
                         this.modalTitle = "新建银医卡";//设置 modal 标题
-                        this.url = "/insertDoctor.action";//设置请求路径
-                        this.doctor = {};//初始化银医卡
+                        this.url = "/insertCk_info.action";//设置请求路径
+                        this.ck_info = {};//初始化银医卡
                         this.showModal();//调用显示modal 的方法
                     },
-                    updateDoctor : function(id){
+                    updateCk_info : function(id){
                         this.modalTitle = "修改银医卡";//设置 modal 标题
-                        this.url = "/updateDoctor.action";//设置请求路径
+                        this.url = "/updateCk_info.action";//设置请求路径
                         this.queryById(id);
                         this.showModal();//调用显示modal 的方法
                     },
 //                    隐藏模态框
                     hideModal : function(){
-                        $("#doctorModal").modal("hide");
+                        $("#ck_infoModal").modal("hide");
                     },
 //                    显示模态框
                     showModal : function (){
-                        $("#doctorModal").modal("show");
+                        $("#ck_infoModal").modal("show");
                     },
 
                 },
@@ -265,7 +261,7 @@ $(document).ready(function(){
                 //    控制每页条数
                 $(".page").click(function(){
                     var selectPage = $(this).text();
-                    var maxPage = doctorVue._data.maxPage;
+                    var maxPage = ck_infoVue._data.maxPage;
                     if(selectPage == "首页"){
                         pageIndex = 1;
                         $("#lastpage").removeClass("pageBackground");
@@ -299,13 +295,13 @@ $(document).ready(function(){
                     var searchValue = $("#search").val();//得到搜索框中的值
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
-                        url : "/queryMap-doctor.action",
+                        url : "/queryMap-ck_info.action",
                         data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            doctorVue._data.doctor_List = data.listData;
-                            doctorVue._data.maxPage = data.maxPage;
-                            doctorVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                            ck_infoVue._data.ck_info_List = data.listData;
+                            ck_infoVue._data.maxPage = data.maxPage;
+                            ck_infoVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
@@ -314,13 +310,13 @@ $(document).ready(function(){
                 $(".pagedown").change(function(){
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
-                        url : "/queryMap-doctor.action",
+                        url : "/queryMap-ck_info.action",
                         data : "count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            doctorVue._data.doctor_List = data.listData;
-                            doctorVue._data.maxPage = data.maxPage;
-                            doctorVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                            ck_infoVue._data.ck_info_List = data.listData;
+                            ck_infoVue._data.maxPage = data.maxPage;
+                            ck_infoVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
@@ -329,16 +325,15 @@ $(document).ready(function(){
 
 
 //            模糊查询的方法
-           function searchDoctor () {
+           function searchCk_info () {
                 var searchValue = $("#search").val();//得到搜索框中的值
-                console.log(searchValue);
                 if(searchValue != null && searchValue != ""){
                     $.ajax({
-                        url : "/queryMap-doctor.action",
+                        url : "/queryMap-ck_info.action",
                         data : {search : searchValue},
                         success : function(data){
-                            doctorVue._data.doctor_List = data.listData;
-                            doctorVue._data.maxPage = data.maxPage;
+                            ck_infoVue._data.ck_info_List = data.listData;
+                            ck_infoVue._data.maxPage = data.maxPage;
                         }
                     })
                 }else{

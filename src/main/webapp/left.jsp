@@ -61,18 +61,17 @@ $(function(){
     <span><img src="images/leftico02.png" /></span>分诊叫号管理
     </div>
     <ul class="menuson">
-        <li><cite></cite><a href="hois/doctor.jsp" target="rightFrame">医生管理</a><i></i></li>
-        <li><cite></cite><a href="#" target="rightFrame">产科门诊</a><i></i></li>
-        <li><cite></cite><a href="#" target="rightFrame">外科门诊</a><i></i></li>
-        <li><cite></cite><a href="#" target="rightFrame">卫干门诊</a><i></i></li>
-        <li><cite></cite><a href="#" target="rightFrame">卫干门诊</a><i></i></li>
-        <li><cite></cite><a href="imglist.jsp" target="rightFrame">口腔科门诊</a><i></i></li>
-        <li><cite></cite><a href="imglist1.jsp" target="rightFrame">门诊治疗室</a><i></i></li>
-        <li><cite></cite><a href="tools.jsp" target="rightFrame">神经科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/ck_wait.jsp" target="rightFrame">产科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/kq_wait.jsp" target="rightFrame">口腔科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/mz_wait.jsp" target="rightFrame">门诊治疗室</a><i></i></li>
+        <li><cite></cite><a href="hois/nk_wait.jsp" target="rightFrame">内科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/sj_wait.jsp" target="rightFrame">神经科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/kq_wait.jsp" target="rightFrame">外科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/ck_wait.jsp" target="rightFrame">卫干门诊</a><i></i></li>
         <li><cite></cite><a href="filelist.jsp" target="rightFrame">特需门诊</a><i></i></li>
         <li><cite></cite><a href="tab.jsp" target="rightFrame">眼科门诊</a><i></i></li>
-        <li><cite></cite><a href="#">中医门诊</a><i></i></li>
-        <li><cite></cite><a href="#">儿科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/ck_wait.jsp">中医门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/ck_wait.jsp">儿科门诊</a><i></i></li>
         <li><cite></cite><a href="error.jsp" target="rightFrame">404页面</a><i></i></li>
     </ul>
     </dd>

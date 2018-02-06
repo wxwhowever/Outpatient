@@ -104,8 +104,8 @@
                 <td>{{medical.money}}</td>
                 <td>{{medical.createdate}}</td>
                 <td>{{medical.phone}}</td>
-                <td>{{medical.YYNO}}</td>
-                <td>{{medical.YBNO}}</td>
+                <td>{{medical.yyno}}</td>
+                <td>{{medical.ybno}}</td>
                 <td>{{medical.subscribe}}</td>
                 <td class="toolbar">
                     <button class="btn btn-default"><img src="../images/t02.png"
@@ -290,6 +290,7 @@
                     url: "/queryMap-medicalcard.action",
                     type: "post",
                     success: function (data) {
+                        console.log(data.listData)
                         _this.medicalcard_List = data.listData;
                         _this.maxPage = data.maxPage;
                     }

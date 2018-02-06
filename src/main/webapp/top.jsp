@@ -30,10 +30,9 @@ $(function(){
     <div class="topleft">
     <a href="main.jsp" target="_parent"><img src="images/logo.png" title="系统首页" /></a>
     </div>
-
     <ul class="nav">
-    <li><a href="default.jsp" target="rightFrame" class="selected"><img src="images/icon01.png" title="工作台" /><h2>工作台</h2></a></li>
-    <li><a href="imgtable.jsp" target="rightFrame"><img src="images/icon02.png" title="模型管理" /><h2>模型管理</h2></a></li>
+    <li><a href="hois/triage.jsp" target="rightFrame" class="selected"><img src="images/icon01.png" title="分诊台" /><h2>分诊台</h2></a></li>
+    <li><a href="hois/doctor.jsp" target="rightFrame"><img src="images/icon02.png" title="医生管理" /><h2>医生管理</h2></a></li>
     <li><a href="imglist.jsp" target="rightFrame"><img src="images/icon03.png" title="模块设计" /><h2>模块设计</h2></a></li>
     <li><a href="tools.jsp" target="rightFrame"><img src="images/icon04.png" title="常用工具" /><h2>常用工具</h2></a></li>
     <li><a href="computer.jsp" target="rightFrame"><img src="images/icon05.png" title="文件管理" /><h2>文件管理</h2></a></li>

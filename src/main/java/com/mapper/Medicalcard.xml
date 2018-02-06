@@ -9,6 +9,31 @@
         select * from medicalcard
     </select>
 
+    <!--<resultMap id="medicalcardAndMedicarecardDoctorcardMap" type="com.entity.Medicalcard">-->
+        <!--<id property="id" column="id"></id>-->
+        <!--<result property="jzno" column="jzno"></result>-->
+        <!--<result property="name" column="name"></result>-->
+        <!--<result property="password" column="password"></result>-->
+        <!--<result property="card" column="card"></result>-->
+        <!--<result property="sex" column="sex"></result>-->
+        <!--<result property="age" column="age"></result>-->
+        <!--<result property="profession" column="profession"></result>-->
+        <!--<result property="address" column="address"></result>-->
+        <!--<result property="money" column="money"></result>-->
+        <!--<result property="createdate" column="createdate"></result>-->
+        <!--<result property="phone" column="phone"></result>-->
+        <!--<result property="subscribe" column="subscribe"></result>-->
+        <!--<association property="medicarecard" javaType="com.entity.Medicarecard">-->
+            <!--<id property="id" column="id"></id>-->
+            <!--<result property="ybno" column="ybno"></result>-->
+        <!--</association>-->
+        <!--<association property="doctorcard" javaType="com.entity.Doctorcard">-->
+            <!--<id property="id" column="id"></id>-->
+            <!--<result property="yyno" column="yyno"></result>-->
+        <!--</association>-->
+        <!--select a.*,b.ybno,c.yyno from medicarecard a,medicarecard b,doctorcard c where a.ybno = b.ybno and a.yyno = c.yyno-->
+    <!--</resultMap>-->
+
     <!--带分页的查询-->
     <select id="queryLists" resultType="com.entity.Medicalcard">
         select * from medicalcard
