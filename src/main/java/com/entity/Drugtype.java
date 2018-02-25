@@ -40,4 +40,13 @@ public class Drugtype {
     public void setType_tid(int type_tid) {
         this.type_tid = type_tid;
     }
+
+    @Override
+    public String toString() {
+        return "Drugtype{" +
+                "type_id=" + type_id +
+                ", type_name='" + type_name + '\'' +
+                ", type_tid=" + type_tid +
+                '}';
+    }
 }
