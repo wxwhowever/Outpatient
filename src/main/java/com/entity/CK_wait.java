@@ -27,15 +27,29 @@ public class CK_wait {
 //    候诊时间
     private String date;
 //    就诊卡卡号
-    private Medicalcard medicalcard;
+    private String jzno;
 //    分诊人
-    private Doctor doctor;
+    private String dno;
 
 
     public CK_wait() {
     }
 
-    public CK_wait(int id, String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
+    public CK_wait(String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
+        this.wno = wno;
+        this.patientList = patientList;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.type = type;
+        this.remark = remark;
+        this.level = level;
+        this.date = date;
+        this.jzno = jzno;
+        this.dno = dno;
+    }
+
+    public CK_wait(int id, String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
         this.id = id;
         this.wno = wno;
         this.patientList = patientList;
@@ -46,21 +60,24 @@ public class CK_wait {
         this.remark = remark;
         this.level = level;
         this.date = date;
-        this.medicalcard = medicalcard;
-        this.doctor = doctor;
+        this.jzno = jzno;
+        this.dno = dno;
     }
-    public CK_wait( String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
-        this.wno = wno;
-        this.patientList = patientList;
-        this.name = name;
-        this.sex = sex;
-        this.age = age;
-        this.type = type;
-        this.remark = remark;
-        this.level = level;
-        this.date = date;
-        this.medicalcard = medicalcard;
-        this.doctor = doctor;
+
+    public String getJzno() {
+        return jzno;
+    }
+
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
+    }
+
+    public String getDno() {
+        return dno;
+    }
+
+    public void setDno(String dno) {
+        this.dno = dno;
     }
 
     public int getId() {
@@ -143,21 +160,6 @@ public class CK_wait {
         this.date = date;
     }
 
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
-    }
-
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
 
     @Override
     public String toString() {
@@ -172,8 +174,8 @@ public class CK_wait {
                 ", remark='" + remark + '\'' +
                 ", level='" + level + '\'' +
                 ", date='" + date + '\'' +
-                ", medicalcard=" + medicalcard +
-                ", doctor=" + doctor +
+                ", jzno='" + jzno + '\'' +
+                ", dno='" + dno + '\'' +
                 '}';
     }
 }

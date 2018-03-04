@@ -1,9 +1,10 @@
 package com.controller;
 
-import com.biz.MedicalcardBiz;
-import com.biz.PatientBiz;
+import com.biz.*;
+import com.entity.CK_wait;
 import com.entity.Medicalcard;
 import com.entity.Patient;
+import com.entity.Registration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,28 @@ public class PatientController {
 
     @Autowired
     PatientBiz patientBiz;
-
+    @Autowired
+    Ck_waitBiz ck_waitBiz;
+    @Autowired
+    com.biz.kQ_waitBiz kQ_waitBiz;
+    @Autowired
+    MZ_waitBiz mz_waitBiz;
+    @Autowired
+    NK_waitBiz nk_waitBiz;
+    @Autowired
+    SJ_waitBiz sj_waitBiz;
+    @Autowired
+    TX_waitBiz tx_waitBiz;
+    @Autowired
+    WK_waitBiz wk_waitBiz;
+    @Autowired
+    WG_waitBiz wg_waitBiz;
+    @Autowired
+    YK_waitBiz yk_waitBiz;
+    @Autowired
+    ZY_waitBiz zy_waitBiz;
+    @Autowired
+    EK_waitBiz ek_waitBiz;
 
     @ResponseBody
     @RequestMapping("queryMap-patient")
@@ -93,5 +115,54 @@ public class PatientController {
         }
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping("triageInsert")
+    public String triageInsert(HttpServletRequest request) throws IOException {
+//        分配病人的挂号编号
+        String id = request.getParameter("id");
+//        分配的科
+        String triage = request.getParameter("triage");
+//        根据分配的科添加
+        if(triage=="1"){
+            CK_wait ck_wait = new CK_wait();
+            String wno = ck_waitBiz.queryMaxNo();
+            ck_wait.setWno("WKWNO"+(wno+1));
+            ck_waitBiz.insert(ck_wait);
+        }
+        else if(triage=="2"){
+
+        }
+        else if(triage=="3"){
+
+        }
+        else if(triage=="4"){
+
+        }
+        else if(triage=="5"){
+
+        }
+        else if(triage=="6"){
+
+        }
+        else if(triage=="7"){
+
+        }
+        else if(triage=="8"){
+
+        }
+        else if(triage=="9"){
+
+        }
+        else if(triage=="10"){
+
+        }
+        else if(triage=="11"){
+
+        }
+
+        return null;
+    }
+
 
 }

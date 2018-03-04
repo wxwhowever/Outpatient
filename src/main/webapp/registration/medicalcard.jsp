@@ -266,8 +266,8 @@
         money: "",
         createdate: "",
         phone: "",
-        doctorcard: {yyno: ""},
-        medicarecard: {ybno: ""},
+        yyno: "",
+        ybno: "",
         subscribe: ""
     }
     var pageIndex = 1;

@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.biz.MedicalcardBiz;
-import com.biz.RegistrationBiz;
+import com.biz.*;
+import com.entity.CK_wait;
 import com.entity.Medicalcard;
 import com.entity.Registration;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class RegistrationController {
@@ -21,10 +22,10 @@ public class RegistrationController {
     @Autowired
     RegistrationBiz registrationBiz;
 
-
     @ResponseBody
     @RequestMapping("queryMap-registration")
     public Map<String,Object> queryMap(HttpServletRequest request){
+
         String search = request.getParameter("search");
         String page = request.getParameter("page");
         String count = request.getParameter("count");
@@ -93,5 +94,6 @@ public class RegistrationController {
         }
         return result;
     }
+
 
 }

@@ -11,7 +11,7 @@ public class WG_wait {
 //    候诊编号
     private String wno;
 //    病人编号
-    private List<Patient> patientList;
+    private String pno;
 //    姓名
     private String name;
 //    性别
@@ -27,18 +27,32 @@ public class WG_wait {
 //    候诊时间
     private String date;
 //    就诊卡卡号
-    private Medicalcard medicalcard;
+    private String jzno;
 //    分诊人
-    private Doctor doctor;
+    private String dno;
 
 
     public WG_wait() {
     }
 
-    public WG_wait(int id, String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
+    public WG_wait(String wno, String pno, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
+        this.wno = wno;
+        this.pno = pno;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.type = type;
+        this.remark = remark;
+        this.level = level;
+        this.date = date;
+        this.jzno = jzno;
+        this.dno = dno;
+    }
+
+    public WG_wait(int id, String wno, String pno, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
         this.id = id;
         this.wno = wno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -46,21 +60,8 @@ public class WG_wait {
         this.remark = remark;
         this.level = level;
         this.date = date;
-        this.medicalcard = medicalcard;
-        this.doctor = doctor;
-    }
-    public WG_wait(String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, Medicalcard medicalcard, Doctor doctor) {
-        this.wno = wno;
-        this.patientList = patientList;
-        this.name = name;
-        this.sex = sex;
-        this.age = age;
-        this.type = type;
-        this.remark = remark;
-        this.level = level;
-        this.date = date;
-        this.medicalcard = medicalcard;
-        this.doctor = doctor;
+        this.jzno = jzno;
+        this.dno = dno;
     }
 
     public int getId() {
@@ -77,14 +78,6 @@ public class WG_wait {
 
     public void setWno(String wno) {
         this.wno = wno;
-    }
-
-    public List<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
     }
 
     public String getName() {
@@ -143,28 +136,12 @@ public class WG_wait {
         this.date = date;
     }
 
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
-    }
-
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
     @Override
     public String toString() {
-        return "CK_wait{" +
+        return "WG_wait{" +
                 "id=" + id +
                 ", wno='" + wno + '\'' +
-                ", patientList=" + patientList +
+                ", pno='" + pno + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
@@ -172,8 +149,8 @@ public class WG_wait {
                 ", remark='" + remark + '\'' +
                 ", level='" + level + '\'' +
                 ", date='" + date + '\'' +
-                ", medicalcard=" + medicalcard +
-                ", doctor=" + doctor +
+                ", jzno='" + jzno + '\'' +
+                ", dno='" + dno + '\'' +
                 '}';
     }
 }

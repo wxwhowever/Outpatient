@@ -11,33 +11,33 @@ public class CK_overfulfil {
 //    登记编号
     private String ofno;
 //    病人编号
-    private List<Patient> patientList;
+    private String pno;
 //    姓名
     private String name;
 //    候诊时间
     private String date;
 //    分诊人
-    private Doctor doctor;
+    private String dno;
 
 
     public CK_overfulfil() {
     }
 
-    public CK_overfulfil(int id, String ofno, List<Patient> patientList, String name, String date, Doctor doctor) {
-        this.id = id;
+    public CK_overfulfil(String ofno, String pno, String name, String date, String dno) {
         this.ofno = ofno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.date = date;
-        this.doctor = doctor;
+        this.dno = dno;
     }
 
-    public CK_overfulfil(String ofno, List<Patient> patientList, String name, String date, Doctor doctor) {
+    public CK_overfulfil(int id, String ofno, String pno, String name, String date, String dno) {
+        this.id = id;
         this.ofno = ofno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.date = date;
-        this.doctor = doctor;
+        this.dno = dno;
     }
 
     public int getId() {
@@ -56,14 +56,6 @@ public class CK_overfulfil {
         this.ofno = ofno;
     }
 
-    public List<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
-    }
-
     public String getName() {
         return name;
     }
@@ -80,12 +72,20 @@ public class CK_overfulfil {
         this.date = date;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public String getPno() {
+        return pno;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setPno(String pno) {
+        this.pno = pno;
+    }
+
+    public String getDno() {
+        return dno;
+    }
+
+    public void setDno(String dno) {
+        this.dno = dno;
     }
 
     @Override
@@ -93,10 +93,10 @@ public class CK_overfulfil {
         return "CK_overfulfil{" +
                 "id=" + id +
                 ", ofno='" + ofno + '\'' +
-                ", patientList=" + patientList +
+                ", pno='" + pno + '\'' +
                 ", name='" + name + '\'' +
                 ", date='" + date + '\'' +
-                ", doctor=" + doctor +
+                ", dno='" + dno + '\'' +
                 '}';
     }
 }

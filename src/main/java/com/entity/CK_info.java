@@ -12,7 +12,7 @@ public class CK_info {
 //    产科记录编号
     private String crno;
 //    病人编号
-    private List<Patient> patientList;
+    private String pno;
 //    姓名
     private String name;
 //    身高
@@ -20,9 +20,9 @@ public class CK_info {
 //    体重
     private int weight;
 //    记录人
-    private Doctor doctor;
+    private String dno;
     //    就诊卡卡号
-    private Medicalcard medicalcard;
+    private String jzno;
     //    记录时间
     private String date;
 
@@ -30,26 +30,26 @@ public class CK_info {
     public CK_info() {
     }
 
-    public CK_info(int id, String crno, List<Patient> patientList, String name, String height, int weight, Doctor doctor, Medicalcard medicalcard, String date) {
-        this.id = id;
+    public CK_info(String crno, String pno, String name, String height, int weight, String dno, String jzno, String date) {
         this.crno = crno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.height = height;
         this.weight = weight;
-        this.doctor = doctor;
-        this.medicalcard = medicalcard;
+        this.dno = dno;
+        this.jzno = jzno;
         this.date = date;
     }
 
-    public CK_info(String crno, List<Patient> patientList, String name, String height, int weight, Doctor doctor, Medicalcard medicalcard, String date) {
+    public CK_info(int id, String crno, String pno, String name, String height, int weight, String dno, String jzno, String date) {
+        this.id = id;
         this.crno = crno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.height = height;
         this.weight = weight;
-        this.doctor = doctor;
-        this.medicalcard = medicalcard;
+        this.dno = dno;
+        this.jzno = jzno;
         this.date = date;
     }
 
@@ -67,14 +67,6 @@ public class CK_info {
 
     public void setCrno(String crno) {
         this.crno = crno;
-    }
-
-    public List<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
     }
 
     public String getName() {
@@ -101,22 +93,6 @@ public class CK_info {
         this.weight = weight;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
-    }
-
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
-    }
-
     public String getDate() {
         return date;
     }
@@ -125,18 +101,43 @@ public class CK_info {
         this.date = date;
     }
 
+    public String getPno() {
+        return pno;
+    }
+
+    public void setPno(String pno) {
+        this.pno = pno;
+    }
+
+    public String getDno() {
+        return dno;
+    }
+
+    public void setDno(String dno) {
+        this.dno = dno;
+    }
+
+    public String getJzno() {
+        return jzno;
+    }
+
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
+    }
+
     @Override
     public String toString() {
         return "CK_info{" +
                 "id=" + id +
                 ", crno='" + crno + '\'' +
-                ", patientList=" + patientList +
+                ", pno='" + pno + '\'' +
                 ", name='" + name + '\'' +
                 ", height='" + height + '\'' +
                 ", weight=" + weight +
-                ", doctor=" + doctor +
-                ", medicalcard=" + medicalcard +
+                ", dno='" + dno + '\'' +
+                ", jzno='" + jzno + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }
 }
+

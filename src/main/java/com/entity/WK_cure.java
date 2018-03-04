@@ -9,7 +9,7 @@ public class WK_cure {
 
     private int id;
 //    病人编号
-    private List<Patient> patientList;
+    private String pno;
 //    姓名
     private String name;
 //    性别
@@ -23,36 +23,36 @@ public class WK_cure {
 //    治疗时间
     private String date;
 //    就诊卡卡号
-    private Medicalcard medicalcard;
+    private String jzno;
 //    治疗医生
-    private Doctor doctor;
+    private String dno;
 
     public WK_cure() {
     }
 
-    public WK_cure(int id, List<Patient> patientList, String name, String sex, int age, String type, String remark, String date, Medicalcard medicalcard, Doctor doctor) {
-        this.id = id;
-        this.patientList = patientList;
+    public WK_cure(String pno, String name, String sex, int age, String type, String remark, String date, String jzno, String dno) {
+        this.pno = pno;
         this.name = name;
         this.sex = sex;
         this.age = age;
         this.type = type;
         this.remark = remark;
         this.date = date;
-        this.medicalcard = medicalcard;
-        this.doctor = doctor;
+        this.jzno = jzno;
+        this.dno = dno;
     }
 
-    public WK_cure(List<Patient> patientList, String name, String sex, int age, String type, String remark, String date, Medicalcard medicalcard, Doctor doctor) {
-        this.patientList = patientList;
+    public WK_cure(int id, String pno, String name, String sex, int age, String type, String remark, String date, String jzno, String dno) {
+        this.id = id;
+        this.pno = pno;
         this.name = name;
         this.sex = sex;
         this.age = age;
         this.type = type;
         this.remark = remark;
         this.date = date;
-        this.medicalcard = medicalcard;
-        this.doctor = doctor;
+        this.jzno = jzno;
+        this.dno = dno;
     }
 
     public int getId() {
@@ -61,14 +61,6 @@ public class WK_cure {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
     }
 
     public String getName() {
@@ -119,35 +111,43 @@ public class WK_cure {
         this.date = date;
     }
 
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
+    public String getPno() {
+        return pno;
     }
 
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
+    public void setPno(String pno) {
+        this.pno = pno;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public String getJzno() {
+        return jzno;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
+    }
+
+    public String getDno() {
+        return dno;
+    }
+
+    public void setDno(String dno) {
+        this.dno = dno;
     }
 
     @Override
     public String toString() {
         return "WK_cure{" +
                 "id=" + id +
-                ", patientList=" + patientList +
+                ", pno='" + pno + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", type='" + type + '\'' +
                 ", remark='" + remark + '\'' +
                 ", date='" + date + '\'' +
-                ", medicalcard=" + medicalcard +
-                ", doctor=" + doctor +
+                ", jzno='" + jzno + '\'' +
+                ", dno='" + dno + '\'' +
                 '}';
     }
 }

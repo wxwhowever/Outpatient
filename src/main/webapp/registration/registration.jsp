@@ -92,9 +92,9 @@ $(document).ready(function(){
         <td>{{registration.address}}</td>
             <td>{{registration.phone}}</td>
             <td>{{registration.createdate}}</td>
-        <td>{{registration.YYNO}}</td>
-        <td>{{registration.JZNO}}</td>
-        <td>{{registration.YBNO}}</td>
+        <td>{{registration.yyno}}</td>
+        <td>{{registration.jzno}}</td>
+        <td>{{registration.ybno}}</td>
         <td class="toolbar">
             <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateRegistration(registration.id)">修改</button>
             <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteRegistartion(deleteId=registration.id)"> 退号</button>
@@ -233,7 +233,7 @@ $(document).ready(function(){
                 el : "#registrationList",
                 data : {
                     registration_List : [],
-                    registration : {name:"", card:"",type:"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"", doctorcard:{yyno:""}, medicardcar:{ybno:""}, medicalcard:{jzno:""}},
+                    registration : {name:"", card:"",type:"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"", yyno:"", ybno:"",jzno:""},
                     modalTitle : "",
                     maxPage : "",
                     url : "",

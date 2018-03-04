@@ -30,14 +30,30 @@ public class Medical {
 //    电话
     private String phone;
 //    就诊卡
-    private Medicalcard medicalcard;
+    private String jzno;
 //    医保卡
-    private Medicarecard medicarecard;
+    private String ybno;
 
     public Medical() {
     }
 
-    public Medical(int id, String mcno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, Medicalcard medicalcard, Medicarecard medicarecard) {
+    public Medical(String mcno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, String jzno, String ybno) {
+        this.mcno = mcno;
+        this.name = name;
+        this.card = card;
+        this.type = type;
+        this.remark = remark;
+        this.sex = sex;
+        this.age = age;
+        this.profession = profession;
+        this.address = address;
+        this.createdate = createdate;
+        this.phone = phone;
+        this.jzno = jzno;
+        this.ybno = ybno;
+    }
+
+    public Medical(int id, String mcno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, String jzno, String ybno) {
         this.id = id;
         this.mcno = mcno;
         this.name = name;
@@ -50,24 +66,8 @@ public class Medical {
         this.address = address;
         this.createdate = createdate;
         this.phone = phone;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
-    }
-
-    public Medical(String mcno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, Medicalcard medicalcard, Medicarecard medicarecard) {
-        this.mcno = mcno;
-        this.name = name;
-        this.card = card;
-        this.type = type;
-        this.remark = remark;
-        this.sex = sex;
-        this.age = age;
-        this.profession = profession;
-        this.address = address;
-        this.createdate = createdate;
-        this.phone = phone;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
+        this.jzno = jzno;
+        this.ybno = ybno;
     }
 
     public int getId() {
@@ -166,20 +166,20 @@ public class Medical {
         this.phone = phone;
     }
 
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
+    public String getJzno() {
+        return jzno;
     }
 
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
     }
 
-    public Medicarecard getMedicarecard() {
-        return medicarecard;
+    public String getYbno() {
+        return ybno;
     }
 
-    public void setMedicarecard(Medicarecard medicarecard) {
-        this.medicarecard = medicarecard;
+    public void setYbno(String ybno) {
+        this.ybno = ybno;
     }
 
     @Override
@@ -197,8 +197,8 @@ public class Medical {
                 ", address='" + address + '\'' +
                 ", createdate='" + createdate + '\'' +
                 ", phone='" + phone + '\'' +
-                ", medicalcard=" + medicalcard +
-                ", medicarecard=" + medicarecard +
+                ", jzno='" + jzno + '\'' +
+                ", ybno='" + ybno + '\'' +
                 '}';
     }
 }

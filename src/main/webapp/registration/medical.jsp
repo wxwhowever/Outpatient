@@ -93,8 +93,8 @@ $(document).ready(function(){
         <td>{{medical.address}}</td>
         <td>{{medical.createdate}}</td>
         <td>{{medical.phone}}</td>
-        <td>{{medical.JZNO}}</td>
-        <td>{{medical.YBNO}}</td>
+        <td>{{medical.jzno}}</td>
+        <td>{{medical.ybno}}</td>
         <td class="toolbar">
             <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateMedical(medical.id)">修改</button>
             <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=medical.id)"> 删除</button>
@@ -215,8 +215,7 @@ $(document).ready(function(){
                 el : "#medicalList",
                 data : {
                     medical_List : [],
-                    medical : { name:"",card:"",remark:"",tyep :"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"",
-                        medicarecard: {ybno: ""}, medicalcard:{jzno:""}},
+                    medical : { name:"",card:"",remark:"",tyep :"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"", ybno: "", jzno:""},
                     modalTitle : "",
                     maxPage : "",
                     url : "",

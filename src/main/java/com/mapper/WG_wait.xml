@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.WG_waitDao">
+    <!--查询所有-->
+    <select id="queryList" resultType="com.entity.WG_wait">
+        select * from wg_wait
+    </select>
+
+    <!--带分页的查询-->
+    <select id="queryLists" resultType="com.entity.WG_wait">
+        select * from wg_wait order by `level`
+        <where>
+            <if test="param1 != null and param1 != ''">
+                 name like '%${param1}%' or wno like '%${param1}%' or sex like '%${param1}%'
+            </if>
+        </where>
+         limit #{param2},#{param3}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" parameterType="int" resultType="com.entity.WG_wait">
+             select * from wg_wait where id = #{id}
+    </select>
+
+    <!--查询最大的编号-->
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select  count(*) from wg_wait
+    </select>
+
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.entity.WG_wait">
+        INSERT INTO wg_wait
+        (wno, pno, name, type,remark, sex, age, level, date,jzno, dno) VALUES
+        (#{wno},#{pno},#{name},#{type},#{remark},#{sex},#{age},#{level},#{date},#{medicalcard.jzno},#{doctor.dno})
+    </insert>
+
+    <!--修改-->
+    <update id="update" parameterType="com.entity.WG_wait">
+        update wg_wait SET
+         name = #{name}, pno = #{pno}, type = #{type}, remark = #{remark},sex = #{sex}, age = #{age}, level = #{level},
+         date = #{date}, jzno = #{medicalcard.yyno}, dno = #{doctor.dno} where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="int">
+        delete from wg_wait where id = #{id}
+    </delete>
+
+    <!--查询表总行数-->
+    <select id="getCount" parameterType="java.lang.String" resultType="int">
+        select  count(*) from wg_wait
+        <if test="_parameter != null and _parameter != ''">
+            where name like '%${_parameter}%' OR wno like '%${_parameter}%'  or sex like '%${_parameter}%'
+        </if>
+    </select>
+
+</mapper>

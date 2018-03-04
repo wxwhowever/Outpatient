@@ -34,30 +34,14 @@ public class Medicalcard {
     private String subscribe;
 
 //    医保卡
-    private Medicarecard medicarecard;
+    private String ybno;
 //    银医卡
-    private Doctorcard doctorcard;
+    private String  yyno;
 
     public Medicalcard() {
     }
-    public Medicalcard(String jzno, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, Medicarecard medicarecard, Doctorcard doctorcard) {
-        this.jzno = jzno;
-        this.name = name;
-        this.password = password;
-        this.card = card;
-        this.sex = sex;
-        this.age = age;
-        this.profession = profession;
-        this.address = address;
-        this.money = money;
-        this.createdate = createdate;
-        this.phone = phone;
-        this.subscribe = subscribe;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
-    }
 
-    public Medicalcard(int id, String jzno, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, Medicarecard medicarecard, Doctorcard doctorcard) {
+    public Medicalcard(int id, String jzno, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, String ybno, String yyno) {
         this.id = id;
         this.jzno = jzno;
         this.name = name;
@@ -71,8 +55,41 @@ public class Medicalcard {
         this.createdate = createdate;
         this.phone = phone;
         this.subscribe = subscribe;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
+        this.ybno = ybno;
+        this.yyno = yyno;
+    }
+
+    public Medicalcard(String jzno, String name, String password, String card, String sex, int age, String profession, String address, float money, String createdate, String phone, String subscribe, String ybno, String yyno) {
+        this.jzno = jzno;
+        this.name = name;
+        this.password = password;
+        this.card = card;
+        this.sex = sex;
+        this.age = age;
+        this.profession = profession;
+        this.address = address;
+        this.money = money;
+        this.createdate = createdate;
+        this.phone = phone;
+        this.subscribe = subscribe;
+        this.ybno = ybno;
+        this.yyno = yyno;
+    }
+
+    public String getYbno() {
+        return ybno;
+    }
+
+    public void setYbno(String ybno) {
+        this.ybno = ybno;
+    }
+
+    public String getYyno() {
+        return yyno;
+    }
+
+    public void setYyno(String yyno) {
+        this.yyno = yyno;
     }
 
     public int getId() {
@@ -179,22 +196,6 @@ public class Medicalcard {
         this.subscribe = subscribe;
     }
 
-    public Medicarecard getMedicarecard() {
-        return medicarecard;
-    }
-
-    public void setMedicarecard(Medicarecard medicarecard) {
-        this.medicarecard = medicarecard;
-    }
-
-    public Doctorcard getDoctorcard() {
-        return doctorcard;
-    }
-
-    public void setDoctorcard(Doctorcard doctorcard) {
-        this.doctorcard = doctorcard;
-    }
-
     @Override
     public String toString() {
         return "Medicalcard{" +
@@ -211,8 +212,8 @@ public class Medicalcard {
                 ", createdate='" + createdate + '\'' +
                 ", phone='" + phone + '\'' +
                 ", subscribe='" + subscribe + '\'' +
-                ", medicarecard=" + medicarecard +
-                ", doctorcard=" + doctorcard +
+                ", ybno='" + ybno + '\'' +
+                ", yyno='" + yyno + '\'' +
                 '}';
     }
 }

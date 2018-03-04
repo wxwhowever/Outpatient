@@ -184,7 +184,7 @@ $(document).ready(function(){
                 el : "#ck_waitList",
                 data : {
                     ck_wait_List : [],
-                    ck_info : {pno:"", name:"", height:"", weight:"", doctor:{dno:""}, medical:{jzno:""}},//产科信息记录
+                    ck_info : {pno:"", name:"", height:"", weight:"", dno:"", jzno:""},//产科信息记录
                     modalTitle : "",
                     maxPage : "",
                     url : "",

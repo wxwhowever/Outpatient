@@ -30,37 +30,18 @@ public class Patient{
 //    电话
     private String phone;
 //    挂号编号
-    private Registration registration;
+    private String rsno;
 //    就诊卡
-    private Medicalcard medicalcard;
+    private String jzno;
 //    医保卡
-    private Medicarecard medicarecard;
+    private String ybno;
 //    银医卡
-    private Doctorcard doctorcard;
+    private String yyno;
 
     public Patient() {
     }
 
-    public Patient(String pno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, Registration registration, Medicalcard medicalcard, Medicarecard medicarecard, Doctorcard doctorcard) {
-        this.pno = pno;
-        this.name = name;
-        this.card = card;
-        this.type = type;
-        this.remark = remark;
-        this.sex = sex;
-        this.age = age;
-        this.profession = profession;
-        this.address = address;
-        this.createdate = createdate;
-        this.phone = phone;
-        this.registration = registration;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
-    }
-
-    public Patient(int id, String pno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, Registration registration, Medicalcard medicalcard, Medicarecard medicarecard, Doctorcard doctorcard) {
-
+    public Patient(int id, String pno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, String rsno, String jzno, String ybno, String yyno) {
         this.id = id;
         this.pno = pno;
         this.name = name;
@@ -73,10 +54,28 @@ public class Patient{
         this.address = address;
         this.createdate = createdate;
         this.phone = phone;
-        this.registration = registration;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
+        this.rsno = rsno;
+        this.jzno = jzno;
+        this.ybno = ybno;
+        this.yyno = yyno;
+    }
+
+    public Patient(String pno, String name, String card, String type, String remark, String sex, int age, String profession, String address, String createdate, String phone, String rsno, String jzno, String ybno, String yyno) {
+        this.pno = pno;
+        this.name = name;
+        this.card = card;
+        this.type = type;
+        this.remark = remark;
+        this.sex = sex;
+        this.age = age;
+        this.profession = profession;
+        this.address = address;
+        this.createdate = createdate;
+        this.phone = phone;
+        this.rsno = rsno;
+        this.jzno = jzno;
+        this.ybno = ybno;
+        this.yyno = yyno;
     }
 
     public int getId() {
@@ -175,36 +174,36 @@ public class Patient{
         this.phone = phone;
     }
 
-    public Registration getRegistration() {
-        return registration;
+    public String getRsno() {
+        return rsno;
     }
 
-    public void setRegistration(Registration registration) {
-        this.registration = registration;
+    public void setRsno(String rsno) {
+        this.rsno = rsno;
     }
 
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
+    public String getJzno() {
+        return jzno;
     }
 
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
     }
 
-    public Medicarecard getMedicarecard() {
-        return medicarecard;
+    public String getYbno() {
+        return ybno;
     }
 
-    public void setMedicarecard(Medicarecard medicarecard) {
-        this.medicarecard = medicarecard;
+    public void setYbno(String ybno) {
+        this.ybno = ybno;
     }
 
-    public Doctorcard getDoctorcard() {
-        return doctorcard;
+    public String getYyno() {
+        return yyno;
     }
 
-    public void setDoctorcard(Doctorcard doctorcard) {
-        this.doctorcard = doctorcard;
+    public void setYyno(String yyno) {
+        this.yyno = yyno;
     }
 
     @Override
@@ -222,10 +221,10 @@ public class Patient{
                 ", address='" + address + '\'' +
                 ", createdate='" + createdate + '\'' +
                 ", phone='" + phone + '\'' +
-                ", registration=" + registration +
-                ", medicalcard=" + medicalcard +
-                ", medicarecard=" + medicarecard +
-                ", doctorcard=" + doctorcard +
+                ", rsno='" + rsno + '\'' +
+                ", jzno='" + jzno + '\'' +
+                ", ybno='" + ybno + '\'' +
+                ", yyno='" + yyno + '\'' +
                 '}';
     }
 }

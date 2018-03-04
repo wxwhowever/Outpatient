@@ -181,7 +181,7 @@ $(document).ready(function(){
                 el : "#nk_waitList",
                 data : {
                     nk_wait_List : [],
-                    nk_wait : {pno:"", name:"", height:"", weight:"", doctor:{dno:""}, medical:{jzno:""}},//产科信息记录
+                    nk_wait : {pno:"", name:"", height:"", weight:"", dno:"", jzno:""},//产科信息记录
                     modalTitle : "",
                     maxPage : "",
                     url : "",

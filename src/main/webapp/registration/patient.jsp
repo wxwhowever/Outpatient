@@ -95,10 +95,10 @@ $(document).ready(function(){
         <td>{{patient.address}}</td>
         <td>{{patient.createdate}}</td>
         <td>{{patient.phone}}</td>
-        <td>{{patient.RSNO}}</td>
-        <td>{{patient.JZNO}}</td>
-        <td>{{patient.YBNO}}</td>
-        <td>{{patient.YYNO}}</td>
+        <td>{{patient.rsno}}</td>
+        <td>{{patient.jzno}}</td>
+        <td>{{patient.ybno}}</td>
+        <td>{{patient.yyno}}</td>
         <td class="toolbar">
             <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updatePtient(patient.id)">修改</button>
             <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=patient.id)"> 删除</button>
@@ -226,8 +226,8 @@ $(document).ready(function(){
                 el : "#patientList",
                 data : {
                     patient_List : [],
-                    patient : { name:"",card:"",remark:"",tyep :"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"",rsgistration:{rsno:""},doctorcard: {yyno: ""},
-                        medicarecard: {ybno: ""}, medicalcard:{jzno:""}},
+                    patient : { name:"",card:"",remark:"",tyep :"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"",rsno:"",yyno: "",
+                        ybno: "", jzno:""},
                     modalTitle : "",
                     maxPage : "",
                     url : "",

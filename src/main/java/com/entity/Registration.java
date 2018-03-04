@@ -27,16 +27,16 @@ public class Registration {
  //    创建时间
     private String createdate;
 //    就诊卡
-    private Medicalcard medicalcard;
+    private String jzno;
 //    医保卡
-    private Medicarecard medicarecard;
+    private String ybno;
 //    银医卡
-    private Doctorcard doctorcard;
+    private String yyno;
 
     public Registration() {
     }
 
-    public Registration(String rsno, String name, String card, String type, String sex, int age, String profession, String address, String phone, String createdate, Medicalcard medicalcard, Medicarecard medicarecard, Doctorcard doctorcard) {
+    public Registration(String rsno, String name, String card, String type, String sex, int age, String profession, String address, String phone, String createdate, String jzno, String ybno, String yyno) {
         this.rsno = rsno;
         this.name = name;
         this.card = card;
@@ -47,12 +47,12 @@ public class Registration {
         this.address = address;
         this.phone = phone;
         this.createdate = createdate;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
+        this.jzno = jzno;
+        this.ybno = ybno;
+        this.yyno = yyno;
     }
 
-    public Registration(int id, String rsno, String name, String card, String type, String sex, int age, String profession, String address, String phone, String createdate, Medicalcard medicalcard, Medicarecard medicarecard, Doctorcard doctorcard) {
+    public Registration(int id, String rsno, String name, String card, String type, String sex, int age, String profession, String address, String phone, String createdate, String jzno, String ybno, String yyno) {
         this.id = id;
         this.rsno = rsno;
         this.name = name;
@@ -64,11 +64,10 @@ public class Registration {
         this.address = address;
         this.phone = phone;
         this.createdate = createdate;
-        this.medicalcard = medicalcard;
-        this.medicarecard = medicarecard;
-        this.doctorcard = doctorcard;
+        this.jzno = jzno;
+        this.ybno = ybno;
+        this.yyno = yyno;
     }
-
 
     public int getId() {
         return id;
@@ -158,28 +157,28 @@ public class Registration {
         this.createdate = createdate;
     }
 
-    public Medicalcard getMedicalcard() {
-        return medicalcard;
+    public String getYbno() {
+        return ybno;
     }
 
-    public void setMedicalcard(Medicalcard medicalcard) {
-        this.medicalcard = medicalcard;
+    public void setYbno(String ybno) {
+        this.ybno = ybno;
     }
 
-    public Medicarecard getMedicarecard() {
-        return medicarecard;
+    public String getJzno() {
+        return jzno;
     }
 
-    public void setMedicarecard(Medicarecard medicarecard) {
-        this.medicarecard = medicarecard;
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
     }
 
-    public Doctorcard getDoctorcard() {
-        return doctorcard;
+    public String getYyno() {
+        return yyno;
     }
 
-    public void setDoctorcard(Doctorcard doctorcard) {
-        this.doctorcard = doctorcard;
+    public void setYyno(String yyno) {
+        this.yyno = yyno;
     }
 
     @Override
@@ -196,9 +195,9 @@ public class Registration {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", createdate='" + createdate + '\'' +
-                ", medicalcard=" + medicalcard +
-                ", medicarecard=" + medicarecard +
-                ", doctorcard=" + doctorcard +
+                ", jzno='" + jzno + '\'' +
+                ", ybno='" + ybno + '\'' +
+                ", yyno='" + yyno + '\'' +
                 '}';
     }
 }

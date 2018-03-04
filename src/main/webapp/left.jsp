@@ -43,7 +43,7 @@ $(function(){
         
     <dd>
     <div class="title">
-    <span><img src="images/leftico01.png" /></span>建卡挂号管理
+    <span><img src="images/leftico03.png" /></span>建卡挂号管理
     </div>
     	<ul class="menuson">
         <li class="active"><cite></cite><a href="registration/medicalcard.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
@@ -58,7 +58,7 @@ $(function(){
 
     <dd>
     <div class="title">
-    <span><img src="images/leftico02.png" /></span>分诊叫号管理
+    <span><img src="images/leftico01.png" /></span>分诊叫号管理
     </div>
     <ul class="menuson">
         <li><cite></cite><a href="hois/ck_wait.jsp" target="rightFrame">产科门诊</a><i></i></li>
@@ -66,18 +66,18 @@ $(function(){
         <li><cite></cite><a href="hois/mz_wait.jsp" target="rightFrame">门诊治疗室</a><i></i></li>
         <li><cite></cite><a href="hois/nk_wait.jsp" target="rightFrame">内科门诊</a><i></i></li>
         <li><cite></cite><a href="hois/sj_wait.jsp" target="rightFrame">神经科门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/kq_wait.jsp" target="rightFrame">外科门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/ck_wait.jsp" target="rightFrame">卫干门诊</a><i></i></li>
-        <li><cite></cite><a href="filelist.jsp" target="rightFrame">特需门诊</a><i></i></li>
-        <li><cite></cite><a href="tab.jsp" target="rightFrame">眼科门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/ck_wait.jsp">中医门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/ck_wait.jsp">儿科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/tx_wait.jsp" target="rightFrame">特需门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/wk_wait.jsp" target="rightFrame">外科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/wg_wait.jsp" target="rightFrame">卫干门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/yk_wait.jsp" target="rightFrame">眼科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/zy_wait.jsp" target="rightFrame">中医门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/ek_wait.jsp" target="rightFrame">儿科门诊</a><i></i></li>
         <li><cite></cite><a href="error.jsp" target="rightFrame">404页面</a><i></i></li>
     </ul>
     </dd>
 
 
-    <dd><div class="title"><span><img src="images/leftico03.png" /></span>门诊处置治疗管理</div>
+    <dd><div class="title"><span><img src="images/leftico02.png" /></span>门诊处置治疗管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">自定义</a><i></i></li>
         <li><cite></cite><a href="#">常用资料</a><i></i></li>

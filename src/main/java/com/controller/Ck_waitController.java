@@ -59,42 +59,42 @@ public class Ck_waitController {
         return ck_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertCk_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-//        记录产科病人信息
-        CK_info ck_info = new ObjectMapper().readValue(request.getParameter("ck_info"), CK_info.class);
-        ck_infoBiz.insert(ck_info);
-//        查询病人信息
-        Patient patient = patientBiz.queryById(ck_info.getPatientList().get(1).getPno());
-//        查询病人就诊卡
-        Medicalcard medicalcard = medicalcardBiz.queryById(ck_info.getMedicalcard().getJzno());
-//        查询病人分诊医生
-        Doctor doctor = doctorBiz.queryById(ck_info.getDoctor().getDno());
-
-        CK_wait ck_wait = new CK_wait();
-        //增加产科候诊病人编号
-        String ckwno = ck_waitBiz.queryMaxNo();
-        int newCkno = Integer.parseInt(ckwno)+1;
-        ck_wait.setWno("CKWNO"+newCkno);
-        ck_wait.setPatientList(ck_info.getPatientList());
-        ck_wait.setName(ck_info.getName());
-        ck_wait.setSex(patient.getSex());
-        ck_wait.setAge(patient.getAge());
-        ck_wait.setType(patient.getType());
-        ck_wait.setRemark(patient.getRemark());
-        ck_wait.setLevel("3");
-        ck_wait.setDate(new Date().toLocaleString());
-        ck_wait.setMedicalcard(medicalcard);
-        ck_wait.setDoctor(doctor);
-
-        String result = "";
-        boolean insert = ck_waitBiz.insert(ck_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertCk_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+////        记录产科病人信息
+//        CK_info ck_info = new ObjectMapper().readValue(request.getParameter("ck_info"), CK_info.class);
+//        ck_infoBiz.insert(ck_info);
+////        查询病人信息
+//        Patient patient = patientBiz.queryById(ck_info.getPatientList().get(1).getPno());
+////        查询病人就诊卡
+//        Medicalcard medicalcard = medicalcardBiz.queryById(ck_info.getMedicalcard().getJzno());
+////        查询病人分诊医生
+//        Doctor doctor = doctorBiz.queryById(ck_info.getDoctor().getDno());
+//
+//        CK_wait ck_wait = new CK_wait();
+//        //增加产科候诊病人编号
+//        String ckwno = ck_waitBiz.queryMaxNo();
+//        int newCkno = Integer.parseInt(ckwno)+1;
+//        ck_wait.setWno("CKWNO"+newCkno);
+//        ck_wait.setPatientList(ck_info.getPatientList());
+//        ck_wait.setName(ck_info.getName());
+//        ck_wait.setSex(patient.getSex());
+//        ck_wait.setAge(patient.getAge());
+//        ck_wait.setType(patient.getType());
+//        ck_wait.setRemark(patient.getRemark());
+//        ck_wait.setLevel("3");
+//        ck_wait.setDate(new Date().toLocaleString());
+//        ck_wait.setMedicalcard(medicalcard);
+//        ck_wait.setDoctor(doctor);
+//
+//        String result = "";
+//        boolean insert = ck_waitBiz.insert(ck_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateCk_wait")

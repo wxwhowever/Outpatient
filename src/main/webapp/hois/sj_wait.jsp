@@ -181,7 +181,7 @@ $(document).ready(function(){
                 el : "#sj_waitList",
                 data : {
                     sj_wait_List : [],
-                    sj_wait : {pno:"", name:"", height:"", weight:"", doctor:{dno:""}, medical:{jzno:""}},//产科信息记录
+                    sj_wait : {pno:"", name:"", height:"", weight:"", dno:"", jzno:""},//产科信息记录
                     modalTitle : "",
                     maxPage : "",
                     url : "",
