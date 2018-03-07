@@ -33,11 +33,10 @@
 
     <!-- mysql 数据库依赖-->
     <dependency>
-      <groupId>com</groupId>
-      <artifactId>mysql</artifactId>
-      <version>1.0</version>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.38</version>
     </dependency>
-
     <!-- SpringMVC 、Spring 的依赖-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -72,7 +71,6 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.9.1</version>
     </dependency>
-
 
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
