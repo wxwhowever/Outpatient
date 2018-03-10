@@ -16,7 +16,7 @@ public class Prescribe {
 
     private String drugnum;//发药量
 
-    private double sum;//总计
+    private double total;//总计
 
     private String remarks;//备注
 
@@ -25,14 +25,14 @@ public class Prescribe {
     public Prescribe() {
     }
 
-    public Prescribe(int id, String pno, Patient patient_pno, List<Doctor> doctor_dno, List<Drug> drug_dno, String drugnum, double sum, String remarks, String date) {
+    public Prescribe(int id, String pno, Patient patient_pno, List<Doctor> doctor_dno, List<Drug> drug_dno, String drugnum,double total, String remarks, String date) {
         this.id = id;
         this.pno = pno;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
         this.drug_dno = drug_dno;
         this.drugnum = drugnum;
-        this.sum = sum;
+        this.total = total;
         this.remarks = remarks;
         this.date = date;
     }
@@ -85,12 +85,12 @@ public class Prescribe {
         this.drugnum = drugnum;
     }
 
-    public double getSum() {
-        return sum;
+    public double getTotal() {
+        return total;
     }
 
-    public void setSum(double sum) {
-        this.sum = sum;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getRemarks() {

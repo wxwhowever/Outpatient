@@ -4,6 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.PrescribeDao">
+
+    <resultMap id="resultList" type="java.util.Map">
+        <result property="pno" column="pno"></result>
+        <result property="patientName"  column="patientName"></result>
+        <result property="doctorName" column="doctorName"></result>
+        <result property="drugName" column="drugName"></result>
+        <result property="drug_spec" column="drug_spec"></result>
+        <result property="drugnum" column="drugnum"></result>
+        <result property="drug_use" column="drug_use"></result>
+        <result property="drug_dosage" column="drug_dosage"></result>
+        <result property="drug_price" column="drug_price"></result>
+        <result property="total" column="total"></result>
+        <result property="remarks" column="remarks"></result>
+        <result property="date" column="date"></result>
+    </resultMap>
+    <select id="resultMap" resultMap="resultList">
+        SELECT pr.pno,pa.`name` patientName,doc.`name` doctorName,dr.drug_name drugName,dr.drug_spec,pr.drugnum,dr.drug_use,dr.drug_dosage,dr.drug_price,pr.total,pr.remarks,pr.date from prescribe pr,
+        patient pa,
+        doctor doc,
+        drug dr where
+        pr.patient_pno = pa.pno and
+        pr.doctor_dno = doc.dno and
+        pr.drug_dno = dr.drug_dno
+    </select>
+
     <!--查询所有-->
     <select id="queryList" resultType="com.entity.Prescribe">
         select * from prescribe

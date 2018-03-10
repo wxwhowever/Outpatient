@@ -65,23 +65,29 @@
             <th>医生姓名</th>
             <th>药品名称</th>
             <th>药品规格</th>
-            <th>发药量</th>
+            <th>发药数量</th>
             <th>使用方法</th>
             <th>每次用量</th>
             <th>单个金额</th>
-            <th>开药时间</th>
             <th>合计</th>
             <th>备注</th>
+            <th>开药时间</th>
             <th>操作</th>
             </thead>
 
-            <tr v-for="ck_info in prescribeParam">
-                <td>{{ck_info.dno}}</td>
-                <td>{{ck_info.name}}</td>
-                <td>{{ck_info.sex}}</td>
-                <td>{{ck_info.age}}</td>
-                <td>{{ck_info.position}}</td>
-                <td>{{ck_info.officeno}}</td>
+            <tr v-for="p in prescribeParam">
+                <td>{{p.pno}}</td>
+                <td>{{p.patientName}}</td>
+                <td>{{p.doctorName}}</td>
+                <td>{{p.drugName}}</td>
+                <td>{{p.drug_spec}}</td>
+                <td>{{p.drugnum}}</td>
+                <td>{{p.drug_use}}</td>
+                <td>{{p.drug_dosage}}</td>
+                <td>{{p.drug_price}}</td>
+                <td>{{p.total}}</td>
+                <td>{{p.remarks}}</td>
+                <td>{{p.date}}</td>
                 <td class="toolbar" style="text-align: center">
                     <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateCk_info(ck_info.id)">修改</button>
                     <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=ck_info.id)"> 删除</button>
@@ -188,11 +194,10 @@
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/queryMap-prescribe.action",
+                    url : "/resultmap.action",
                     type : "post",
                     success : function(data){
-                        _this.prescribeParam = data.listData;
-                        _this.maxPage = data.maxPage;
+                        _this.prescribeParam = data;
                     }
                 })
             },

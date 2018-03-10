@@ -9,10 +9,11 @@ import java.util.Map;
 
 public interface PrescribeBiz extends BaseBiz<Prescribe>{
 
+    List<Map<String, Object>> resultMap();
+
     Map<String, Object> queryMap(String sql, int begin, int end);
 
     List<Prescribe> queryList();
-
 
     List<Prescribe> queryLists(String sql, int begin, int end);
 
@@ -27,4 +28,7 @@ public interface PrescribeBiz extends BaseBiz<Prescribe>{
     boolean delete(Object object);
 
     int getCount(String sql);
+
+
+
 }
