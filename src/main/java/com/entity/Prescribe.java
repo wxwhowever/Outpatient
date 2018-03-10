@@ -10,9 +10,9 @@ public class Prescribe {
 
     private Patient patient_pno;//患者编号
 
-    private Doctor doctor_dno;//开药医师
+    private List<Doctor> doctor_dno;//开药医师
 
-    private Drug drug_dno;//药品
+    private List<Drug> drug_dno;//药品
 
     private String drugnum;//发药量
 
@@ -25,7 +25,7 @@ public class Prescribe {
     public Prescribe() {
     }
 
-    public Prescribe(int id, String pno, Patient patient_pno, Doctor doctor_dno, Drug drug_dno, String drugnum, double sum, String remarks, String date) {
+    public Prescribe(int id, String pno, Patient patient_pno, List<Doctor> doctor_dno, List<Drug> drug_dno, String drugnum, double sum, String remarks, String date) {
         this.id = id;
         this.pno = pno;
         this.patient_pno = patient_pno;
@@ -35,14 +35,6 @@ public class Prescribe {
         this.sum = sum;
         this.remarks = remarks;
         this.date = date;
-    }
-
-    public Drug getDrug_dno() {
-        return drug_dno;
-    }
-
-    public void setDrug_dno(Drug drug_dno) {
-        this.drug_dno = drug_dno;
     }
 
     public int getId() {
@@ -69,12 +61,20 @@ public class Prescribe {
         this.patient_pno = patient_pno;
     }
 
-    public Doctor getDoctor_dno() {
+    public List<Doctor> getDoctor_dno() {
         return doctor_dno;
     }
 
-    public void setDoctor_dno(Doctor doctor_dno) {
+    public void setDoctor_dno(List<Doctor> doctor_dno) {
         this.doctor_dno = doctor_dno;
+    }
+
+    public List<Drug> getDrug_dno() {
+        return drug_dno;
+    }
+
+    public void setDrug_dno(List<Drug> drug_dno) {
+        this.drug_dno = drug_dno;
     }
 
     public String getDrugnum() {
