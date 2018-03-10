@@ -1,7 +1,6 @@
 package com.entity;
 
-//注射用药单
-public class injectdrug {
+public class Injectdrug {
     private int id;
 
     private String ino;//编号
@@ -20,10 +19,10 @@ public class injectdrug {
 
     private  String date;//开药时间
 
-    public injectdrug() {
+    public Injectdrug() {
     }
 
-    public injectdrug(int id, String ino, Patient patient_pno, Doctor doctor_dno, Drug drug_dno, String dosage, double sum, String remarks, String date) {
+    public Injectdrug(int id, String ino, Patient patient_pno, Doctor doctor_dno, Drug drug_dno, String dosage, double sum, String remarks, String date) {
         this.id = id;
         this.ino = ino;
         this.patient_pno = patient_pno;
@@ -106,4 +105,5 @@ public class injectdrug {
     public void setDate(String date) {
         this.date = date;
     }
+
 }
