@@ -13,6 +13,7 @@ public interface PrescribeBiz extends BaseBiz<Prescribe>{
 
     List<Prescribe> queryList();
 
+
     List<Prescribe> queryLists(String sql, int begin, int end);
 
     Prescribe queryById(Serializable serializable);
