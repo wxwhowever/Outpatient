@@ -197,7 +197,8 @@
                     url : "/resultmap.action",
                     type : "post",
                     success : function(data){
-                        _this.prescribeParam = data;
+                        _this.prescribeParam = data.listData;
+                        _this.maxPage = data.maxPage;
                     }
                 })
             },
@@ -306,7 +307,7 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/queryMap-ck_info.action",
+                url : "/resultmap.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
@@ -321,7 +322,7 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/queryMap-ck_info.action",
+                url : "/resultmap.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
@@ -340,7 +341,7 @@
         var searchValue = $("#search").val();//得到搜索框中的值
         if(searchValue != null && searchValue != ""){
             $.ajax({
-                url : "/queryMap-ck_info.action",
+                url : "/resultmap.action",
                 data : {search : searchValue},
                 success : function(data){
                     prescribeVue._data.prescribeParam = data.listData;

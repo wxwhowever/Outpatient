@@ -27,6 +27,12 @@
         pr.patient_pno = pa.pno and
         pr.doctor_dno = doc.dno and
         pr.drug_dno = dr.drug_dno
+        <where>
+            <if test="param1 != null and param1 != ''">
+                patientName like '%${param1}%' or doctorName like '%${param1}%'
+            </if>
+        </where>
+        limit #{param2},#{param3}
     </select>
 
     <!--查询所有-->
@@ -79,7 +85,7 @@
     <select id="getCount" parameterType="java.lang.String" resultType="int">
         select  count(*) from prescribe
         <if test="_parameter != null and _parameter != ''">
-            where pno like '%${_parameter}%' OR drugname like '%${_parameter}%'
+            where patientName like '%${_parameter}%' OR doctorName like '%${_parameter}%'
         </if>
     </select>
 </mapper>

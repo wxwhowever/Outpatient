@@ -17,8 +17,8 @@ public class PrescribeBizImp implements PrescribeBiz {
     @Autowired
     PrescribeDao prescribeDao;
 
-    public List<Map<String, Object>> resultMap() {
-        return prescribeDao.resultMap();
+    public List<Map<String, Object>> resultMap(String param,int begin,int end) {
+        return prescribeDao.resultMap(param,begin,end);
     }
 
     public Map<String, Object> queryMap(String sql, int begin, int end) {
@@ -60,7 +60,7 @@ public class PrescribeBizImp implements PrescribeBiz {
     }
 
     public int getCount(String sql) {
-        return 0;
+        return prescribeDao.getCount(sql);
     }
 
 }

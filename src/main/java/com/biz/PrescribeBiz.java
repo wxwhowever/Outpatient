@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface PrescribeBiz extends BaseBiz<Prescribe>{
 
-    List<Map<String, Object>> resultMap();
+    List<Map<String, Object>> resultMap(String param,int begin,int end);
 
     Map<String, Object> queryMap(String sql, int begin, int end);
 

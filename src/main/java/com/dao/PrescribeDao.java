@@ -9,9 +9,7 @@ import java.util.Map;
 
 public interface PrescribeDao extends BaseDao<Prescribe> {
 
-    List<Map<String, Object>> resultMap();
-
-//    Map<String, Object> queryMap(String sql, int begin, int end);
+    List<Map<String, Object>> resultMap(String param,int begin,int end);
 
     List<Prescribe> queryList();
 

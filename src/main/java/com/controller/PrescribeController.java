@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,9 +42,30 @@ public class PrescribeController {
 
     @ResponseBody
     @RequestMapping("resultmap")
-    public List<Map<String, Object>> test(){
-        List<Map<String, Object>> list = prescribeBiz.resultMap();
-        return list;
+    public Map<String, Object> test(HttpServletRequest request){
+        String search = request.getParameter("search");
+        String page = request.getParameter("page");
+        String count = request.getParameter("count");
+        String param = "";
+        int begin = 0;
+        int end = 5;
+        if(page != null && page != ""){
+            begin = (Integer.parseInt(page)-1)*end;
+        }
+        if(search != null && search != ""){
+            param = search;
+        }
+        if(count != null && count!= ""){
+            end = Integer.parseInt(count);
+        }
+        List<Map<String, Object>> list = prescribeBiz.resultMap(param,begin,end);
+        int maxCount = prescribeBiz.getCount(param);
+        int maxPage = (maxCount/end)+(maxCount%end!=0?1:0);
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("listData",list);
+        map.put("maxPage",maxPage);
+        System.out.println("count----"+maxCount+"page-----"+maxPage);
+        return map;
     }
 
 
