@@ -50,18 +50,18 @@ public class NK_waitController {
         return mz_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertNk_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        NK_wait nk_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), NK_wait.class);
-
-        String result = "";
-        boolean insert = nk_waitBiz.insert(nk_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertNk_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        NK_wait nk_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), NK_wait.class);
+//
+//        String result = "";
+//        boolean insert = nk_waitBiz.insert(nk_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateNk_wait")

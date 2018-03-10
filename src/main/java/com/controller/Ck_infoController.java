@@ -49,24 +49,24 @@ public class Ck_infoController {
         return ck_info;
     }
 
-    @ResponseBody
-    @RequestMapping("insertCk_info")
-    public String insert(HttpServletRequest request) throws IOException {
-        CK_info ck_info = new ObjectMapper().readValue(request.getParameter("ck_info"), CK_info.class);
-
-//        查询最大的病案号
-        String mcno = ck_infoBiz.queryMaxNo();
-//        将最大的病案号加一，添加到数据库
-        int newMcno = Integer.parseInt(mcno) + 1;
-//        ck_info.setMcno("MC2018"+newMcno);
-//        ck_info.setCreatedate(new Date().toLocaleString());
-        String result = "";
-        boolean insert = ck_infoBiz.insert(ck_info);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertCk_info")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        CK_info ck_info = new ObjectMapper().readValue(request.getParameter("ck_info"), CK_info.class);
+//
+////        查询最大的病案号
+//        String mcno = ck_infoBiz.queryMaxNo();
+////        将最大的病案号加一，添加到数据库
+//        int newMcno = Integer.parseInt(mcno) + 1;
+////        ck_info.setMcno("MC2018"+newMcno);
+////        ck_info.setCreatedate(new Date().toLocaleString());
+//        String result = "";
+//        boolean insert = ck_infoBiz.insert(ck_info);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateCk_info")

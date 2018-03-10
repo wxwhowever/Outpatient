@@ -1,9 +1,7 @@
 package com.controller;
 
 import com.biz.*;
-import com.entity.CK_wait;
-import com.entity.Medicalcard;
-import com.entity.Registration;
+import com.entity.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class RegistrationController {
@@ -31,7 +28,7 @@ public class RegistrationController {
         String count = request.getParameter("count");
         String sql = "";
         int begin = 0;
-        int end = 10;
+        int end = 5;
         if(page != null && page != ""){
             begin = (Integer.parseInt(page)-1)*end;
         }

@@ -37,14 +37,14 @@
     <insert id="insert" parameterType="com.entity.Registration">
         INSERT INTO registration
         (rsno, name, type, card, sex, age, profession, address,createdate, phone, yyno, ybno,jzno) VALUES
-        (#{rsno},#{name},#{type},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{doctorcard.yyno},#{medicarecard.ybno},#{medicalcard.jzno})
+        (#{rsno},#{name},#{type},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{yyno},#{ybno},#{jzno})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Registration">
         update registration SET
          name = #{name}, type = #{type}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},
-         address = #{address},createdate = #{createdate}, phone = #{phone}, yyno = #{doctorcard.yyno}, ybno = #{medicarecard.ybno}, jzno = #{medicalcard.jzno} where id = #{id}
+         address = #{address},createdate = #{createdate}, phone = #{phone}, yyno = #{yyno}, ybno = #{ybno}, jzno = #{jzno} where id = #{id}
     </update>
 
     <!--删除-->

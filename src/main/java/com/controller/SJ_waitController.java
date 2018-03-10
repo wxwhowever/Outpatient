@@ -50,18 +50,18 @@ public class SJ_waitController {
         return sj_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertSj_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        SJ_wait nk_wait = new ObjectMapper().readValue(request.getParameter("sj_wait"), SJ_wait.class);
-
-        String result = "";
-        boolean insert = sj_waitBiz.insert(nk_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertSj_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        SJ_wait nk_wait = new ObjectMapper().readValue(request.getParameter("sj_wait"), SJ_wait.class);
+//
+//        String result = "";
+//        boolean insert = sj_waitBiz.insert(nk_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateSj_wait")

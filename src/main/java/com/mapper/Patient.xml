@@ -35,14 +35,14 @@
     <insert id="insert" parameterType="com.entity.Patient">
         INSERT INTO patient
         (pno, name, type,remark, card, sex, age, profession, address,createdate, phone, yyno, ybno, jzno,rsno) VALUES
-        (#{pno},#{name},#{type},#{remark},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{doctorcard.yyno},#{medicarecard.ybno},#{medicalcard.jzno},#{registration.rsno})
+        (#{pno},#{name},#{type},#{remark},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{yyno},#{ybno},#{jzno},#{registration.rsno})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Patient">
         update patient SET
          name = #{name}, type = #{type}, remark = #{remark}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},
-         address = #{address},createdate = #{createdate}, phone = #{phone}, yyno = #{doctorcard.yyno}, ybno = #{medicarecard.ybno}, jzno = #{medicalcard.jzno}, rsno = #{registration.rsno} where id = #{id}
+         address = #{address},createdate = #{createdate}, phone = #{phone}, yyno = #{yyno}, ybno = #{ybno}, jzno = #{jzno}, rsno = #{registration.rsno} where id = #{id}
     </update>
 
     <!--删除-->
@@ -56,6 +56,10 @@
         <if test="_parameter != null and _parameter != ''">
             where name like '%${_parameter}%' OR pno like '%${_parameter}%'  or sex like '%${_parameter}%'
         </if>
+    </select>
+
+    <select id="queryByRsno" resultType="com.entity.Patient">
+        select * from patient where rsno = #{rsno}
     </select>
 
 </mapper>

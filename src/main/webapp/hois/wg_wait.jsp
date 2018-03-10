@@ -115,30 +115,7 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group form-inline">
-                                <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="wg_wait.name">
-                                <div style="float: right;">
-                                    <label class="control-label">病人编号:</label>
-                                    <input type="text" class="form-control" id="pno" v-model="wg_wait.age">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label class="control-label">身高:</label>
-                                <input type="text" class="form-control" id="height" v-model="wg_wait.height">
-                                <div style="float: right;">
-                                <label class="control-label">体重:</label>
-                                <input type="text" class="form-control" id="weight" v-model="wg_wait.weight">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label  class="control-label">记录人:</label>
-                                <input type="text" class="form-control" id="dno" v-model="wg_wait.dno">
-                                <div style="float: right;">
-                                <label class="control-label">就诊卡号:</label>
-                                <input type="text" class="form-control" id="jzno" v-model="wg_wait.jzno">
-                                </div>
-                            </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -197,6 +174,7 @@ $(document).ready(function(){
                             type : "post",
                             success : function(data){
                                 _this.wg_wait_List = data.listData;
+                                console.log(_this.wg_wait_List);
                                 _this.maxPage = data.maxPage;
                             }
                         })

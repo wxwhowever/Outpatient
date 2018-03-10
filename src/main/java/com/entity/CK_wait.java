@@ -11,7 +11,7 @@ public class CK_wait {
 //    候诊编号
     private String wno;
 //    病人编号
-    private List<Patient> patientList;
+    private String pno;
 //    姓名
     private String name;
 //    性别
@@ -35,9 +35,9 @@ public class CK_wait {
     public CK_wait() {
     }
 
-    public CK_wait(String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
+    public CK_wait(String wno, String pno, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
         this.wno = wno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -49,10 +49,10 @@ public class CK_wait {
         this.dno = dno;
     }
 
-    public CK_wait(int id, String wno, List<Patient> patientList, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
+    public CK_wait(int id, String wno, String pno, String name, String sex, int age, String type, String remark, String level, String date, String jzno, String dno) {
         this.id = id;
         this.wno = wno;
-        this.patientList = patientList;
+        this.pno = pno;
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -96,12 +96,12 @@ public class CK_wait {
         this.wno = wno;
     }
 
-    public List<Patient> getPatientList() {
-        return patientList;
+    public String getPno() {
+        return pno;
     }
 
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
+    public void setPno(String pno) {
+        this.pno = pno;
     }
 
     public String getName() {
@@ -166,7 +166,7 @@ public class CK_wait {
         return "CK_wait{" +
                 "id=" + id +
                 ", wno='" + wno + '\'' +
-                ", patientList=" + patientList +
+                ", pno='" + pno + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +

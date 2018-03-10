@@ -71,4 +71,6 @@ public interface PatientDao extends BaseDao<Patient> {
      * @return
      */
     int getCount(String sql);
+
+    Patient queryByRsno(Serializable serializable);
 }

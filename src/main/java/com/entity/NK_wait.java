@@ -148,6 +148,18 @@ public class NK_wait {
         this.date = date;
     }
 
+    public void setPno(String pno) {
+        this.pno = pno;
+    }
+
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
+    }
+
+    public void setDno(String dno) {
+        this.dno = dno;
+    }
+
     @Override
     public String toString() {
         return "NK_wait{" +

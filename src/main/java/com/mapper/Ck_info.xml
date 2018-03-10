@@ -35,14 +35,14 @@
     <insert id="insert" parameterType="com.entity.CK_info">
         INSERT INTO ck_info
         (ckno, pno, name, height,weight, date,jzno, dno) VALUES
-        (#{ckno},#{pno},#{name},#{height},#{weight},#{date},#{medicalcard.jzno},#{doctor.dno})
+        (#{ckno},#{pno},#{name},#{height},#{weight},#{date},#{jzno},#{dno})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.CK_wait">
         update ck_info SET
          name = #{name}, pno = #{pno}, height = #{height}, weight = #{weight},
-         date = #{date}, jzno = #{medicalcard.yyno}, dno = #{doctor.dno} where id = #{id}
+         date = #{date}, jzno = #{yyno}, dno = #{dno} where id = #{id}
     </update>
 
     <!--删除-->

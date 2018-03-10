@@ -118,29 +118,12 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group form-inline">
-                                <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="ck_info.name">
-                                <div style="float: right;">
-                                    <label class="control-label">病人编号:</label>
-                                    <input type="text" class="form-control" id="pno" v-model="ck_info.age">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label class="control-label">身高:</label>
-                                <input type="text" class="form-control" id="height" v-model="ck_info.height">
-                                <div style="float: right;">
-                                <label class="control-label">体重:</label>
-                                <input type="text" class="form-control" id="weight" v-model="ck_info.weight">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label  class="control-label">记录人:</label>
-                                <input type="text" class="form-control" id="dno" v-model="ck_info.dno">
-                                <div style="float: right;">
-                                <label class="control-label">就诊卡号:</label>
-                                <input type="text" class="form-control" id="jzno" v-model="ck_info.jzno">
-                                </div>
+                            <div style="text-align: center">
+                                <select style="width: 400px;" class="arrayAdjust">
+                                    <option value="1">优先就诊</option>
+                                    <option value="2">当日复诊</option>
+                                    <option value="3">普通就诊</option>
+                                </select>
                             </div>
                         </form>
                     </div>

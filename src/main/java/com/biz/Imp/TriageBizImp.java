@@ -1,8 +1,8 @@
 package com.biz.Imp;
 
-import com.biz.PatientBiz;
-import com.dao.PatientDao;
-import com.entity.Patient;
+import com.biz.TriageBiz;
+import com.dao.TriageDao;
+import com.entity.Triage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,41 +12,41 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class PatientBizImp implements PatientBiz {
+public class TriageBizImp implements TriageBiz {
 
     @Autowired
-    PatientDao patientDao;
+    TriageDao triageDao;
 
     public Map<String, Object> queryMap(String sql, int begin, int end) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Patient> list = patientDao.queryLists(sql,begin,end);
-        int maxCount = patientDao.getCount(sql);
+        List<Triage> list = triageDao.queryLists(sql,begin,end);
+        int maxCount = triageDao.getCount(sql);
         int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
         map.put("listData",list);
         map.put("maxPage",maxPage);
         return map;
     }
 
-    public List<Patient> queryList() {
-        return patientDao.queryList();
+    public List<Triage> queryList() {
+        return triageDao.queryList();
     }
 
-    public List<Patient> queryLists(String sql, int begin, int end) {
-        return patientDao.queryLists(sql,begin,end);
+    public List<Triage> queryLists(String sql, int begin, int end) {
+        return triageDao.queryLists(sql,begin,end);
     }
 
-    public Patient queryById(Serializable serializable) {
-        return patientDao.queryById(serializable);
+    public Triage queryById(Serializable serializable) {
+        return triageDao.queryById(serializable);
     }
 
     public String queryMaxNo() {
-        return patientDao.queryMaxNo();
+        return triageDao.queryMaxNo();
     }
 
     public boolean insert(Object object) {
         boolean f = false;
         try {
-            patientDao.insert(object);
+            triageDao.insert(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -58,7 +58,7 @@ public class PatientBizImp implements PatientBiz {
     public boolean update(Object object) {
         boolean f = false;
         try {
-            patientDao.update(object);
+            triageDao.update(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -70,7 +70,7 @@ public class PatientBizImp implements PatientBiz {
     public boolean delete(Object object) {
         boolean f = false;
         try {
-            patientDao.delete(object);
+            triageDao.delete(object);
             f = true;
         }catch (Exception e){
             f =false;
@@ -81,9 +81,5 @@ public class PatientBizImp implements PatientBiz {
 
     public int getCount(String sql) {
         return 0;
-    }
-
-    public Patient queryByRsno(Serializable serializable) {
-        return patientDao.queryByRsno(serializable);
     }
 }

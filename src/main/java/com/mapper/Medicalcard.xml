@@ -60,13 +60,13 @@
     <insert id="insert" parameterType="com.entity.Medicalcard">
         INSERT INTO medicalcard
         (jzno, name, password, card, sex, age, profession, address, money,createdate, phone, yyno, ybno, subscribe) VALUES
-        (#{jzno},#{name},#{password},#{card},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone},#{doctorcard.yyno},#{medicarecard.ybno},#{subscribe})
+        (#{jzno},#{name},#{password},#{card},#{sex},#{age},#{profession},#{address},#{money},#{createdate},#{phone},#{yyno},#{ybno},#{subscribe})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Medicalcard">
         update medicalcard SET
-        name = #{name}, password = #{password}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}, yyno = #{doctorcard.yyno}, ybno = #{doctorcard.ybno}, subscribe = #{subscribe} where id = #{id}
+        name = #{name}, password = #{password}, card = #{card}, sex = #{sex}, age = #{age}, profession = #{profession},address = #{address}, money = #{money},createdate = #{createdate}, phone = #{phone}, yyno = #{yyno}, ybno = #{ybno}, subscribe = #{subscribe} where id = #{id}
     </update>
 
     <!--删除-->

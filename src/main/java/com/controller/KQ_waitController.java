@@ -50,18 +50,18 @@ public class KQ_waitController {
         return kq_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertKq_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        KQ_wait kq_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), KQ_wait.class);
-
-        String result = "";
-        boolean insert = kQ_waitBiz.insert(kq_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertKq_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        KQ_wait kq_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), KQ_wait.class);
+//
+//        String result = "";
+//        boolean insert = kQ_waitBiz.insert(kq_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateKq_wait")

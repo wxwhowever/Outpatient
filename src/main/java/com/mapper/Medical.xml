@@ -35,14 +35,14 @@
     <insert id="insert" parameterType="com.entity.Medical">
         INSERT INTO medical
         (mcno, name, card, type,remark, sex, age, profession, address,createdate, phone, jzno, ybno) VALUES
-        (#{mcno},#{name},#{card},#{type},#{remark},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{medicalcard.jzno},#{medicarecard.ybno})
+        (#{mcno},#{name},#{card},#{type},#{remark},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{jzno},#{ybno})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Medical">
         update medical SET
          name = #{name}, card = #{card}, type = #{type}, remark = #{remark},sex = #{sex}, age = #{age}, profession = #{profession},
-         address = #{address},createdate = #{createdate}, phone = #{phone}, jzno = #{medicalcard.yyno}, ybno = #{medicarecard.ybno} where id = #{id}
+         address = #{address},createdate = #{createdate}, phone = #{phone}, jzno = #{yyno}, ybno = #{ybno} where id = #{id}
     </update>
 
     <!--删除-->

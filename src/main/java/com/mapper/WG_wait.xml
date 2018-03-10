@@ -35,14 +35,14 @@
     <insert id="insert" parameterType="com.entity.WG_wait">
         INSERT INTO wg_wait
         (wno, pno, name, type,remark, sex, age, level, date,jzno, dno) VALUES
-        (#{wno},#{pno},#{name},#{type},#{remark},#{sex},#{age},#{level},#{date},#{medicalcard.jzno},#{doctor.dno})
+        (#{wno},#{pno},#{name},#{type},#{remark},#{sex},#{age},#{level},#{date},#{jzno},#{dno})
     </insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.WG_wait">
         update wg_wait SET
          name = #{name}, pno = #{pno}, type = #{type}, remark = #{remark},sex = #{sex}, age = #{age}, level = #{level},
-         date = #{date}, jzno = #{medicalcard.yyno}, dno = #{doctor.dno} where id = #{id}
+         date = #{date}, jzno = #{yyno}, dno = #{dno} where id = #{id}
     </update>
 
     <!--删除-->

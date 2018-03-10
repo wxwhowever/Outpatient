@@ -80,6 +80,14 @@ public class WG_wait {
         this.wno = wno;
     }
 
+    public String getPno() {
+        return pno;
+    }
+
+    public void setPno(String pno) {
+        this.pno = pno;
+    }
+
     public String getName() {
         return name;
     }
@@ -134,6 +142,22 @@ public class WG_wait {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getJzno() {
+        return jzno;
+    }
+
+    public void setJzno(String jzno) {
+        this.jzno = jzno;
+    }
+
+    public String getDno() {
+        return dno;
+    }
+
+    public void setDno(String dno) {
+        this.dno = dno;
     }
 
     @Override

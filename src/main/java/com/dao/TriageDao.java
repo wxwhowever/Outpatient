@@ -1,16 +1,16 @@
-package com.biz;
+package com.dao;
 
-import com.base.BaseBiz;
-import com.entity.Patient;
+import com.base.BaseDao;
+import com.entity.Triage;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface PatientBiz extends BaseBiz<Patient>{
+public interface TriageDao extends BaseDao<Triage> {
 
     /**
-     * 查询所有 + 分页
+     * 查询所有的集合 + 分页
      * @param sql
      * @param begin
      * @param end
@@ -22,20 +22,20 @@ public interface PatientBiz extends BaseBiz<Patient>{
      * 查询所有不带参
      * @return
      */
-    List<Patient> queryList();
+    List<Triage> queryList();
 
     /**
      * 查询所有带参
      * @return
      */
-    List<Patient> queryLists(String sql, int begin, int end);
+    public List<Triage> queryLists(String sql, int begin, int end);
 
     /**
      * 查询单个
      * @param serializable
      * @return
      */
-    Patient queryById(Serializable serializable);
+    Triage queryById(Serializable serializable);
 
     /**
      * 查询最大的编号
@@ -65,11 +65,9 @@ public interface PatientBiz extends BaseBiz<Patient>{
     boolean delete(Object object);
 
     /**
-     * 查询表的总行数
+     * 查询表最大行数
      * @param sql
      * @return
      */
     int getCount(String sql);
-
-    Patient queryByRsno(Serializable serializable);
 }

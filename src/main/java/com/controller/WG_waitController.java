@@ -54,11 +54,9 @@ public class WG_waitController {
 
     @ResponseBody
     @RequestMapping("insertWg_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        WG_wait wg_wait = new ObjectMapper().readValue(request.getParameter("wg_wait"), WG_wait.class);
-
-        String result = "";
+    public String insert(HttpServletRequest request,WG_wait wg_wait) throws IOException {
         boolean insert = wg_waitBiz.insert(wg_wait);
+        String result = "";
         if(insert) {
             result = "success";
         }

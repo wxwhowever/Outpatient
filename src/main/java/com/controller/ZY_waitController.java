@@ -50,18 +50,18 @@ public class ZY_waitController {
         return zy_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertZy_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        ZY_wait zy_wait = new ObjectMapper().readValue(request.getParameter("zy_wait"), ZY_wait.class);
-
-        String result = "";
-        boolean insert = zy_waitBiz.insert(zy_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertZy_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        ZY_wait zy_wait = new ObjectMapper().readValue(request.getParameter("zy_wait"), ZY_wait.class);
+//
+//        String result = "";
+//        boolean insert = zy_waitBiz.insert(zy_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateZy_wait")

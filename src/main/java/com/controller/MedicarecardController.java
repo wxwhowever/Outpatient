@@ -30,7 +30,7 @@ public class MedicarecardController {
         String count = request.getParameter("count");
         String sql = "";
         int begin = 0;
-        int end = 10;
+        int end = 5;
         if(page != null && page != ""){
             begin = (Integer.parseInt(page)-1)*end;
         }

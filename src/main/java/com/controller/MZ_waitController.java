@@ -50,18 +50,18 @@ public class MZ_waitController {
         return mz_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertMz_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        MZ_wait mz_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), MZ_wait.class);
-
-        String result = "";
-        boolean insert = mz_waitBiz.insert(mz_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertMz_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        MZ_wait mz_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), MZ_wait.class);
+//
+//        String result = "";
+//        boolean insert = mz_waitBiz.insert(mz_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateMz_wait")

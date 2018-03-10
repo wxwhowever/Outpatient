@@ -50,18 +50,18 @@ public class WK_waitController {
         return wk_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertWk_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        WK_wait wk_wait = new ObjectMapper().readValue(request.getParameter("wk_wait"), WK_wait.class);
-
-        String result = "";
-        boolean insert = wk_waitBiz.insert(wk_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertWk_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        WK_wait wk_wait = new ObjectMapper().readValue(request.getParameter("wk_wait"), WK_wait.class);
+//
+//        String result = "";
+//        boolean insert = wk_waitBiz.insert(wk_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateWk_wait")

@@ -115,30 +115,6 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group form-inline">
-                                <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="ek_wait.name">
-                                <div style="float: right;">
-                                    <label class="control-label">病人编号:</label>
-                                    <input type="text" class="form-control" id="pno" v-model="ek_wait.age">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label class="control-label">身高:</label>
-                                <input type="text" class="form-control" id="height" v-model="ek_wait.height">
-                                <div style="float: right;">
-                                <label class="control-label">体重:</label>
-                                <input type="text" class="form-control" id="weight" v-model="ek_wait.weight">
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                                <label  class="control-label">记录人:</label>
-                                <input type="text" class="form-control" id="dno" v-model="ek_wait.dno">
-                                <div style="float: right;">
-                                <label class="control-label">就诊卡号:</label>
-                                <input type="text" class="form-control" id="jzno" v-model="ek_wait.jzno">
-                                </div>
-                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">

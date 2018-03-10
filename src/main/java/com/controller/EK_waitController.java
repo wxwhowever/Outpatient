@@ -50,18 +50,18 @@ public class EK_waitController {
         return ek_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertEk_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        EK_wait ek_wait = new ObjectMapper().readValue(request.getParameter("ek_wait"), EK_wait.class);
-
-        String result = "";
-        boolean insert = ek_waitBiz.insert(ek_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertEk_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        EK_wait ek_wait = new ObjectMapper().readValue(request.getParameter("ek_wait"), EK_wait.class);
+//
+//        String result = "";
+//        boolean insert = ek_waitBiz.insert(ek_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateEk_wait")

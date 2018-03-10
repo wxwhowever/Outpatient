@@ -51,19 +51,19 @@ public class YK_waitController {
         YK_wait yk_wait = yk_waitBiz.queryById(Integer.parseInt(request.getParameter("id")));
         return yk_wait;
     }
-
-    @ResponseBody
-    @RequestMapping("insertYk_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        YK_wait yk_wait = new ObjectMapper().readValue(request.getParameter("yk_wait"), YK_wait.class);
-
-        String result = "";
-        boolean insert = yk_waitBiz.insert(yk_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//
+//    @ResponseBody
+//    @RequestMapping("insertYk_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        YK_wait yk_wait = new ObjectMapper().readValue(request.getParameter("yk_wait"), YK_wait.class);
+//
+//        String result = "";
+//        boolean insert = yk_waitBiz.insert(yk_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateYk_wait")

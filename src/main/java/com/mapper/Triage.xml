@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.TriageDao">
+
+    <!--查询所有-->
+    <select id="queryList" resultType="com.entity.Triage">
+        select * from triage
+    </select>
+
+    <!--带分页的查询-->
+    <select id="queryLists" resultType="com.entity.Triage">
+        select * from triage where state = 0
+        <if test="param1 != null and param1 != ''">
+               and  name like '%${param1}%' or tno like '%${param1}%' or sex like '%${param1}%'
+        </if>
+         limit #{param2},#{param3}
+    </select>
+
+
+    <!--查询单个-->
+    <select id="queryById"  resultType="com.entity.Triage">
+             select * from triage where id = #{id}
+    </select>
+
+    <!--查询最大的编号-->
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select count(tno) from triage
+    </select>
+
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.entity.Triage">
+        INSERT INTO triage
+        (tno, name, type, sex, age, createdate, phone, state,rsno,yyno, ybno,jzno) VALUES
+        (#{tno},#{name},#{type},#{sex},#{age},#{createdate},#{phone},#{state},#{rsno},#{yyno},#{ybno},#{jzno})
+    </insert>
+
+    <!--修改-->
+    <update id="update" parameterType="com.entity.Triage">
+        update triage SET tno = #{tno},
+         name = #{name}, type = #{type}, sex = #{sex}, age = #{age},createdate = #{createdate},
+         phone = #{phone},state = #{state}, rsno = #{rsno}, yyno = #{yyno}, ybno = #{ybno}, jzno = #{jzno} where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="int">
+        delete from triage where id = #{id}
+    </delete>
+
+    <!--查询表总行数-->
+    <select id="getCount" parameterType="java.lang.String" resultType="int">
+        select  count(*) from triage where state = 0
+        <if test="_parameter != null and _parameter != ''">
+            and name like '%${_parameter}%' OR tno like '%${_parameter}%'  or sex like '%${_parameter}%'
+        </if>
+    </select>
+
+</mapper>

@@ -1,13 +1,13 @@
 package com.biz;
 
 import com.base.BaseBiz;
-import com.entity.Patient;
+import com.entity.Triage;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface PatientBiz extends BaseBiz<Patient>{
+public interface TriageBiz extends BaseBiz<Triage>{
 
     /**
      * 查询所有 + 分页
@@ -22,20 +22,20 @@ public interface PatientBiz extends BaseBiz<Patient>{
      * 查询所有不带参
      * @return
      */
-    List<Patient> queryList();
+    List<Triage> queryList();
 
     /**
      * 查询所有带参
      * @return
      */
-    List<Patient> queryLists(String sql, int begin, int end);
+    List<Triage> queryLists(String sql, int begin, int end);
 
     /**
      * 查询单个
      * @param serializable
      * @return
      */
-    Patient queryById(Serializable serializable);
+    Triage queryById(Serializable serializable);
 
     /**
      * 查询最大的编号
@@ -70,6 +70,4 @@ public interface PatientBiz extends BaseBiz<Patient>{
      * @return
      */
     int getCount(String sql);
-
-    Patient queryByRsno(Serializable serializable);
 }

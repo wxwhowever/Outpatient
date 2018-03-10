@@ -52,18 +52,18 @@ public class TX_waitController {
         return tx_wait;
     }
 
-    @ResponseBody
-    @RequestMapping("insertTx_wait")
-    public String insert(HttpServletRequest request) throws IOException {
-        TX_wait tx_wait = new ObjectMapper().readValue(request.getParameter("tx_wait"), TX_wait.class);
-
-        String result = "";
-        boolean insert = tx_waitBiz.insert(tx_wait);
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("insertTx_wait")
+//    public String insert(HttpServletRequest request) throws IOException {
+//        TX_wait tx_wait = new ObjectMapper().readValue(request.getParameter("tx_wait"), TX_wait.class);
+//
+//        String result = "";
+//        boolean insert = tx_waitBiz.insert(tx_wait);
+//        if(insert) {
+//            result = "success";
+//        }
+//        return result;
+//    }
 
     @ResponseBody
     @RequestMapping("updateTx_wait")

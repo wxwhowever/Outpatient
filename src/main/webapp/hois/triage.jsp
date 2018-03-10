@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>挂号管理</title>
+    <title>分诊台</title>
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
@@ -31,7 +31,6 @@
             $(".cancel").click(function(){
                 $(".tip").fadeOut(100);
             });
-
         });
     </script>
 
@@ -41,7 +40,7 @@
 
 <body>
 
-<div id="patientList">
+<div id="triageList">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
@@ -54,44 +53,37 @@
             <ul class="toolbar">
                 <input id="search" class="form-control" placeholder="输入挂号编号或姓名查询">
                 &nbsp; &nbsp; &nbsp;
-                <button class="btn btn-default" onclick="searchPatient()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
+                <button class="btn btn-default" onclick="searchTriage()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
-
-
+            <div style="float: right;">
+                <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png"
+                                                                             style="margin-top: -5px"/>刷新
+                </button>
+            </div>
         </div>
 
         <table class="tablelist table">
             <thead>
             <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
             <th>姓名</th>
-            <th>身份证号</th>
             <th>挂号类型</th>
             <th>性别</th>
             <th>年龄</th>
-            <th>职业</th>
-            <th>住址</th>
             <th>联系电话</th>
             <th>挂号时间</th>
-            <%--<th>就诊状态</th>--%>
             <th>操作</th>
             </thead>
 
-            <tr v-for="patient in patient_List">
-                <td>{{patient.pno}}</td>
-                <td>{{patient.name}}</td>
-                <td>{{patient.card}}</td>
-                <td>{{patient.type}}</td>
-                <td>{{patient.sex}}</td>
-                <td>{{patient.age}}</td>
-                <td>{{patient.profession}}</td>
-                <td>{{patient.address}}</td>
-                <td>{{patient.phone}}</td>
-                <td>{{patient.createdate}}</td>
-                            <%--<td v-if="patient.isOutpatient==1">正在就诊</td>--%>
-                            <%--<td v-else>未就诊</td>--%>
+            <tr v-for="triage in triage_List">
+                <td>{{triage.tno}}</td>
+                <td>{{triage.name}}</td>
+                <td>{{triage.type}}</td>
+                <td>{{triage.sex}}</td>
+                <td>{{triage.age}}</td>
+                <td>{{triage.phone}}</td>
+                <td>{{triage.createdate}}</td>
                 <td class="toolbar">
-                    <button class="btn btn-default"><img src="../images/t02.png" v-on:click="triageInsert(patient.id)">分诊</button>
-                    <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deletePatient(deleteId=patient.id)"> 退号</button>
+                    <button class="btn btn-default"><img src="../images/t02.png" v-on:click="triageInsert(triage.rsno,triage.id)">分诊</button>
                 </td>
             </tr>
         </table>
@@ -112,7 +104,7 @@
         <%-- 分页 end--%>
 
         <!-- 挂号模态弹出框 begin -->
-        <div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="triageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -149,7 +141,7 @@
 
 
         <!-- 退号模态弹出框 begin -->
-        <div class="modal fade" id="deleteRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="deletetriageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -180,11 +172,14 @@
                 </div>
             </div>
             <div class="tipbtn">
-                <input name="" type="button"  class="sure" value="确定" v-on:click="deletePatient()"/>&nbsp;
+                <input name="" type="button"  class="sure" value="确定" v-on:click="deleteTriage()"/>&nbsp;
                 <input name="" type="button"  class="cancel" value="取消" />
             </div>
         </div>
     </div>
+
+</div>
+
 </div>
 <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');
@@ -194,28 +189,30 @@
 </body>
 <script>
     var pageIndex = 1;
-    var patientVue = new Vue({
-        el : "#patientList",
+    var triageVue = new Vue({
+        el : "#triageList",
         data : {
-            patient_List : [],
-            patient : {name:"", card:"",type:"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"", yyno:"", ybno:"", jzno:""},
+            triage_List : [],
+            triage : {name:"", card:"",type:"", sex:"", age:"", profession:"", address:"",createdate:"", phone:"", yyno:"", ybno:"", jzno:""},
             modalTitle : "",
             maxPage : "",
             url : "",
             currnetIndex : 1,
             deleteId:"",
-            triageId:"",
+            rsno:"",
+            triageId : "",
         },
         methods : {
 //                   查询所有的方法
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/queryMap-patient.action",
+                    url : "/queryMap-triage.action",
                     type : "post",
                     success : function(data){
-                        _this.patient_List = data.listData;
+                        _this.triage_List = data.listData;
                         _this.maxPage = data.maxPage;
+                        _this.currnetIndex = 1;
                     }
                 })
             },
@@ -223,11 +220,11 @@
             queryById : function (id) {
                 var _this = this;
                 $.ajax({
-                    url : "/queryById-patient.action",
+                    url : "/queryById-triage.action",
                     data : {id :id},
                     type : "post",
                     success : function(data){
-                        _this.patient = data;
+                        _this.triage = data;
                     }
                 })
             },
@@ -238,51 +235,31 @@
                 var triage = $(".triage").val();
                 $.ajax({
                     url : _this.url,
-                    data :{id : _this.triageId,triage : triage},
+                    data :{rsno : _this.rsno,triage : triage,triageId : _this.triageId},
                     success : function(data){
                         _this.hideModal();//隐藏modal
                         _this.queryMap();//刷新页面
+                        if(data){
+                            alert("操作成功");
+                        }
                     }
                 })
             },
-            //            退卡
-            deleteById : function(id){
-                $(".tip").attr("style","display:block;");
-            },
-            deletePatient: function(){
-                var _this = this;
-                $.ajax({
-                    url: "/deletePatient.action",
-                    data: {id: _this.deleteId},
-                    success: function (data) {
-                        _this.queryMap();//刷新页面
-                    }
-                })
-            },
-            triageInsert : function(id){
+            triageInsert : function(rsno,id){
                 this.modalTitle = "分诊台分诊";//设置 modal 标题
                 this.url = "/triageInsert.action";//设置请求路径
+                this.rsno = rsno;
                 this.triageId = id;
                 this.showModal();//调用显示modal 的方法
             },
-//                    退号，查询是否完成就诊
-            unRegistration : function (id) {
-                alert(id);
-            },
 //                    隐藏模态框
             hideModal : function(){
-                $("#patientModal").modal("hide");
+                $("#triageModal").modal("hide");
             },
 //                    显示模态框
             showModal : function (){
-                $("#patientModal").modal("show");
+                $("#triageModal").modal("show");
             },
-//                    显示模态框
-            showDeleteModal : function (){
-                $("#deleteRegistrationModal").modal("show");
-            },
-
-
         },
 
         created : function(){
@@ -295,7 +272,7 @@
         //    控制每页条数
         $(".page").click(function(){
             var selectPage = $(this).text();
-            var maxPage = patientVue._data.maxPage;
+            var maxPage = triageVue._data.maxPage;
             if(selectPage == "首页"){
                 pageIndex = 1;
                 $("#lastpage").removeClass("pageBackground");
@@ -329,13 +306,13 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/queryMap-patient.action",
+                url : "/queryMap-triage.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    patientVue._data.patient_List = data.listData;
-                    patientVue._data.maxPage = data.maxPage;
-                    patientVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    triageVue._data.triage_List = data.listData;
+                    triageVue._data.maxPage = data.maxPage;
+                    triageVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -344,29 +321,29 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/queryMap-patient.action",
+                url : "/queryMap-triage.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    patientVue._data.patient_List = data.listData;
-                    patientVue._data.maxPage = data.maxPage;
-                    patientVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    triageVue._data.triage_List = data.listData;
+                    triageVue._data.maxPage = data.maxPage;
+                    triageVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
     })
 
     //            模糊查询的方法
-    function searchPatient () {
+    function searchTriage () {
         var searchValue = $("#search").val();//得到搜索框中的值
         console.log(searchValue);
         if(searchValue != null && searchValue != ""){
             $.ajax({
-                url : "/queryMap-patient.action",
+                url : "/queryMap-triage.action",
                 data : {search : searchValue},
                 success : function(data){
-                    patientVue._data.patient_List = data.listData;
-                    patientVue._data.maxPage = data.maxPage;
+                    triageVue._data.triage_List = data.listData;
+                    triageVue._data.maxPage = data.maxPage;
                 }
             })
         }else{
