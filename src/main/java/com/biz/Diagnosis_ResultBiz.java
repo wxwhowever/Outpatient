@@ -70,4 +70,12 @@ public interface Diagnosis_ResultBiz extends BaseBiz<Diagnosis_result>{
      * @return
      */
     int getCount(String sql);
+
+    int prescribeCount();
+
+    int ASTdrugCount();
+
+    int injectDrugCount();
+
+    int transfusionCount();
 }

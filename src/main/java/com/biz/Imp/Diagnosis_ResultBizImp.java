@@ -82,6 +82,22 @@ public class Diagnosis_ResultBizImp implements Diagnosis_ResultBiz {
     }
 
     public int getCount(String sql) {
-        return 0;
+        return diagnosis_resultDao.getCount(sql);
+    }
+
+    public int prescribeCount() {
+        return diagnosis_resultDao.prescribeCount();
+    }
+
+    public int ASTdrugCount() {
+        return diagnosis_resultDao.ASTdrugCount();
+    }
+
+    public int injectDrugCount() {
+        return diagnosis_resultDao.injectDrugCount();
+    }
+
+    public int transfusionCount() {
+        return diagnosis_resultDao.transfusionCount();
     }
 }

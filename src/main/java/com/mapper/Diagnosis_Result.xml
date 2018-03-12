@@ -70,4 +70,8 @@
         SELECT count(*) from injectDrug where state = 0;
     </select>
 
+    <select id="transfusionCount" resultType="int">
+        SELECT count(*) from transfusion where state = 0;
+    </select>
+
 </mapper>

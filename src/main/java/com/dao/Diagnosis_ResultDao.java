@@ -77,4 +77,6 @@ public interface Diagnosis_ResultDao extends BaseDao<Diagnosis_result> {
 
     int injectDrugCount();
 
+    int transfusionCount();
+
 }

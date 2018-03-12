@@ -44,34 +44,37 @@ public class Diagnosis_ResultController {
         return map;
     }
 
+
+    //开药单数量
     @ResponseBody
-    @RequestMapping("queryById-diagnosis_result")
-    public Diagnosis_result queryById(HttpServletRequest request){
-        Diagnosis_result diagnosis_result = diagnosis_resultBiz.queryById(Integer.parseInt(request.getParameter("id")));
-        return diagnosis_result;
+    @RequestMapping("prescribeCount")
+    public int prescribeCount(){
+        int prescribeCount = diagnosis_resultBiz.prescribeCount();
+        return prescribeCount;
     }
 
+    //皮试用药单数量
     @ResponseBody
-    @RequestMapping("updateDiagnosis_result")
-    public String update(HttpServletRequest request) throws IOException {
-        Diagnosis_result diagnosis_result = new ObjectMapper().readValue(request.getParameter("ck_info"), Diagnosis_result.class);
-        String result = "";
-        boolean update = diagnosis_resultBiz.update(diagnosis_result);
-        if(update) {
-            result = "success";
-        }
-        return result;
+    @RequestMapping("prescribeCount")
+    public int ASTdrugCount(){
+        int ASTdrugCount = diagnosis_resultBiz.ASTdrugCount();
+        return ASTdrugCount;
     }
 
+    //注射用药单
     @ResponseBody
-    @RequestMapping("deleteDiagnosis_result")
-    public String delete(HttpServletRequest request) throws IOException {
-        String result = "";
-        boolean delete = diagnosis_resultBiz.delete(Integer.parseInt(request.getParameter("id")));
-        if(delete) {
-            result = "success";
-        }
-        return result;
+    @RequestMapping("injectDrugCount")
+    public int injectDrugCount(){
+        int injectDrugCount = diagnosis_resultBiz.injectDrugCount();
+        return injectDrugCount;
+    }
+
+    //输液用药单
+    @ResponseBody
+    @RequestMapping("transfusionCount")
+    public int transfusionCount(){
+        int transfusionCount = diagnosis_resultBiz.transfusionCount();
+        return transfusionCount;
     }
 
 }
