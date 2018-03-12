@@ -27,6 +27,8 @@ public class Diagnosis_ResultBizImp implements Diagnosis_ResultBiz {
         return map;
     }
 
+
+
     public List<Diagnosis_result> queryList() {
         return diagnosis_resultDao.queryList();
     }

@@ -80,6 +80,7 @@ $(function(){
     <dd><div class="title">
         <span><img src="images/leftico03.png" /></span>门诊处置治疗管理</div>
     <ul class="menuson">
+        <li><cite></cite><a href="#">诊疗结果单详情</a><i></i></li>
         <li><cite></cite><a href="outpatient/prescribelist.jsp" target="rightFrame">开药清单管理</a><i></i></li>
         <li><cite></cite><a href="#">皮试用药单管理</a><i></i></li>
         <li><cite></cite><a href="#">皮试结果单管理</a><i></i></li>

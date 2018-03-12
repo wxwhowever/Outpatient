@@ -58,4 +58,16 @@
         </if>
     </select>
 
+    <select id="prescribeCount" resultType="int">
+        SELECT count(*) from prescribe where state = 0;
+    </select>
+
+    <select id="ASTdrugCount" resultType="int">
+        SELECT count(*) from ASTdrug where state = 0;
+    </select>
+
+    <select id="injectDrugCount" resultType="int">
+        SELECT count(*) from injectDrug where state = 0;
+    </select>
+
 </mapper>

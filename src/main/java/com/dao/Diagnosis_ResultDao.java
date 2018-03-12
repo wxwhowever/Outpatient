@@ -70,4 +70,11 @@ public interface Diagnosis_ResultDao extends BaseDao<Diagnosis_result> {
      * @return
      */
     int getCount(String sql);
+
+    int prescribeCount();
+
+    int ASTdrugCount();
+
+    int injectDrugCount();
+
 }
