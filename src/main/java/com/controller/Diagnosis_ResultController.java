@@ -1,9 +1,9 @@
 package com.controller;
 
-import com.biz.SJ_waitBiz;
-import com.biz.TX_waitBiz;
-import com.entity.SJ_wait;
-import com.entity.TX_wait;
+import com.biz.Ck_infoBiz;
+import com.biz.Diagnosis_ResultBiz;
+import com.entity.CK_info;
+import com.entity.Diagnosis_result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,15 +15,14 @@ import java.io.IOException;
 import java.util.Map;
 
 @Controller
-public class TX_waitController {
+public class Diagnosis_ResultController {
 
     @Autowired
-    TX_waitBiz tx_waitBiz;
-
+    Diagnosis_ResultBiz diagnosis_resultBiz;
 
 
     @ResponseBody
-    @RequestMapping("queryMap-tx_wait")
+    @RequestMapping("queryMap-diagnosis_result")
     public Map<String,Object> queryMap(HttpServletRequest request){
         String search = request.getParameter("search");
         String page = request.getParameter("page");
@@ -40,30 +39,24 @@ public class TX_waitController {
         if(count != null && count!= ""){
             end = Integer.parseInt(count);
         }
-        Map<String,Object> map = tx_waitBiz.queryMap(sql,begin, end);
+        Map<String,Object> map = diagnosis_resultBiz.queryMap(sql,begin, end);
 
         return map;
     }
 
     @ResponseBody
-    @RequestMapping("queryById-tx_wait")
-    public TX_wait queryById(HttpServletRequest request){
-        TX_wait tx_wait = tx_waitBiz.queryById(Integer.parseInt(request.getParameter("id")));
-        return tx_wait;
+    @RequestMapping("queryById-diagnosis_result")
+    public Diagnosis_result queryById(HttpServletRequest request){
+        Diagnosis_result diagnosis_result = diagnosis_resultBiz.queryById(Integer.parseInt(request.getParameter("id")));
+        return diagnosis_result;
     }
 
     @ResponseBody
-    @RequestMapping("updateTx_wait")
+    @RequestMapping("updateDiagnosis_result")
     public String update(HttpServletRequest request) throws IOException {
-        //      候诊ID
-        int waitId = Integer.parseInt(request.getParameter("waitId"));
-//      选择调整的等级
-        String level = request.getParameter("level");
+        Diagnosis_result diagnosis_result = new ObjectMapper().readValue(request.getParameter("ck_info"), Diagnosis_result.class);
         String result = "";
-//        根据得到 id 调整队列,设置优先级
-        TX_wait tx_wait = tx_waitBiz.queryById(waitId);
-        tx_wait.setLevel(level);
-        boolean update = tx_waitBiz.update(tx_wait);
+        boolean update = diagnosis_resultBiz.update(diagnosis_result);
         if(update) {
             result = "success";
         }
@@ -71,10 +64,10 @@ public class TX_waitController {
     }
 
     @ResponseBody
-    @RequestMapping("deleteTx_wait")
+    @RequestMapping("deleteDiagnosis_result")
     public String delete(HttpServletRequest request) throws IOException {
         String result = "";
-        boolean delete = tx_waitBiz.delete(Integer.parseInt(request.getParameter("id")));
+        boolean delete = diagnosis_resultBiz.delete(Integer.parseInt(request.getParameter("id")));
         if(delete) {
             result = "success";
         }

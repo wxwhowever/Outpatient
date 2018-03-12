@@ -136,6 +136,35 @@ $(document).ready(function(){
         </div>
         <!-- 模态弹出框 end -->
 
+        <!-- 完成就诊模态弹出框 begin -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{modalTitle}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div style="text-align: center">
+                                <select style="width: 400px;" class="result">
+                                    <option value="皮试单">皮试单</option>
+                                    <option value="输液单">输液单</option>
+                                    <option value="注射单">注射单</option>
+                                    <option value="治疗单">治疗单</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" v-on:click="deleteCk_wait()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 完成就诊模态弹出框 end -->
+
     
     
     <div class="tip">
@@ -149,7 +178,7 @@ $(document).ready(function(){
         </div>
         </div>
         <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" v-on:click="deleteCk_wait()"/>&nbsp;
+        <input name="" type="button"  class="sure" value="确定" />&nbsp;
         <input name="" type="button"  class="cancel" value="取消" />
         </div>
     </div>
@@ -173,6 +202,7 @@ $(document).ready(function(){
                     url : "",
                     currnetIndex : 1,
                     deleteId:"",
+                    waitId:"",
                 },
                 methods : {
 //                   查询所有的方法
@@ -184,57 +214,47 @@ $(document).ready(function(){
                             success : function(data){
                                 _this.ck_wait_List = data.listData;
                                 _this.maxPage = data.maxPage;
+                                _this.currnetIndex = 1;
                             }
                         })
                     },
-//                  查询单个
-                    queryById : function (id) {
-                        var _this = this;
-                      $.ajax({
-                          url : "/queryById-ck_wait.action",
-                          data : {id :id},
-                          type : "post",
-                          success : function(data){
-                              _this.doctor = data;
-                          }
-                      })
-                    },
-//                  增加、修改
+//                  保存
                     save :function(){
                         var _this = this;
+                        var level = $(".arrayAdjust").val();
                         $.ajax({
                             url : _this.url,
-                            data :{ck_info : JSON.stringify(_this.ck_info)},
+                            data :{waitId : _this.waitId,level : level},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
                                 _this.queryMap();//刷新页面
+                                if(data){
+                                    alert("操作成功")
+                                }
                             }
                         })
                     },
-                    //            退卡
+//                    完成就诊
                     deleteById : function(id){
-                        $(".tip").attr("style","display:block;");
+                        this.deleteModalShow();
+
                     },
+//                    分配单
                     deleteCk_wait: function(){
                         var _this = this;
+                        var result = $(".result").val();
                         $.ajax({
                             url: "/deleteCk_wait.action",
-                            data: {id: _this.deleteId},
+                            data: {id : _this.deleteId , result : result},
                             success: function (data) {
                                 _this.queryMap();//刷新页面
                             }
                         })
                     },
-                    insertCk_wait : function(){
-                        this.modalTitle = "记录病人信息";//设置 modal 标题
-                        this.url = "/insertCk_wait.action";//设置请求路径
-                        this.ck_info = {};//初始化银医卡
-                        this.showModal();//调用显示modal 的方法
-                    },
                     updateCk_wait : function(id){
-                        this.modalTitle = "修改银医卡";//设置 modal 标题
+                        this.modalTitle = "队列调整";//设置 modal 标题
                         this.url = "/updateCk_wait.action";//设置请求路径
-                        this.queryById(id);
+                        this.waitId = id;
                         this.showModal();//调用显示modal 的方法
                     },
 //                    隐藏模态框
@@ -245,7 +265,12 @@ $(document).ready(function(){
                     showModal : function (){
                         $("#ck_waitModal").modal("show");
                     },
-
+                    deleteModalShow : function(){
+                        $("#deleteModal").modal("show");
+                    },
+                    deleteModalHide : function(){
+                        $("#deleteModal").modal("hide");
+                    },
                 },
 
                 created : function(){

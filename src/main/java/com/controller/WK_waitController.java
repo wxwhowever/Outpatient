@@ -50,24 +50,17 @@ public class WK_waitController {
         return wk_wait;
     }
 
-//    @ResponseBody
-//    @RequestMapping("insertWk_wait")
-//    public String insert(HttpServletRequest request) throws IOException {
-//        WK_wait wk_wait = new ObjectMapper().readValue(request.getParameter("wk_wait"), WK_wait.class);
-//
-//        String result = "";
-//        boolean insert = wk_waitBiz.insert(wk_wait);
-//        if(insert) {
-//            result = "success";
-//        }
-//        return result;
-//    }
-
     @ResponseBody
     @RequestMapping("updateWk_wait")
     public String update(HttpServletRequest request) throws IOException {
-        WK_wait wk_wait = new ObjectMapper().readValue(request.getParameter("wk_wait"), WK_wait.class);
+        //      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        WK_wait wk_wait = wk_waitBiz.queryById(waitId);
+        wk_wait.setLevel(level);
         boolean update = wk_waitBiz.update(wk_wait);
         if(update) {
             result = "success";

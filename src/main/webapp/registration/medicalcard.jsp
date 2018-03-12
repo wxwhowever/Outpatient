@@ -65,14 +65,11 @@
                                                                                    style="margin-top: -5px"/>搜索
                 </button>
             </ul>
-
             <div style="float: right;">
                 <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png"
                                                                              style="margin-top: -5px"/>刷新
                 </button>
             </div>
-
-
         </div>
 
         <table class="tablelist table">
@@ -293,6 +290,7 @@
                         console.log(data.listData)
                         _this.medicalcard_List = data.listData;
                         _this.maxPage = data.maxPage;
+                        _this.currnetIndex = 1;
                     }
                 })
             },

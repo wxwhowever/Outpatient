@@ -51,25 +51,18 @@ public class YK_waitController {
         YK_wait yk_wait = yk_waitBiz.queryById(Integer.parseInt(request.getParameter("id")));
         return yk_wait;
     }
-//
-//    @ResponseBody
-//    @RequestMapping("insertYk_wait")
-//    public String insert(HttpServletRequest request) throws IOException {
-//        YK_wait yk_wait = new ObjectMapper().readValue(request.getParameter("yk_wait"), YK_wait.class);
-//
-//        String result = "";
-//        boolean insert = yk_waitBiz.insert(yk_wait);
-//        if(insert) {
-//            result = "success";
-//        }
-//        return result;
-//    }
 
     @ResponseBody
     @RequestMapping("updateYk_wait")
     public String update(HttpServletRequest request) throws IOException {
-        YK_wait yk_wait = new ObjectMapper().readValue(request.getParameter("yk_wait"), YK_wait.class);
+        //      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        YK_wait yk_wait = yk_waitBiz.queryById(waitId);
+        yk_wait.setLevel(level);
         boolean update = yk_waitBiz.update(yk_wait);
         if(update) {
             result = "success";

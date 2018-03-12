@@ -53,21 +53,16 @@ public class WG_waitController {
     }
 
     @ResponseBody
-    @RequestMapping("insertWg_wait")
-    public String insert(HttpServletRequest request,WG_wait wg_wait) throws IOException {
-        boolean insert = wg_waitBiz.insert(wg_wait);
-        String result = "";
-        if(insert) {
-            result = "success";
-        }
-        return result;
-    }
-
-    @ResponseBody
     @RequestMapping("updateWg_wait")
     public String update(HttpServletRequest request) throws IOException {
-        WG_wait wg_wait = new ObjectMapper().readValue(request.getParameter("wg_wait"), WG_wait.class);
+        //      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        WG_wait wg_wait = wg_waitBiz.queryById(waitId);
+        wg_wait.setLevel(level);
         boolean update = wg_waitBiz.update(wg_wait);
         if(update) {
             result = "success";

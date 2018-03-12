@@ -50,24 +50,17 @@ public class EK_waitController {
         return ek_wait;
     }
 
-//    @ResponseBody
-//    @RequestMapping("insertEk_wait")
-//    public String insert(HttpServletRequest request) throws IOException {
-//        EK_wait ek_wait = new ObjectMapper().readValue(request.getParameter("ek_wait"), EK_wait.class);
-//
-//        String result = "";
-//        boolean insert = ek_waitBiz.insert(ek_wait);
-//        if(insert) {
-//            result = "success";
-//        }
-//        return result;
-//    }
-
     @ResponseBody
     @RequestMapping("updateEk_wait")
     public String update(HttpServletRequest request) throws IOException {
-        EK_wait ek_wait = new ObjectMapper().readValue(request.getParameter("ek_wait"), EK_wait.class);
+        //      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        EK_wait ek_wait = ek_waitBiz.queryById(waitId);
+        ek_wait.setLevel(level);
         boolean update = ek_waitBiz.update(ek_wait);
         if(update) {
             result = "success";

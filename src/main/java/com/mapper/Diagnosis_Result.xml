@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Diagnosis_ResultDao">
+    <!--查询所有-->
+    <select id="queryList" resultType="com.entity.Diagnosis_result">
+        select * from diagnosis_result
+    </select>
+
+    <!--带分页的查询-->
+    <select id="queryLists" resultType="com.entity.Diagnosis_result">
+        select * from diagnosis_result
+        <where>
+            <if test="param1 != null and param1 != ''">
+                patient_pno like '%${param1}%' or drno like '%${param1}%'
+            </if>
+        </where>
+        order by endDate ASC  limit #{param2},#{param3}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" parameterType="int" resultType="com.entity.Diagnosis_result">
+             select * from diagnosis_result where id = #{id}
+    </select>
+
+    <!--查询最大的编号-->
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select  count(*) from diagnosis_result
+    </select>
+
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.entity.Diagnosis_result">
+        INSERT INTO diagnosis_result
+        (drno, result, again, doctor_dno,patient_pno, prescribe_pno, ASTdrug_skinno, ASTresult_resultno, injectDrug_ino,transfusion_tno, treat_treatno,endDate) VALUES
+        (#{drno},#{result},#{again},#{doctor_dno},#{patient_pno},#{prescribe_pno},#{ASTdrug_skinno},#{ASTresult_resultno},#{injectDrug_ino},#{transfusion_tno},#{treat_treatno},#(endDate))
+    </insert>
+
+    <!--修改-->
+    <update id="update" parameterType="com.entity.Diagnosis_result">
+        update diagnosis_result SET drno = #{drno},
+         result = #{result}, again = #{again}, doctor_dno = #{doctor_dno}, patient_pno = #{patient_pno},prescribe_pno = #{prescribe_pno}, ASTdrug_skinno = #{ASTdrug_skinno}, ASTresult_resultno = #{ASTresult_resultno},
+         injectDrug_ino = #{injectDrug_ino}, transfusion_tno = #{transfusion_tno}, treat_treatno = #{treat_treatno} , endDate = #{endDate} where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="int">
+        delete from diagnosis_result where id = #{id}
+    </delete>
+
+    <!--查询表总行数-->
+    <select id="getCount" parameterType="java.lang.String" resultType="int">
+        select  count(*) from diagnosis_result
+        <if test="_parameter != null and _parameter != ''">
+            where name patient_pno '%${_parameter}%' OR drno like '%${_parameter}%'
+        </if>
+    </select>
+
+</mapper>

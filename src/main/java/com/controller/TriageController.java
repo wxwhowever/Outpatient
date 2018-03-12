@@ -193,23 +193,6 @@ public class TriageController {
             result = "success";
         }
         else if(triage==6){
-            TX_wait tx_wait = new TX_wait();
-            int wno = Integer.parseInt(tx_waitBiz.queryMaxNo())+1;
-            tx_wait.setWno("TXWNO2018"+wno);
-            tx_wait.setPno(patient.getPno());
-            tx_wait.setName(patient.getName());
-            tx_wait.setSex(patient.getSex());
-            tx_wait.setAge(patient.getAge());
-            tx_wait.setType(patient.getType());
-            tx_wait.setRemark(patient.getRemark());
-            tx_wait.setLevel("3");
-            tx_wait.setDate(new Date().toLocaleString());
-            tx_wait.setJzno(patient.getJzno());
-            tx_wait.setDno("d201812");
-            tx_waitBiz.insert(tx_wait);
-            result = "success";
-        }
-        else if(triage==7){
             WK_wait wk_wait = new WK_wait();
             int wno = Integer.parseInt(wk_waitBiz.queryMaxNo())+1;
             wk_wait.setWno("WKWNO2018"+wno);
@@ -226,7 +209,7 @@ public class TriageController {
             wk_waitBiz.insert(wk_wait);
             result = "success";
         }
-        else if(triage==8){
+        else if(triage==7){
             WG_wait wg_wait = new WG_wait();
             int wno = Integer.parseInt(wg_waitBiz.queryMaxNo())+1;
             wg_wait.setWno("WGWNO2018"+wno);
@@ -241,6 +224,23 @@ public class TriageController {
             wg_wait.setJzno(patient.getJzno());
             wg_wait.setDno("d201812");
             wg_waitBiz.insert(wg_wait);
+            result = "success";
+        }
+        else if(triage==8){
+            TX_wait tx_wait = new TX_wait();
+            int wno = Integer.parseInt(tx_waitBiz.queryMaxNo())+1;
+            tx_wait.setWno("TXWNO2018"+wno);
+            tx_wait.setPno(patient.getPno());
+            tx_wait.setName(patient.getName());
+            tx_wait.setSex(patient.getSex());
+            tx_wait.setAge(patient.getAge());
+            tx_wait.setType(patient.getType());
+            tx_wait.setRemark(patient.getRemark());
+            tx_wait.setLevel("3");
+            tx_wait.setDate(new Date().toLocaleString());
+            tx_wait.setJzno(patient.getJzno());
+            tx_wait.setDno("d201812");
+            tx_waitBiz.insert(tx_wait);
             result = "success";
         }
         else if(triage==9){

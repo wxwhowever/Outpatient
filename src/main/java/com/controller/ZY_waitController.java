@@ -50,24 +50,17 @@ public class ZY_waitController {
         return zy_wait;
     }
 
-//    @ResponseBody
-//    @RequestMapping("insertZy_wait")
-//    public String insert(HttpServletRequest request) throws IOException {
-//        ZY_wait zy_wait = new ObjectMapper().readValue(request.getParameter("zy_wait"), ZY_wait.class);
-//
-//        String result = "";
-//        boolean insert = zy_waitBiz.insert(zy_wait);
-//        if(insert) {
-//            result = "success";
-//        }
-//        return result;
-//    }
-
     @ResponseBody
     @RequestMapping("updateZy_wait")
     public String update(HttpServletRequest request) throws IOException {
-        ZY_wait zy_wait = new ObjectMapper().readValue(request.getParameter("zy_wait"), ZY_wait.class);
+        //      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        ZY_wait zy_wait = zy_waitBiz.queryById(waitId);
+        zy_wait.setLevel(level);
         boolean update = zy_waitBiz.update(zy_wait);
         if(update) {
             result = "success";

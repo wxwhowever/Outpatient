@@ -59,7 +59,11 @@ $(document).ready(function(){
             &nbsp; &nbsp; &nbsp;
             <button class="btn btn-default" onclick="searchRegistration()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
         </ul>
-
+        <div style="float: right;">
+            <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png"
+                                                                         style="margin-top: -5px"/>刷新
+            </button>
+        </div>
 
     </div>
     
@@ -97,7 +101,7 @@ $(document).ready(function(){
         <td>{{registration.ybno}}</td>
         <td class="toolbar">
             <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateRegistration(registration.id)">修改</button>
-            <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteRegistartion(deleteId=registration.id)"> 退号</button>
+            <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=registration.id)"> 退号</button>
         </td>
         </tr>
     </table>
@@ -250,6 +254,7 @@ $(document).ready(function(){
                             success : function(data){
                                 _this.registration_List = data.listData;
                                 _this.maxPage = data.maxPage;
+                                _this.currnetIndex = 1;
                             }
                         })
                     },

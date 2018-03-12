@@ -56,7 +56,11 @@ $(document).ready(function(){
             &nbsp; &nbsp; &nbsp;
             <button class="btn btn-default" onclick="searchMedicarecard()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
         </ul>
-
+        <div style="float: right;">
+            <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png"
+                                                                         style="margin-top: -5px"/>刷新
+            </button>
+        </div>
 
     </div>
     

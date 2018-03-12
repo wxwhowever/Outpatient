@@ -115,7 +115,13 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <form>
-
+                            <div style="text-align: center">
+                                <select style="width: 400px;" class="arrayAdjust">
+                                    <option value="1">优先就诊</option>
+                                    <option value="2">当日复诊</option>
+                                    <option value="3">普通就诊</option>
+                                </select>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -164,6 +170,7 @@ $(document).ready(function(){
                     url : "",
                     currnetIndex : 1,
                     deleteId:"",
+                    waitId :"",
                 },
                 methods : {
 //                   查询所有的方法
@@ -175,34 +182,27 @@ $(document).ready(function(){
                             success : function(data){
                                 _this.tx_wait_List = data.listData;
                                 _this.maxPage = data.maxPage;
+                                _this.currnetIndex = 1;
                             }
                         })
-                    },
-//                  查询单个
-                    queryById : function (id) {
-                        var _this = this;
-                      $.ajax({
-                          url : "/queryById-tx_wait.action",
-                          data : {id :id},
-                          type : "post",
-                          success : function(data){
-                              _this.doctor = data;
-                          }
-                      })
                     },
 //                  增加、修改
                     save :function(){
                         var _this = this;
+                        var level = $(".arrayAdjust").val();
                         $.ajax({
                             url : _this.url,
-                            data :{tx_wait : JSON.stringify(_this.tx_wait)},
+                            data :{waitId : _this.waitId,level : level},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
                                 _this.queryMap();//刷新页面
+                                if(data){
+                                    alert("操作成功");
+                                }
                             }
                         })
                     },
-                    //            退卡
+//                    完成就诊
                     deleteById : function(id){
                         $(".tip").attr("style","display:block;");
                     },
@@ -216,16 +216,10 @@ $(document).ready(function(){
                             }
                         })
                     },
-                    insertTx_wait : function(){
-                        this.modalTitle = "记录病人信息";//设置 modal 标题
-                        this.url = "/insertTx_wait.action";//设置请求路径
-                        this.tx_wait = {};//初始化银医卡
-                        this.showModal();//调用显示modal 的方法
-                    },
-                    updateSj_wait : function(id){
-                        this.modalTitle = "修改银医卡";//设置 modal 标题
+                    updateTx_wait : function(id){
+                        this.modalTitle = "调整队列";//设置 modal 标题
                         this.url = "/updateTx_wait.action";//设置请求路径
-                        this.queryById(id);
+                        this.waitId = id;
                         this.showModal();//调用显示modal 的方法
                     },
 //                    隐藏模态框

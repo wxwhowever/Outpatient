@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.biz.NK_waitBiz;
+import com.entity.CK_wait;
 import com.entity.NK_wait;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,24 +51,17 @@ public class NK_waitController {
         return mz_wait;
     }
 
-//    @ResponseBody
-//    @RequestMapping("insertNk_wait")
-//    public String insert(HttpServletRequest request) throws IOException {
-//        NK_wait nk_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), NK_wait.class);
-//
-//        String result = "";
-//        boolean insert = nk_waitBiz.insert(nk_wait);
-//        if(insert) {
-//            result = "success";
-//        }
-//        return result;
-//    }
-
     @ResponseBody
     @RequestMapping("updateNk_wait")
     public String update(HttpServletRequest request) throws IOException {
-        NK_wait nk_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), NK_wait.class);
+  //      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        NK_wait nk_wait = nk_waitBiz.queryById(waitId);
+        nk_wait.setLevel(level);
         boolean update = nk_waitBiz.update(nk_wait);
         if(update) {
             result = "success";

@@ -11,13 +11,13 @@
 
     <!--带分页的查询-->
     <select id="queryLists" resultType="com.entity.SJ_wait">
-        select * from sj_wait order by `level`
+        select * from sj_wait
         <where>
             <if test="param1 != null and param1 != ''">
                  name like '%${param1}%' or wno like '%${param1}%' or sex like '%${param1}%'
             </if>
         </where>
-         limit #{param2},#{param3}
+        order by level ASC  limit #{param2},#{param3}
     </select>
 
     <!--查询单个-->
@@ -42,7 +42,7 @@
     <update id="update" parameterType="com.entity.SJ_wait">
         update sj_wait SET
          name = #{name}, pno = #{pno}, type = #{type}, remark = #{remark},sex = #{sex}, age = #{age}, level = #{level},
-         date = #{date}, jzno = #{yyno}, dno = #{dno} where id = #{id}
+         date = #{date}, jzno = #{jzno}, dno = #{dno} where id = #{id}
     </update>
 
     <!--删除-->

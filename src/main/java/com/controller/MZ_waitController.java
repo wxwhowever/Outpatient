@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.biz.MZ_waitBiz;
+import com.entity.CK_wait;
 import com.entity.MZ_wait;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,24 +51,17 @@ public class MZ_waitController {
         return mz_wait;
     }
 
-//    @ResponseBody
-//    @RequestMapping("insertMz_wait")
-//    public String insert(HttpServletRequest request) throws IOException {
-//        MZ_wait mz_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), MZ_wait.class);
-//
-//        String result = "";
-//        boolean insert = mz_waitBiz.insert(mz_wait);
-//        if(insert) {
-//            result = "success";
-//        }
-//        return result;
-//    }
-
     @ResponseBody
     @RequestMapping("updateMz_wait")
     public String update(HttpServletRequest request) throws IOException {
-        MZ_wait mz_wait = new ObjectMapper().readValue(request.getParameter("kq_wait"), MZ_wait.class);
+//      候诊ID
+        int waitId = Integer.parseInt(request.getParameter("waitId"));
+//      选择调整的等级
+        String level = request.getParameter("level");
         String result = "";
+//        根据得到 id 调整队列,设置优先级
+        MZ_wait mz_wait = mz_waitBiz.queryById(waitId);
+        mz_wait.setLevel(level);
         boolean update = mz_waitBiz.update(mz_wait);
         if(update) {
             result = "success";
