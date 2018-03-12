@@ -5,11 +5,11 @@ public class Injectdrug {
 
     private String ino;//编号
 
-    private Patient patient_pno;//患者编号
+    private String patient_pno;//患者编号
 
-    private Doctor doctor_dno;//医师编号
+    private String doctor_dno;//医师编号
 
-    private Drug drug_dno;//药品
+    private String drug_dno;//药品
 
     private String dosage;//剂量
 
@@ -19,10 +19,24 @@ public class Injectdrug {
 
     private  String date;//开药时间
 
+    private String state;
+
     public Injectdrug() {
     }
 
-    public Injectdrug(int id, String ino, Patient patient_pno, Doctor doctor_dno, Drug drug_dno, String dosage, double sum, String remarks, String date) {
+    public Injectdrug(String ino, String patient_pno, String doctor_dno, String drug_dno, String dosage, double sum, String remarks, String date, String state) {
+        this.ino = ino;
+        this.patient_pno = patient_pno;
+        this.doctor_dno = doctor_dno;
+        this.drug_dno = drug_dno;
+        this.dosage = dosage;
+        this.sum = sum;
+        this.remarks = remarks;
+        this.date = date;
+        this.state = state;
+    }
+
+    public Injectdrug(int id, String ino, String patient_pno, String doctor_dno, String drug_dno, String dosage, double sum, String remarks, String date, String state) {
         this.id = id;
         this.ino = ino;
         this.patient_pno = patient_pno;
@@ -32,6 +46,15 @@ public class Injectdrug {
         this.sum = sum;
         this.remarks = remarks;
         this.date = date;
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public int getId() {
@@ -50,27 +73,27 @@ public class Injectdrug {
         this.ino = ino;
     }
 
-    public Patient getPatient_pno() {
+    public String getPatient_pno() {
         return patient_pno;
     }
 
-    public void setPatient_pno(Patient patient_pno) {
+    public void setPatient_pno(String patient_pno) {
         this.patient_pno = patient_pno;
     }
 
-    public Doctor getDoctor_dno() {
+    public String getDoctor_dno() {
         return doctor_dno;
     }
 
-    public void setDoctor_dno(Doctor doctor_dno) {
+    public void setDoctor_dno(String doctor_dno) {
         this.doctor_dno = doctor_dno;
     }
 
-    public Drug getDrug_dno() {
+    public String getDrug_dno() {
         return drug_dno;
     }
 
-    public void setDrug_dno(Drug drug_dno) {
+    public void setDrug_dno(String drug_dno) {
         this.drug_dno = drug_dno;
     }
 
@@ -106,4 +129,18 @@ public class Injectdrug {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "Injectdrug{" +
+                "id=" + id +
+                ", ino='" + ino + '\'' +
+                ", patient_pno='" + patient_pno + '\'' +
+                ", doctor_dno='" + doctor_dno + '\'' +
+                ", drug_dno='" + drug_dno + '\'' +
+                ", dosage='" + dosage + '\'' +
+                ", sum=" + sum +
+                ", remarks='" + remarks + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

@@ -26,5 +26,5 @@ public interface TransfusionDao extends BaseDao<Transfusion> {
 
     int getCount(String sql);
 
-    int queryMaxNo();
+    String queryMaxNo();
 }

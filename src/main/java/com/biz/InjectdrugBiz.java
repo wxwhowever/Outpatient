@@ -17,6 +17,8 @@ public interface InjectdrugBiz extends BaseBiz<Injectdrug> {
 
     Injectdrug queryById(Serializable serializable);
 
+    String queryMaxNo();
+
     boolean insert(Object object);
 
     boolean update(Object object);

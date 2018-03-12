@@ -25,5 +25,5 @@ public interface InjectdrugDao extends BaseDao<Injectdrug> {
 
     int getCount(String sql);
 
-    int queryMaxNo();
+    String queryMaxNo();
 }

@@ -40,6 +40,10 @@ public class TransfusionBizImp implements TransfusionBiz {
         return TransfusionDao.queryById(serializable);
     }
 
+    public String queryMaxNo() {
+        return TransfusionDao.queryMaxNo();
+    }
+
     public boolean insert(Object object) {
         return TransfusionDao.insert(object);
     }

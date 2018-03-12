@@ -26,5 +26,5 @@ public interface ASTdrugDao extends BaseDao<ASTdrug> {
 
     int getCount(String sql);
 
-    int queryMaxNo();
+    String queryMaxNo();
 }

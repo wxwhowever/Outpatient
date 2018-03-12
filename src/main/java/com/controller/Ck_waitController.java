@@ -26,8 +26,6 @@ public class Ck_waitController {
     DoctorBiz doctorBiz;
     @Autowired
     PatientBiz patientBiz;
-    @Autowired
-    Diagnosis_ResultBiz diagnosis_resultBiz;
 
 
 
@@ -84,27 +82,15 @@ public class Ck_waitController {
     public String delete(HttpServletRequest request) throws IOException {
 //        得到分配的具体单
         String results = request.getParameter("result");
-        if(results == "注射单"){
-//            diagnosis_resultBiz.insert();
-        }
-        if(results == "皮试单"){
-
-        }
-        if(results == "治疗单"){
-
-        }
-        if(results == "输液单"){
-
-        }
-
-
-
-
+//        得到病人编号
+        String pno = request.getParameter("pno");
+//        得到id
+        String id = request.getParameter("id");
         String result = "";
-        boolean delete = ck_waitBiz.delete(Integer.parseInt(request.getParameter("id")));
-        if(delete) {
-            result = "success";
-        }
+//        boolean delete = ck_waitBiz.delete(id);
+//        if(delete) {
+//            result = "success";
+//        }
         return result;
     }
 

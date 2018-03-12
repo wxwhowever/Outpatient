@@ -40,6 +40,10 @@ public class InjectdrugBizImp implements InjectdrugBiz {
         return InjectdrugDao.queryById(serializable);
     }
 
+    public String queryMaxNo() {
+        return InjectdrugDao.queryMaxNo();
+    }
+
     public boolean insert(Object object) {
         return InjectdrugDao.insert(object);
     }

@@ -8,11 +8,11 @@ public class Prescribe {
 
     private String pno;//药单编号
 
-    private Patient patient_pno;//患者编号
+    private String  patient_pno;//患者编号
 
-    private List<Doctor> doctor_dno;//开药医师
+    private String  doctor_dno;//开药医师
 
-    private List<Drug> drug_dno;//药品
+    private String  drug_dno;//药品
 
     private String drugnum;//发药量
 
@@ -22,10 +22,12 @@ public class Prescribe {
 
     private String date;//开单时间
 
+    private String state;
+
     public Prescribe() {
     }
 
-    public Prescribe(int id, String pno, Patient patient_pno, List<Doctor> doctor_dno, List<Drug> drug_dno, String drugnum,double total, String remarks, String date) {
+    public Prescribe(int id, String pno, String patient_pno, String doctor_dno, String drug_dno, String drugnum, double total, String remarks, String date, String state) {
         this.id = id;
         this.pno = pno;
         this.patient_pno = patient_pno;
@@ -35,6 +37,27 @@ public class Prescribe {
         this.total = total;
         this.remarks = remarks;
         this.date = date;
+        this.state = state;
+    }
+
+    public Prescribe(String pno, String patient_pno, String doctor_dno, String drug_dno, String drugnum, double total, String remarks, String date, String state) {
+        this.pno = pno;
+        this.patient_pno = patient_pno;
+        this.doctor_dno = doctor_dno;
+        this.drug_dno = drug_dno;
+        this.drugnum = drugnum;
+        this.total = total;
+        this.remarks = remarks;
+        this.date = date;
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public int getId() {
@@ -53,27 +76,27 @@ public class Prescribe {
         this.pno = pno;
     }
 
-    public Patient getPatient_pno() {
+    public String getPatient_pno() {
         return patient_pno;
     }
 
-    public void setPatient_pno(Patient patient_pno) {
+    public void setPatient_pno(String patient_pno) {
         this.patient_pno = patient_pno;
     }
 
-    public List<Doctor> getDoctor_dno() {
+    public String getDoctor_dno() {
         return doctor_dno;
     }
 
-    public void setDoctor_dno(List<Doctor> doctor_dno) {
+    public void setDoctor_dno(String doctor_dno) {
         this.doctor_dno = doctor_dno;
     }
 
-    public List<Drug> getDrug_dno() {
+    public String getDrug_dno() {
         return drug_dno;
     }
 
-    public void setDrug_dno(List<Drug> drug_dno) {
+    public void setDrug_dno(String drug_dno) {
         this.drug_dno = drug_dno;
     }
 
@@ -107,5 +130,20 @@ public class Prescribe {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Prescribe{" +
+                "id=" + id +
+                ", pno='" + pno + '\'' +
+                ", patient_pno='" + patient_pno + '\'' +
+                ", doctor_dno='" + doctor_dno + '\'' +
+                ", drug_dno='" + drug_dno + '\'' +
+                ", drugnum='" + drugnum + '\'' +
+                ", total=" + total +
+                ", remarks='" + remarks + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

@@ -17,6 +17,8 @@ public interface TransfusionBiz extends BaseBiz<Transfusion> {
 
     Transfusion queryById(Serializable serializable);
 
+    String queryMaxNo();
+
     boolean insert(Object object);
 
     boolean update(Object object);
