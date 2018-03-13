@@ -17,17 +17,14 @@ public class Diagnosis_ResultBizImp implements Diagnosis_ResultBiz {
     @Autowired
     Diagnosis_ResultDao diagnosis_resultDao;
 
+    public List<Diagnosis_result> queryResult(String sql, int begin, int end){
+        return diagnosis_resultDao.queryResult(sql, begin, end);
+    };
+
+
     public Map<String, Object> queryMap(String sql, int begin, int end) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<Diagnosis_result> list = diagnosis_resultDao.queryLists(sql,begin,end);
-        int maxCount = diagnosis_resultDao.getCount(sql);
-        int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
-        map.put("listData",list);
-        map.put("maxPage",maxPage);
-        return map;
+        return null;
     }
-
-
 
     public List<Diagnosis_result> queryList() {
         return diagnosis_resultDao.queryList();
@@ -93,11 +90,19 @@ public class Diagnosis_ResultBizImp implements Diagnosis_ResultBiz {
         return diagnosis_resultDao.ASTdrugCount();
     }
 
+    public int ASTresultCount() {
+        return diagnosis_resultDao.ASTresultCount();
+    }
+
     public int injectDrugCount() {
         return diagnosis_resultDao.injectDrugCount();
     }
 
     public int transfusionCount() {
         return diagnosis_resultDao.transfusionCount();
+    }
+
+    public int treatCount() {
+        return diagnosis_resultDao.treatCount();
     }
 }

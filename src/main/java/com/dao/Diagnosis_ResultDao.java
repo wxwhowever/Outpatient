@@ -9,6 +9,8 @@ import java.util.Map;
 
 public interface Diagnosis_ResultDao extends BaseDao<Diagnosis_result> {
 
+
+
     /**
      * 查询所有的集合 + 分页
      * @param sql
@@ -16,7 +18,8 @@ public interface Diagnosis_ResultDao extends BaseDao<Diagnosis_result> {
      * @param end
      * @return
      */
-    Map<String, Object> queryMap(String sql, int begin, int end);
+    List<Diagnosis_result> queryResult(String sql, int begin, int end);
+
 
     /**
      * 查询所有不带参
@@ -75,8 +78,12 @@ public interface Diagnosis_ResultDao extends BaseDao<Diagnosis_result> {
 
     int ASTdrugCount();
 
+    int ASTresultCount();
+
     int injectDrugCount();
 
     int transfusionCount();
+
+    int treatCount();
 
 }

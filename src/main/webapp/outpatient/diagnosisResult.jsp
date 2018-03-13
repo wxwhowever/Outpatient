@@ -34,9 +34,24 @@
 
         });
     </script>
+    <style>
+        b{
+            display: inline-block;
+            width: 20px;
+            height: 18px;
+            background: url(../images/msg.png);
+            text-align: center;
+            font-weight: normal;
+            color: #fff;
+            font-size: 14px;
+            margin-right: 13px;
+            margin-top: 7px;
+            line-height: 18px;
+        }
+    </style>
 </head>
 <body>
-<div id="prescribeList">
+<div id="diagnosisList">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
@@ -50,7 +65,7 @@
                 <button class="btn btn-default" id="insertCk_info" v-on:click="insertCk_info()">
                     <img src="../images/t01.png" />新建开药单</button>
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input id="search" class="form-control" placeholder="输入医生编号或姓名查询">
+                <input id="search" class="form-control" placeholder="输入医生姓名或患者姓名查询">
                 &nbsp; &nbsp; &nbsp;
                 <button class="btn btn-default" onclick="searchCk_info()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
@@ -63,29 +78,26 @@
             <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
             <th>患者姓名</th>
             <th>医生姓名</th>
+            <th>诊疗结束时间</th>
             <th>开药单</th>
             <th>皮试用药单</th>
             <th>皮试结果单</th>
             <th>注射用药单</th>
             <th>输液用药单</th>
             <th>治疗单</th>
-            <th>诊疗结束时间</th>
             </thead>
 
-            <tr v-for="p in prescribeParam">
-                <td>{{p.pno}}</td>
-                <td>{{p.patientName}}</td>
-                <td>{{p.doctorName}}</td>
-                <td>{{p.drugName}}</td>
-                <td>{{p.drug_spec}}</td>
-                <td>{{p.drugnum}}</td>
-                <td>{{p.drug_use}}</td>
-                <td>{{p.drug_dosage}}</td>
-                <td>{{p.drug_price}}</td>
-                <td class="toolbar" style="text-align: center">
-                    <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateCk_info(ck_info.id)">修改</button>
-                    <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=ck_info.id)"> 删除</button>
-                </td>
+            <tr v-for="d in diagnosisParam">
+                <td>{{d.drno}}</td>
+                <td>{{d.patientName}}</td>
+                <td>{{d.doctorName}}</td>
+                <td>{{d.endDate}}</td>
+                <td>开药单<b>{{prescribeCount}}</b></td>
+                <td>皮试用药单<b>{{ASTdrugCount}}</b></td>
+                <td>皮试结果单<b>{{ASTresultCount}}</b></td>
+                <td>注射用药单<b>{{injectDrugCount}}</b></td>
+                <td>输液用药单<b>{{transfusionCount}}</b></td>
+                <td>治疗单<b>{{treatCount}}</b></td>
             </tr>
         </table>
         <%-- 分页 begin--%>
@@ -172,13 +184,19 @@
 </body>
 <script>
     var pageIndex = 1;
-    var prescribeVue = new Vue({
-        el : "#prescribeList",
+    var diagnosisVue = new Vue({
+        el : "#diagnosisList",
         data : {
-            prescribeParam : [],
+            diagnosisParam : [],
             ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
+            prescribeCount : "",
+            ASTdrugCount : "",
+            ASTresultCount : "",
+            injectDrugCount : "",
+            transfusionCount : "",
+            treatCount : "",
             url : "",
             currnetIndex : 1,
             deleteId:"",
@@ -188,11 +206,17 @@
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/resultmap.action",
+                    url : "/diagnosisResult.action",
                     type : "post",
                     success : function(data){
-                        _this.prescribeParam = data.listData;
+                        _this.diagnosisParam = data.listData;
                         _this.maxPage = data.maxPage;
+                        _this.prescribeCount = data.prescribeCount;
+                        _this.ASTdrugCount = data.ASTdrugCount;
+                        _this.ASTresultCount = data.ASTresultCount;
+                        _this.injectDrugCount = data.injectDrugCount;
+                        _this.transfusionCount = data.transfusionCount;
+                        _this.treatCount = data.treatCount;
                     }
                 })
             },
@@ -218,7 +242,7 @@
         //    控制每页条数
         $(".page").click(function(){
             var selectPage = $(this).text();
-            var maxPage = prescribeVue._data.maxPage;
+            var maxPage = diagnosisVue._data.maxPage;
             if(selectPage == "首页"){
                 pageIndex = 1;
                 $("#lastpage").removeClass("pageBackground");
@@ -252,13 +276,13 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/resultmap.action",
+                url : "/diagnosisResult.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    diagnosisVue._data.diagnosisParam = data.listData;
+                    diagnosisVue._data.maxPage = data.maxPage;
+                    diagnosisVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -267,13 +291,13 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/resultmap.action",
+                url : "/diagnosisResult.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    diagnosisVue._data.diagnosisParam = data.listData;
+                    diagnosisVue._data.maxPage = data.maxPage;
+                    diagnosisVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -285,11 +309,11 @@
         var searchValue = $("#search").val();//得到搜索框中的值
         if(searchValue != null && searchValue != ""){
             $.ajax({
-                url : "/resultmap.action",
+                url : "/diagnosisResult.action",
                 data : {search : searchValue},
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
+                    diagnosisVue._data.diagnosisParam = data.listData;
+                    diagnosisVue._data.maxPage = data.maxPage;
                 }
             })
         }else{

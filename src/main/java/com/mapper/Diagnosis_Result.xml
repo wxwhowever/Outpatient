@@ -4,6 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.Diagnosis_ResultDao">
+
+    <resultMap id="resultList" type="java.util.Map">
+        <result property="drno" column="drno"></result>
+        <result property="endDate" column="endDate"></result>
+        <result property="patientName" column="patientName"></result>
+        <result property="doctorName" column="doctorName"></result>
+    </resultMap>
+    <select id="queryResult" resultMap="resultList">
+        select di.drno,di.endDate,pa.`name` patientName,doc.`name` doctorName
+        from diagnosis_result di,patient pa,doctor doc where
+        di.patient_pno = pa.pno and
+        di.doctor_dno = doc.dno
+        <where>
+            <if test="param1 != null and param1 != ''">
+                patientName like '%${param1}%' or doctorName like '%${param1}%'
+            </if>
+        </where>
+        order by endDate ASC  limit #{param2},#{param3}
+    </select>
+
     <!--查询所有-->
     <select id="queryList" resultType="com.entity.Diagnosis_result">
         select * from diagnosis_result
@@ -59,19 +79,39 @@
     </select>
 
     <select id="prescribeCount" resultType="int">
-        SELECT count(*) from prescribe where state = 0;
+        select count(*) from diagnosis_result dia ,patient pa,prescribe pr where
+        dia.patient_pno = pa.pno and
+        pa.pno = pr.patient_pno and state = 0;
     </select>
 
     <select id="ASTdrugCount" resultType="int">
-        SELECT count(*) from ASTdrug where state = 0;
+        select count(*) from diagnosis_result dia ,patient pa,astdrug ad where
+        dia.patient_pno = pa.pno and
+        pa.pno = ad.patient_pno and state = 0;
+    </select>
+
+    <select id="ASTresultCount" resultType="int">
+        select count(*) from diagnosis_result dia ,patient pa,ASTresult ar where
+        dia.patient_pno = pa.pno and
+        pa.pno = ar.patient_pno and state = 0;
     </select>
 
     <select id="injectDrugCount" resultType="int">
-        SELECT count(*) from injectDrug where state = 0;
+        select count(*) from diagnosis_result dia ,patient pa,injectDrug id where
+        dia.patient_pno = pa.pno and
+        pa.pno = id.patient_pno and state = 0;
     </select>
 
     <select id="transfusionCount" resultType="int">
-        SELECT count(*) from transfusion where state = 0;
+        select count(*) from diagnosis_result dia ,patient pa,transfusion tf where
+        dia.patient_pno = pa.pno and
+        pa.pno = tf.patient_pno and state = 0;
+    </select>
+
+    <select id="treatCount" resultType="int">
+        select count(*) from diagnosis_result dia ,patient pa,treat tr where
+        dia.patient_pno = pa.pno and
+        pa.pno = tr.patient_pno and state = 0;
     </select>
 
 </mapper>

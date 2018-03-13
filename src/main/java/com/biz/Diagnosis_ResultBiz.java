@@ -16,7 +16,7 @@ public interface Diagnosis_ResultBiz extends BaseBiz<Diagnosis_result>{
      * @param end
      * @return
      */
-    Map<String, Object> queryMap(String sql, int begin, int end);
+    List<Diagnosis_result> queryResult(String sql, int begin, int end);
 
     /**
      * 查询所有不带参
@@ -75,7 +75,11 @@ public interface Diagnosis_ResultBiz extends BaseBiz<Diagnosis_result>{
 
     int ASTdrugCount();
 
+    int ASTresultCount();
+
     int injectDrugCount();
 
     int transfusionCount();
+
+    int treatCount();
 }
