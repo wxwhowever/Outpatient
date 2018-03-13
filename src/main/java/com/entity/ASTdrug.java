@@ -14,9 +14,9 @@ public class ASTdrug {
 
     private String mmol;//试敏溶液浓度
 
-    private String dosage;//剂量
+    private String drugnum;//剂量
 
-    private String sum;//合计
+    private String total;//合计
 
     private String remarks;//备注
 
@@ -27,28 +27,28 @@ public class ASTdrug {
     public ASTdrug() {
     }
 
-    public ASTdrug(String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String dosage, String sum, String remarks, String date, String state) {
+    public ASTdrug(String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String drugnum, String total, String remarks, String date, String state) {
         this.skinno = skinno;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
         this.drug_dno = drug_dno;
         this.mmol = mmol;
-        this.dosage = dosage;
-        this.sum = sum;
+        this.drugnum = drugnum;
+        this.total = total;
         this.remarks = remarks;
         this.date = date;
         this.state = state;
     }
 
-    public ASTdrug(int id, String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String dosage, String sum, String remarks, String date, String state) {
+    public ASTdrug(int id, String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String drugnum, String total, String remarks, String date, String state) {
         this.id = id;
         this.skinno = skinno;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
         this.drug_dno = drug_dno;
         this.mmol = mmol;
-        this.dosage = dosage;
-        this.sum = sum;
+        this.drugnum = drugnum;
+        this.total = total;
         this.remarks = remarks;
         this.date = date;
         this.state = state;
@@ -110,20 +110,20 @@ public class ASTdrug {
         this.mmol = mmol;
     }
 
-    public String getDosage() {
-        return dosage;
+    public String getDrugnum() {
+        return drugnum;
     }
 
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
+    public void setDrugnum(String drugnum) {
+        this.drugnum = drugnum;
     }
 
-    public String getSum() {
-        return sum;
+    public String getTotal() {
+        return total;
     }
 
-    public void setSum(String sum) {
-        this.sum = sum;
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getRemarks() {
@@ -151,8 +151,8 @@ public class ASTdrug {
                 ", doctor_dno='" + doctor_dno + '\'' +
                 ", drug_dno='" + drug_dno + '\'' +
                 ", mmol='" + mmol + '\'' +
-                ", dosage='" + dosage + '\'' +
-                ", sum='" + sum + '\'' +
+                ", drugnum='" + drugnum + '\'' +
+                ", total='" + total + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", date='" + date + '\'' +
                 '}';

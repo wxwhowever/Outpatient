@@ -11,9 +11,9 @@ public class Injectdrug {
 
     private String drug_dno;//药品
 
-    private String dosage;//剂量
+    private String drugnum;//剂量
 
-    private double sum;//合计
+    private double total;//合计
 
     private String remarks;//备注
 
@@ -24,26 +24,26 @@ public class Injectdrug {
     public Injectdrug() {
     }
 
-    public Injectdrug(String ino, String patient_pno, String doctor_dno, String drug_dno, String dosage, double sum, String remarks, String date, String state) {
+    public Injectdrug(String ino, String patient_pno, String doctor_dno, String drug_dno, String drugnum, double total, String remarks, String date, String state) {
         this.ino = ino;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
         this.drug_dno = drug_dno;
-        this.dosage = dosage;
-        this.sum = sum;
+        this.drugnum = drugnum;
+        this.total = total;
         this.remarks = remarks;
         this.date = date;
         this.state = state;
     }
 
-    public Injectdrug(int id, String ino, String patient_pno, String doctor_dno, String drug_dno, String dosage, double sum, String remarks, String date, String state) {
+    public Injectdrug(int id, String ino, String patient_pno, String doctor_dno, String drug_dno, String drugnum, double total, String remarks, String date, String state) {
         this.id = id;
         this.ino = ino;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
         this.drug_dno = drug_dno;
-        this.dosage = dosage;
-        this.sum = sum;
+        this.drugnum = drugnum;
+        this.total = total;
         this.remarks = remarks;
         this.date = date;
         this.state = state;
@@ -97,20 +97,20 @@ public class Injectdrug {
         this.drug_dno = drug_dno;
     }
 
-    public String getDosage() {
-        return dosage;
+    public String getDrugnum() {
+        return drugnum;
     }
 
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
+    public void setDrugnum(String drugnum) {
+        this.drugnum = drugnum;
     }
 
-    public double getSum() {
-        return sum;
+    public double getTotal() {
+        return total;
     }
 
-    public void setSum(double sum) {
-        this.sum = sum;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getRemarks() {
@@ -137,8 +137,8 @@ public class Injectdrug {
                 ", patient_pno='" + patient_pno + '\'' +
                 ", doctor_dno='" + doctor_dno + '\'' +
                 ", drug_dno='" + drug_dno + '\'' +
-                ", dosage='" + dosage + '\'' +
-                ", sum=" + sum +
+                ", drugnum='" + drugnum + '\'' +
+                ", total=" + total +
                 ", remarks='" + remarks + '\'' +
                 ", date='" + date + '\'' +
                 '}';

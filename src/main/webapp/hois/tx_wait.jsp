@@ -51,7 +51,11 @@ $(document).ready(function(){
             &nbsp; &nbsp; &nbsp;
             <button class="btn btn-default" onclick="searchTx_wait()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
         </ul>
-
+        <div style="float: right;">
+            <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png"
+                                                                         style="margin-top: -5px"/>刷新
+            </button>
+        </div>
 
     </div>
     
@@ -83,8 +87,19 @@ $(document).ready(function(){
             <td>{{tx_wait.date}}</td>
             <td>{{tx_wait.jzno}}</td>
             <td>{{tx_wait.dno}}</td>
-            <td class="toolbar" style="text-align: center">
+            <td style="text-align: center">
                 <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateTx_wait(tx_wait.id)">队列调整</button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        开具药单 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" @click="addResult('开具开药单',tx_wait.pno)">开具开药单</a></li>
+                        <li><a href="#" @click="addResult('开具皮试单',tx_wait.pno)">开具皮试单</a></li>
+                        <li><a href="#" @click="addResult('开具注射单',tx_wait.pno)">开具注射单</a></li>
+                        <li><a href="#" @click="addResult('开具输液单',tx_wait.pno)">开具输液单</a></li>
+                    </ul>
+                </div>
                 <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=tx_wait.id)"> 完成就诊</button>
             </td>
             </tr>
@@ -132,6 +147,82 @@ $(document).ready(function(){
             </div>
         </div>
         <!-- 模态弹出框 end -->
+        <!-- 完成就诊模态弹出框 begin -->
+        <div class="modal fade bs-example-modal-lg" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{modalTitle}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品名称:</label>
+                                <input type="text" class="form-control" v-model = "adddrug.drug_dno">
+                                <div style="float: right;">
+                                    <label class="control-label">药品剂量:</label>
+                                    <input type="text" class="form-control"  v-model = "adddrug.drugnum">
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">备注:</label>
+                                <textarea type="text" class="form-control" rows = 3 cols="30"  v-model = "adddrug.remarks"></textarea>
+                                <div style="float: right;">
+                                    <label class="control-label">合计金额:</label>
+                                    <input type="text" class="form-control"  v-model = "adddrug.total">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" v-on:click="add()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 完成就诊模态弹出框 end -->
+        <!-- 完成就诊模态弹出框 begin -->
+        <div class="modal fade bs-example-modal-lg" id="astdrugModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">增加皮试用药单信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group form-inline">
+                                <label  class="control-label">药品名称:</label>
+                                <input type="text" class="form-control" v-model = "astdrug.drug_dno">
+                                <div style="float: right;">
+                                    <label class="control-label">药品浓度:</label>
+                                    <input type="text" class="form-control" v-model = "astdrug.mmol">
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品剂量:</label>
+                                <input type="text" class="form-control" v-model = "astdrug.drugnum">
+                                <div style="float: right;">
+                                    <label  class="control-label">合计金额:</label>
+                                    <input type="text" class="form-control"  v-model = "astdrug.total">
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label  class="control-label">备注:</label>
+                                <textarea type="text" class="form-control" rows = 3 cols="30"  v-model = "astdrug.remarks"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" v-on:click="addastdrug()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 完成就诊模态弹出框 end -->
 
     
     
@@ -165,12 +256,18 @@ $(document).ready(function(){
                 data : {
                     tx_wait_List : [],
                     tx_wait : {pno:"", name:"", height:"", weight:"", dno:"", jzno:""},//产科信息记录
+                    astdrug : {drug_dno:"", mmol:"", drugnum:"", total:"", remarks:""},//皮试单
+                    adddrug : {drug_dno:"",  drugnum:"", total:"", remarks:""},//变化药单
                     modalTitle : "",
                     maxPage : "",
                     url : "",
                     currnetIndex : 1,
                     deleteId:"",
                     waitId :"",
+                    pno : "",//病人的病人编号
+                    method : "",
+                    object : "",
+                    addurl : "",
                 },
                 methods : {
 //                   查询所有的方法
@@ -183,6 +280,59 @@ $(document).ready(function(){
                                 _this.tx_wait_List = data.listData;
                                 _this.maxPage = data.maxPage;
                                 _this.currnetIndex = 1;
+                            }
+                        })
+                    },
+                    //                    添加药单
+                    addastdrug : function(){
+                        var _this = this;
+                        $.ajax({
+                            data : {pno : _this.pno,astdrug : JSON.stringify(_this.astdrug)},
+                            url : "/addAstdrug.action",
+                            success : function(data){
+                                _this.astdrugModalHide();
+                                _this.queryMap();
+                                if(data){
+                                    alert("添加成功");
+                                }
+                            }
+                        })
+                    },
+                    addResult: function (index,pno) {
+                        this.pno = pno;
+                        if(index == "开具皮试单"){
+                            this.astdrugModalShow();
+                        }
+                        if(index == "开具开药单"){
+                            this.modalTitle = "填写开药单信息"
+                            this.deleteModalShow();
+                            this.adddrug = {};
+                            this.addurl = "/addPrescribe.action";
+                        }
+                        if(index == "开具注射单"){
+                            this.modalTitle = "填写注射单信息"
+                            this.deleteModalShow();
+                            this.adddrug = {};
+                            this.addurl = "/addInjectdrug.action";
+                        }
+                        if(index == "开具输液单"){
+                            this.modalTitle = "填写输液单信息"
+                            this.deleteModalShow();
+                            this.adddrug = {};
+                            this.addurl = "/addTransfusion.action";
+                        }
+                    },
+                    add : function(){
+                        var _this = this;
+                        $.ajax({
+                            data : {pno : _this.pno ,addobject:JSON.stringify(_this.adddrug)},
+                            url : _this.addurl,
+                            success : function(data){
+                                _this.deleteModalHide();
+                                _this.queryMap();
+                                if(data){
+                                    alert("添加成功");
+                                }
                             }
                         })
                     },
@@ -229,6 +379,18 @@ $(document).ready(function(){
 //                    显示模态框
                     showModal : function (){
                         $("#tx_waitModal").modal("show");
+                    },
+                    deleteModalShow : function(){
+                        $("#deleteModal").modal("show");
+                    },
+                    deleteModalHide : function(){
+                        $("#deleteModal").modal("hide");
+                    },
+                    astdrugModalShow : function(){
+                        $("#astdrugModal").modal("show");
+                    },
+                    astdrugModalHide : function(){
+                        $("#astdrugModal").modal("hide");
                     },
 
                 },

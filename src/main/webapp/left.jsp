@@ -66,12 +66,12 @@ $(function(){
         <li><cite></cite><a href="hois/mz_wait.jsp" target="rightFrame">门诊治疗室</a><i></i></li>
         <li><cite></cite><a href="hois/nk_wait.jsp" target="rightFrame">内科门诊</a><i></i></li>
         <li><cite></cite><a href="hois/sj_wait.jsp" target="rightFrame">神经科门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/kq_wait.jsp" target="rightFrame">外科门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/ck_wait.jsp" target="rightFrame">卫干门诊</a><i></i></li>
-        <li><cite></cite><a href="filelist.jsp" target="rightFrame">特需门诊</a><i></i></li>
-        <li><cite></cite><a href="tab.jsp" target="rightFrame">眼科门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/ck_wait.jsp">中医门诊</a><i></i></li>
-        <li><cite></cite><a href="hois/ck_wait.jsp">儿科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/wk_wait.jsp" target="rightFrame">外科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/wg_wait.jsp" target="rightFrame">卫干门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/tx_wait.jsp" target="rightFrame">特需门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/yk_wait.jsp" target="rightFrame">眼科门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/zy_wait.jsp" target="rightFrame">中医门诊</a><i></i></li>
+        <li><cite></cite><a href="hois/ek_wait.jsp" target="rightFrame">儿科门诊</a><i></i></li>
         <li><cite></cite><a href="error.jsp" target="rightFrame">404页面</a><i></i></li>
     </ul>
     </dd>

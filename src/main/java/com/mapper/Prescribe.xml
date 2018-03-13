@@ -65,8 +65,8 @@
     <!--增加-->
     <insert id="insert" parameterType="com.entity.Prescribe">
         INSERT INTO prescribe
-        (pno, patient_pno, doctor_dno, drug_dno,drugnum, sum,remarks, date) VALUES
-        (#{pno},#{patient_pno.name},#{doctor_dno.name},#{drug_dno.drug_name},#{drugnum},#{sum},#{remarks},#{date})
+        (pno, patient_pno, doctor_dno, drug_dno,drugnum, total,remarks, date,state) VALUES
+        (#{pno},#{patient_pno},#{doctor_dno},#{drug_dno},#{drugnum},#{total},#{remarks},#{date},#{state})
     </insert>
 
     <!--修改-->

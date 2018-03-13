@@ -45,19 +45,20 @@ $(document).ready(function(){
     </ul>
     </div>
     <div class="rightinfo">
+
     <div class="tools form-inline">
     	<ul class="toolbar">
-        <button class="btn btn-default" id="insertCk_wait" v-on:click="insertCk_wait()">
-            <img src="../images/t01.png" />病人信息记录</button>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <input id="search" class="form-control" placeholder="输入医生编号或姓名查询">
             &nbsp; &nbsp; &nbsp;
             <button class="btn btn-default" onclick="searchCk_wait()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
         </ul>
-
-
+        <div style="float: right;">
+            <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png"
+                                                                         style="margin-top: -5px"/>刷新
+            </button>
+        </div>
     </div>
-    
+
     <table class="tablelist table">
     	<thead>
         <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
@@ -86,13 +87,24 @@ $(document).ready(function(){
             <td>{{ck_wait.date}}</td>
             <td>{{ck_wait.jzno}}</td>
             <td>{{ck_wait.dno}}</td>
-            <td class="toolbar" style="text-align: center">
+            <td  style="text-align: center">
                 <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateCk_wait(ck_wait.id)">队列调整</button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        开具药单 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" @click="addResult('开具开药单',ck_wait.pno)">开具开药单</a></li>
+                        <li><a href="#" @click="addResult('开具皮试单',ck_wait.pno)">开具皮试单</a></li>
+                        <li><a href="#" @click="addResult('开具注射单',ck_wait.pno)">开具注射单</a></li>
+                        <li><a href="#" @click="addResult('开具输液单',ck_wait.pno)">开具输液单</a></li>
+                    </ul>
+                </div>
                 <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=ck_wait.id)"> 完成就诊</button>
             </td>
             </tr>
     </table>
-        <%-- 分页 begin--%>
+    <%-- 分页 begin--%>
         <div class="form-inline page-style">
             <div style="float: left;">
             <h4>每页条数:<select class="pagedown" >
@@ -106,11 +118,12 @@ $(document).ready(function(){
             <button class="btn btn-default page">下一页</button>
             <button class="btn btn-default page " id="lastpage">末页</button>
         </div>
+
         <%-- 分页 end--%>
 
         <!-- 模态弹出框 begin -->
         <div class="modal fade" id="ck_waitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -119,7 +132,7 @@ $(document).ready(function(){
                     <div class="modal-body">
                         <form>
                             <div style="text-align: center">
-                                <select style="width: 400px;" class="arrayAdjust">
+                                <select style="width: 400px;" class=诊</option>
                                     <option value="1">优先就诊</option>
                                     <option value="2">当日复诊</option>
                                     <option value="3">普通就诊</option>
@@ -137,8 +150,8 @@ $(document).ready(function(){
         <!-- 模态弹出框 end -->
 
         <!-- 完成就诊模态弹出框 begin -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade bs-example-modal-lg" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -146,27 +159,73 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div style="text-align: center">
-                                <select style="width: 400px;" class="result">
-                                    <option value="皮试单">皮试单</option>
-                                    <option value="输液单">输液单</option>
-                                    <option value="注射单">注射单</option>
-                                    <option value="治疗单">治疗单</option>
-                                </select>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品名称:</label>
+                                <input type="text" class="form-control" v-model = "adddrug.drug_dno">
+                                <div style="float: right;">
+                                    <label class="control-label">药品剂量:</label>
+                                    <input type="text" class="form-control"  v-model = "adddrug.drugnum">
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">备注:</label>
+                                <textarea type="text" class="form-control" rows = 3 cols="30"  v-model = "adddrug.remarks"></textarea>
+                                <div style="float: right;">
+                                    <label class="control-label">合计金额:</label>
+                                    <input type="text" class="form-control"  v-model = "adddrug.total">
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary" v-on:click="deleteCk_wait()">保存</button>
+                        <button type="button" class="btn btn-primary" v-on:click="add()">保存</button>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <!-- 完成就诊模态弹出框 end -->
+        <!-- 完成就诊模态弹出框 begin -->
+        <div class="modal fade bs-example-modal-lg" id="astdrugModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">增加皮试用药单信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group form-inline">
+                                <label  class="control-label">药品名称:</label>
+                                <input type="text" class="form-control" v-model = "astdrug.drug_dno">
+                                <div style="float: right;">
+                                    <label class="control-label">药品浓度:</label>
+                                    <input type="text" class="form-control" v-model = "astdrug.mmol">
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品剂量:</label>
+                                <input type="text" class="form-control" v-model = "astdrug.drugnum">
+                                <div style="float: right;">
+                                    <label  class="control-label">合计金额:</label>
+                                    <input type="text" class="form-control"  v-model = "astdrug.total">
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label  class="control-label">备注:</label>
+                                <textarea type="text" class="form-control" rows = 3 cols="30"  v-model = "astdrug.remarks"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" v-on:click="addastdrug()">保存</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 完成就诊模态弹出框 end -->
 
-    
-    
     <div class="tip">
     	<div class="tiptop"><span>提示信息</span><a></a></div>
         
@@ -197,12 +256,17 @@ $(document).ready(function(){
                 data : {
                     ck_wait_List : [],
                     ck_info : {pno:"", name:"", height:"", weight:"", dno:"", jzno:""},//产科信息记录
+                    astdrug : {drug_dno:"", mmol:"", drugnum:"", total:"", remarks:""},//皮试单
+                    adddrug : {drug_dno:"",  drugnum:"", total:"", remarks:""},//变化药单
                     modalTitle : "",
                     maxPage : "",
-                    url : "",
-                    currnetIndex : 1,
-                    deleteId:"",
-                    waitId:"",
+                    currnetIndex : 1,//当前页码
+                    deleteId:"",//删除的ID
+                    waitId:"",//保存的ID
+                    pno : "",//病人的病人编号
+                    method : "",
+                    object : "",
+                    addurl : "",
                 },
                 methods : {
 //                   查询所有的方法
@@ -218,12 +282,66 @@ $(document).ready(function(){
                             }
                         })
                     },
+//                    添加药单
+                    addastdrug : function(){
+                        var _this = this;
+                        $.ajax({
+                            data : {pno : _this.pno,astdrug : JSON.stringify(_this.astdrug)},
+                            url : "/addAstdrug.action",
+                            success : function(data){
+                                _this.astdrugModalHide();
+                                _this.queryMap();
+                                if(data){
+                                    alert("添加成功");
+                                }
+                            }
+                        })
+                    },
+                    addResult: function (index,pno) {
+                        this.pno = pno;
+                        if(index == "开具皮试单"){
+                            this.astdrugModalShow();
+                        }
+                        if(index == "开具开药单"){
+                            this.modalTitle = "填写开药单信息"
+                            this.deleteModalShow();
+                            this.adddrug = {};
+                            this.addurl = "/addPrescribe.action";
+                        }
+                        if(index == "开具注射单"){
+                            this.modalTitle = "填写注射单信息"
+                            this.deleteModalShow();
+                            this.adddrug = {};
+                            this.addurl = "/addInjectdrug.action";
+                        }
+                        if(index == "开具输液单"){
+                            this.modalTitle = "填写输液单信息"
+                            this.deleteModalShow();
+                            this.adddrug = {};
+                            this.addurl = "/addTransfusion.action";
+                        }
+                    },
+                    add : function(){
+                        var _this = this;
+                        $.ajax({
+                            data : {pno : _this.pno ,addobject:JSON.stringify(_this.adddrug)},
+                            url : _this.addurl,
+                            success : function(data){
+                                _this.deleteModalHide();
+                                _this.queryMap();
+                                if(data){
+                                    alert("添加成功");
+                                }
+                            }
+                        })
+                    },
+
 //                  保存
                     save :function(){
                         var _this = this;
                         var level = $(".arrayAdjust").val();
                         $.ajax({
-                            url : _this.url,
+                            url : "/updateCk_wait.action",
                             data :{waitId : _this.waitId,level : level},
                             success : function(data){
                                 _this.hideModal();//隐藏modal
@@ -234,18 +352,17 @@ $(document).ready(function(){
                             }
                         })
                     },
-//                    完成就诊
+//
+                    //                    完成就诊
                     deleteById : function(id){
-                        this.deleteModalShow();
-
+                        $(".tip").attr("style","display:block;");
                     },
-//                    分配单
+//                    完成就诊
                     deleteCk_wait: function(){
                         var _this = this;
-                        var result = $(".result").val();
                         $.ajax({
                             url: "/deleteCk_wait.action",
-                            data: {id : _this.deleteId , result : result},
+                            data: {id : _this.deleteId},
                             success: function (data) {
                                 _this.queryMap();//刷新页面
                             }
@@ -253,7 +370,6 @@ $(document).ready(function(){
                     },
                     updateCk_wait : function(id){
                         this.modalTitle = "队列调整";//设置 modal 标题
-                        this.url = "/updateCk_wait.action";//设置请求路径
                         this.waitId = id;
                         this.showModal();//调用显示modal 的方法
                     },
@@ -271,6 +387,12 @@ $(document).ready(function(){
                     deleteModalHide : function(){
                         $("#deleteModal").modal("hide");
                     },
+                    astdrugModalShow : function(){
+                        $("#astdrugModal").modal("show");
+                    },
+                    astdrugModalHide : function(){
+                        $("#astdrugModal").modal("hide");
+                    },
                 },
 
                 created : function(){
@@ -278,8 +400,9 @@ $(document).ready(function(){
                 }
             })
 
-//            分页
+
             $(function(){
+                //            分页
                 //    控制每页条数
                 $(".page").click(function(){
                     var selectPage = $(this).text();
@@ -342,6 +465,7 @@ $(document).ready(function(){
                         }
                     })
                 })
+
             })
 
 

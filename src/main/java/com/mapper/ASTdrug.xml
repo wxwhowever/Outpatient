@@ -33,9 +33,9 @@
 
     <!--增加-->
     <insert id="insert" parameterType="com.entity.ASTdrug">
-        INSERT INTO ck_info
-        (ckno, pno, name, height,weight, date,jzno, dno) VALUES
-        (#{ckno},#{pno},#{name},#{height},#{weight},#{date},#{jzno},#{dno})
+        INSERT INTO astdrug
+        (skinno, patient_pno, doctor_dno, drug_dno,mmol, drugnum,total, remarks,date,state) VALUES
+        (#{skinno},#{patient_pno},#{doctor_dno},#{drug_dno},#{mmol},#{drugnum},#{total},#{remarks},#{date},#{state})
     </insert>
 
     <!--修改-->

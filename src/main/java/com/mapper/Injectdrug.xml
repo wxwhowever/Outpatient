@@ -33,9 +33,9 @@
 
     <!--增加-->
     <insert id="insert" parameterType="com.entity.Injectdrug">
-        INSERT INTO ck_info
-        (ckno, pno, name, height,weight, date,jzno, dno) VALUES
-        (#{ckno},#{pno},#{name},#{height},#{weight},#{date},#{jzno},#{dno})
+        INSERT INTO Injectdrug
+        (ino, patient_pno, doctor_dno, drug_dno,drugnum, total,remarks,date,state) VALUES
+        (#{ino},#{patient_pno},#{doctor_dno},#{drug_dno},#{drugnum},#{total},#{remarks},#{date},#{state})
     </insert>
 
     <!--修改-->
