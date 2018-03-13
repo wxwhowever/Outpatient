@@ -19,8 +19,6 @@ public class Ck_waitController {
     @Autowired
     Ck_waitBiz ck_waitBiz;
     @Autowired
-    Ck_infoBiz ck_infoBiz;
-    @Autowired
     MedicalcardBiz medicalcardBiz;
     @Autowired
     DoctorBiz doctorBiz;

@@ -3,7 +3,6 @@ package com.biz.Imp;
 import com.biz.ASTdrugBiz;
 import com.dao.ASTdrugDao;
 import com.entity.ASTdrug;
-import com.entity.CK_info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
