@@ -4,16 +4,16 @@ public class Bank {
     //库房ID
     private int bank_id;
     //库房存药类型
-    private Drugtype type_id;
+    private int drug_type;
     //库房数量
     private int bank_count;
 
     public Bank() {
     }
 
-    public Bank(int bank_id, Drugtype type_id, int bank_count) {
+    public Bank(int bank_id, int drug_type, int bank_count) {
         this.bank_id = bank_id;
-        this.type_id = type_id;
+        this.drug_type = drug_type;
         this.bank_count = bank_count;
     }
 
@@ -25,12 +25,12 @@ public class Bank {
         this.bank_id = bank_id;
     }
 
-    public Drugtype getType_id() {
-        return type_id;
+    public int getDrug_type() {
+        return drug_type;
     }
 
-    public void setType_id(Drugtype type_id) {
-        this.type_id = type_id;
+    public void setDrug_type(int drug_type) {
+        this.drug_type = drug_type;
     }
 
     public int getBank_count() {
@@ -39,14 +39,5 @@ public class Bank {
 
     public void setBank_count(int bank_count) {
         this.bank_count = bank_count;
-    }
-
-    @Override
-    public String toString() {
-        return "Bank{" +
-                "bank_id=" + bank_id +
-                ", type_id=" + type_id +
-                ", bank_count=" + bank_count +
-                '}';
     }
 }

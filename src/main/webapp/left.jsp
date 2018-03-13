@@ -93,8 +93,8 @@ $(function(){
 
     <dd><div class="title"><span><img src="images/leftico04.png" /></span>药房管理</div>
     <ul class="menuson">
-        <li><cite></cite><a href="#">自定义</a><i></i></li>
-        <li><cite></cite><a href="#">常用资料</a><i></i></li>
+        <li><cite></cite><a href="yp/drug.jsp" target="rightFrame">查询药品</a><i></i></li>
+        <li><cite></cite><a href="hois/ek_wait.jsp" target="rightFrame">常用资料</a><i></i></li>
         <li><cite></cite><a href="#">信息列表</a><i></i></li>
         <li><cite></cite><a href="#">其他</a><i></i></li>
     </ul>

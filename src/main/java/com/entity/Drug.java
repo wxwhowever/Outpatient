@@ -8,7 +8,7 @@ public class Drug {
     //药品名称
     private String drug_name;
     //药品类型
-    private String drug_type;
+    private int drug_type;
     //药品价格
     private double drug_price;
     //药品规格
@@ -25,7 +25,7 @@ public class Drug {
     public Drug() {
     }
 
-    public Drug(int drug_id, String drug_dno, String drug_name, String drug_type, double drug_price, String drug_spec, String drug_use, String drug_dosage, Bank bank_id, String drug_time) {
+    public Drug(int drug_id, String drug_dno, String drug_name, int drug_type, double drug_price, String drug_spec, String drug_use, String drug_dosage, Bank bank_id, String drug_time) {
         this.drug_id = drug_id;
         this.drug_dno = drug_dno;
         this.drug_name = drug_name;
@@ -62,11 +62,11 @@ public class Drug {
         this.drug_name = drug_name;
     }
 
-    public String getDrug_type() {
+    public int getDrug_type() {
         return drug_type;
     }
 
-    public void setDrug_type(String drug_type) {
+    public void setDrug_type(int drug_type) {
         this.drug_type = drug_type;
     }
 
@@ -124,7 +124,7 @@ public class Drug {
                 "drug_id=" + drug_id +
                 ", drug_dno='" + drug_dno + '\'' +
                 ", drug_name='" + drug_name + '\'' +
-                ", drug_type='" + drug_type + '\'' +
+                ", drug_type=" + drug_type +
                 ", drug_price=" + drug_price +
                 ", drug_spec='" + drug_spec + '\'' +
                 ", drug_use='" + drug_use + '\'' +

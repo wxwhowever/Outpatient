@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.DrugDao">
+
+    <resultMap id="resultList" type="java.util.Map" autoMapping="true">
+        <id property="drug_id" column="drug_id"></id>
+        <result property="drug_dno" column="drug_dno"></result>
+        <result property="drug_name" column="drug_name"></result>
+        <result property="drug_spec" column="drug_spec"></result>
+        <result property="drug_price" column="drug_price"></result>
+        <result property="drug_dosage" column="drug_dosage"></result>
+        <result property="drug_use" column="drug_use"></result>
+        <result property="drug_time" column="drug_time"></result>
+        <result property="type_id" column="type_id" ></result>
+        <result property="type_name" column="type_name" ></result>
+        <result property="bank_id" column="bank_id" ></result>
+        <result property="bank_count" column="bank_count" ></result>
+    </resultMap>
+    <!--查询所有-->
+    <select id="queryList" resultType="com.entity.Drug">
+       SELECT * from drug
+    </select>
+
+    <!--带分页的查询-->
+    <select id="queryLists" resultMap="resultList">
+        SELECT dg.drug_id,dg.drug_dno,dg.drug_name,dg.drug_spec,dg.drug_price,dg.drug_dosage,dg.drug_use,dg.drug_time,ba.bank_id,ba.bank_count,dgt.type_id,dgt.type_name
+        FROM bank ba JOIN drug dg JOIN drug_type dgt
+        ON ba.bank_id=dg.bank_id and dg.drug_type=dgt.type_id
+        <where>
+            <if test="param1 != null and param1 != ''">
+                drug_name like '%${param1}%' or type_name like '%${param1}%'
+            </if>
+        </where>
+        limit #{param2},#{param3}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" parameterType="int" resultType="com.entity.Drug">
+             select * from drug where id = #{id}
+    </select>
+
+    <!--查询最大的编号-->
+    <select id="queryMaxNo" resultType="java.lang.String">
+        select  count(*) from drug
+    </select>
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.entity.Drug">
+        INSERT INTO drug
+        (drug_dno, drug_name, drug_type,drug_price,drug_spec,drug_use,drug_dosage,bank_id,drug_time,) VALUES
+        (#{drug_dno},#{drug_name},#{drug_type},#{drug_price},#{drug_spec},#{drug_use},#{drug_dosage},#{Bank.bank_id},#{drug_time})
+    </insert>
+
+    <!--修改-->
+    <update id="update" parameterType="com.entity.Drug">
+        update drug SET
+         drug_dno = #{drug_dno}, drug_name = #{drug_name}, drug_type = #{drug_type}, drug_price = #{drug_price},drug_use = #{drug_use}, drug_dosage = #{drug_dosage},
+         bank_id = #{Bank.bank_id}, drug_time = #{drug_time} where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="int">
+        delete from drug where id = #{id}
+    </delete>
+
+    <!--查询表总行数-->
+    <select id="getCount" parameterType="java.lang.String" resultType="int">
+    select count(*) from drug
+    <if test="_parameter != null and _parameter != ''">
+    where name like '%${_parameter}%' OR drug_dno like '%${_parameter}%'  or drug_name like '%${_parameter}%'
+    </if>
+    </select>
+
+</mapper>
