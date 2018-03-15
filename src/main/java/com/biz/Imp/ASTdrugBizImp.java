@@ -18,6 +18,10 @@ public class ASTdrugBizImp implements ASTdrugBiz {
     ASTdrugDao asTdrugDao;
 
 
+    public List<ASTdrug> resultMap(String param, int begin, int end) {
+        return asTdrugDao.resultMap(param, begin, end);
+    }
+
     public Map<String, Object> queryMap(String sql, int begin, int end) {
         Map<String, Object> map = new HashMap<String, Object>();
         List<ASTdrug> list = asTdrugDao.queryLists(sql,begin,end);

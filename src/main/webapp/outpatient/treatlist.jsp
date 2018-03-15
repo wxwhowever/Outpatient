@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>开药清单</title>
+    <title>治疗单</title>
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
@@ -128,7 +128,7 @@
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/prescribe_resultmap.action",
+                    url : "/resultmap.action",
                     type : "post",
                     success : function(data){
                         _this.prescribeParam = data.listData;
@@ -193,7 +193,7 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/resultmap.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
@@ -208,7 +208,7 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/resultmap.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
@@ -227,7 +227,7 @@
         var searchValue = $("#search").val();//得到搜索框中的值
         if(searchValue != null && searchValue != ""){
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/resultmap.action",
                 data : {search : searchValue},
                 success : function(data){
                     prescribeVue._data.prescribeParam = data.listData;

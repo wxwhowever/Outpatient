@@ -36,12 +36,12 @@
     </script>
 </head>
 <body>
-<div id="prescribeList">
+<div id="astdrugList">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
             <li><a href="#">门诊处置治疗管理</a></li>
-            <li><a href="#">开药清单管理</a></li>
+            <li><a href="#">皮试用药单管理</a></li>
         </ul>
     </div>
     <div class="rightinfo">
@@ -61,29 +61,23 @@
             <th>患者姓名</th>
             <th>医生姓名</th>
             <th>药品名称</th>
-            <th>药品规格</th>
-            <th>发药数量</th>
-            <th>使用方法</th>
-            <th>每次用量</th>
-            <th>单个金额</th>
+            <th>试敏溶液浓度</th>
+            <th>剂量</th>
             <th>合计</th>
             <th>备注</th>
             <th>开药时间</th>
             </thead>
 
-            <tr v-for="p in prescribeParam">
-                <td>{{p.pno}}</td>
-                <td>{{p.patientName}}</td>
-                <td>{{p.doctorName}}</td>
-                <td>{{p.drugName}}</td>
-                <td>{{p.drug_spec}}</td>
-                <td>{{p.drugnum}}</td>
-                <td>{{p.drug_use}}</td>
-                <td>{{p.drug_dosage}}</td>
-                <td>{{p.drug_price}}</td>
-                <td>{{p.total}}</td>
-                <td>{{p.remarks}}</td>
-                <td>{{p.date}}</td>
+            <tr v-for="a in astdrugParam">
+                <td>{{a.skinno}}</td>
+                <td>{{a.patientName}}</td>
+                <td>{{a.doctorName}}</td>
+                <td>{{a.drugName}}</td>
+                <td>{{a.drugnum}}</td>
+                <td>{{a.drug_price}}</td>
+                <td>{{a.total}}</td>
+                <td>{{a.remarks}}</td>
+                <td>{{a.date}}</td>
             </tr>
         </table>
         <%-- 分页 begin--%>
@@ -112,10 +106,10 @@
 </body>
 <script>
     var pageIndex = 1;
-    var prescribeVue = new Vue({
-        el : "#prescribeList",
+    var astdrugVue = new Vue({
+        el : "#astdrugList",
         data : {
-            prescribeParam : [],
+            astdrugParam : [],
             ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
@@ -128,10 +122,10 @@
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/prescribe_resultmap.action",
+                    url : "/astdrug_resultmap.action",
                     type : "post",
                     success : function(data){
-                        _this.prescribeParam = data.listData;
+                        _this.astdrugParam = data.listData;
                         _this.maxPage = data.maxPage;
                     }
                 })
@@ -159,7 +153,7 @@
         //    控制每页条数
         $(".page").click(function(){
             var selectPage = $(this).text();
-            var maxPage = prescribeVue._data.maxPage;
+            var maxPage = astdrugVue._data.maxPage;
             if(selectPage == "首页"){
                 pageIndex = 1;
                 $("#lastpage").removeClass("pageBackground");
@@ -193,13 +187,13 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/astdrug_resultmap.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    astdrugVue._data.astdrugParam = data.listData;
+                    astdrugVue._data.maxPage = data.maxPage;
+                    astdrugVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -208,13 +202,13 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/astdrug_resultmap.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    astdrugVue._data.astdrugParam = data.listData;
+                    astdrugVue._data.maxPage = data.maxPage;
+                    astdrugVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -227,11 +221,11 @@
         var searchValue = $("#search").val();//得到搜索框中的值
         if(searchValue != null && searchValue != ""){
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/astdrug_resultmap.action",
                 data : {search : searchValue},
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
+                    astdrugVue._data.astdrugParam = data.listData;
+                    astdrugVue._data.maxPage = data.maxPage;
                 }
             })
         }else{

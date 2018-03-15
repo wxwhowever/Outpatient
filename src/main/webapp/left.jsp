@@ -82,8 +82,8 @@ $(function(){
     <ul class="menuson">
         <li><cite></cite><a href="outpatient/diagnosisResult.jsp" target="rightFrame">诊疗结果单详情</a><i></i></li>
         <li><cite></cite><a href="outpatient/prescribelist.jsp" target="rightFrame">开药清单管理</a><i></i></li>
-        <li><cite></cite><a href="#">皮试用药单管理</a><i></i></li>
-        <li><cite></cite><a href="#">皮试结果单管理</a><i></i></li>
+        <li><cite></cite><a href="outpatient/ASTdrug.jsp" target="rightFrame">皮试用药单管理</a><i></i></li>
+        <li><cite></cite><a href="outpatient/ASTresultlist.jsp" target="rightFrame">皮试结果单管理</a><i></i></li>
         <li><cite></cite><a href="#">注射用药单管理</a><i></i></li>
         <li><cite></cite><a href="#">输液用药单管理</a><i></i></li>
         <li><cite></cite><a href="#">治疗单管理</a><i></i></li>

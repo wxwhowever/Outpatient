@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>开药清单</title>
+    <title>皮试结果单</title>
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
@@ -36,7 +36,7 @@
     </script>
 </head>
 <body>
-<div id="prescribeList">
+<div id="ASTresultList">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
@@ -59,31 +59,19 @@
             <thead>
             <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
             <th>患者姓名</th>
-            <th>医生姓名</th>
-            <th>药品名称</th>
-            <th>药品规格</th>
-            <th>发药数量</th>
-            <th>使用方法</th>
-            <th>每次用量</th>
-            <th>单个金额</th>
-            <th>合计</th>
-            <th>备注</th>
-            <th>开药时间</th>
+            <th>皮试操作人</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>皮试结果</th>
             </thead>
 
-            <tr v-for="p in prescribeParam">
-                <td>{{p.pno}}</td>
-                <td>{{p.patientName}}</td>
-                <td>{{p.doctorName}}</td>
-                <td>{{p.drugName}}</td>
-                <td>{{p.drug_spec}}</td>
-                <td>{{p.drugnum}}</td>
-                <td>{{p.drug_use}}</td>
-                <td>{{p.drug_dosage}}</td>
-                <td>{{p.drug_price}}</td>
-                <td>{{p.total}}</td>
-                <td>{{p.remarks}}</td>
-                <td>{{p.date}}</td>
+            <tr v-for="a in ASTresultParam">
+                <td>{{a.pno}}</td>
+                <td>{{a.patientName}}</td>
+                <td>{{a.doctorName}}</td>
+                <td>{{a.starttime}}</td>
+                <td>{{a.endtime}}</td>
+                <td>{{a.result}}</td>
             </tr>
         </table>
         <%-- 分页 begin--%>
@@ -112,10 +100,10 @@
 </body>
 <script>
     var pageIndex = 1;
-    var prescribeVue = new Vue({
-        el : "#prescribeList",
+    var ASTresultVue = new Vue({
+        el : "#ASTresultList",
         data : {
-            prescribeParam : [],
+            ASTresultParam : [],
             ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
@@ -128,10 +116,10 @@
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/prescribe_resultmap.action",
+                    url : "/astresult_resultmap.action",
                     type : "post",
                     success : function(data){
-                        _this.prescribeParam = data.listData;
+                        _this.ASTresultParam = data.listData;
                         _this.maxPage = data.maxPage;
                     }
                 })
@@ -159,7 +147,7 @@
         //    控制每页条数
         $(".page").click(function(){
             var selectPage = $(this).text();
-            var maxPage = prescribeVue._data.maxPage;
+            var maxPage = ASTresultVue._data.maxPage;
             if(selectPage == "首页"){
                 pageIndex = 1;
                 $("#lastpage").removeClass("pageBackground");
@@ -193,13 +181,13 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/astresult_resultmap.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    ASTresultVue._data.ASTresultParam = data.listData;
+                    ASTresultVue._data.maxPage = data.maxPage;
+                    ASTresultVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -208,13 +196,13 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/astresult_resultmap.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    ASTresultVue._data.ASTresultParam = data.listData;
+                    ASTresultVue._data.maxPage = data.maxPage;
+                    ASTresultVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -227,11 +215,11 @@
         var searchValue = $("#search").val();//得到搜索框中的值
         if(searchValue != null && searchValue != ""){
             $.ajax({
-                url : "/prescribe_resultmap.action",
+                url : "/astresult_resultmap.action",
                 data : {search : searchValue},
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
+                    ASTresultVue._data.ASTresultParam = data.listData;
+                    ASTresultVue._data.maxPage = data.maxPage;
                 }
             })
         }else{

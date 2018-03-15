@@ -1,6 +1,7 @@
 package com.controller;
 
-import com.biz.PrescribeBiz;
+import com.biz.ASTdrugBiz;
+import com.entity.ASTdrug;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class PrescribeController {
-
+public class ASTdrugController {
     @Autowired
-    PrescribeBiz prescribeBiz;
+    ASTdrugBiz asTdrugBiz;
 
     @ResponseBody
-    @RequestMapping("prescribe_resultmap")
+    @RequestMapping("astdrug_resultmap")
     public Map<String,Object> resultmap(HttpServletRequest request){
         String search = request.getParameter("search");
         String page = request.getParameter("page");
@@ -36,14 +36,12 @@ public class PrescribeController {
             end = Integer.parseInt(count);
         }
         Map<String,Object> map = new HashMap<String, Object>();
-        List<Map<String,Object>> list = prescribeBiz.resultMap(param,begin, end);
-        int maxCount = prescribeBiz.getCount(param);
+        List<ASTdrug> list = asTdrugBiz.resultMap(param,begin, end);
+        int maxCount = asTdrugBiz.getCount(param);
         int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
         map.put("listData",list);
         map.put("maxPage",maxPage);
         return map;
     }
-
-
 
 }

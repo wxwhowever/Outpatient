@@ -9,6 +9,7 @@ import java.util.Map;
 
 public interface ASTdrugDao extends BaseDao<ASTdrug> {
 
+    List<ASTdrug> resultMap(String param,int begin,int end);
 
     Map<String, Object> queryMap(String sql, int begin, int end);
 
