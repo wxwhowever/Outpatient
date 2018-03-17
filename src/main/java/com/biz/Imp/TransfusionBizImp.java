@@ -15,13 +15,17 @@ import java.util.Map;
 public class TransfusionBizImp implements TransfusionBiz {
 
     @Autowired
-    TransfusionDao TransfusionDao;
+    TransfusionDao transfusionDao;
 
+
+    public List<Transfusion> resultMap(String param, int begin, int end) {
+        return transfusionDao.resultMap(param, begin, end);
+    }
 
     public Map<String, Object> queryMap(String sql, int begin, int end) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Transfusion> list = TransfusionDao.queryLists(sql,begin,end);
-        int maxCount = TransfusionDao.getCount(sql);
+        List<Transfusion> list = transfusionDao.queryLists(sql,begin,end);
+        int maxCount = transfusionDao.getCount(sql);
         int maxPage = (maxCount/end) + ((maxCount%end) !=0 ? 1 : 0);
         map.put("listData",list);
         map.put("maxPage",maxPage);
@@ -29,34 +33,34 @@ public class TransfusionBizImp implements TransfusionBiz {
     }
 
     public List<Transfusion> queryList() {
-        return TransfusionDao.queryList();
+        return transfusionDao.queryList();
     }
 
     public List<Transfusion> queryLists(String sql, int begin, int end) {
-        return TransfusionDao.queryLists(sql, begin, end);
+        return transfusionDao.queryLists(sql, begin, end);
     }
 
     public Transfusion queryById(Serializable serializable) {
-        return TransfusionDao.queryById(serializable);
+        return transfusionDao.queryById(serializable);
     }
 
     public String queryMaxNo() {
-        return TransfusionDao.queryMaxNo();
+        return transfusionDao.queryMaxNo();
     }
 
     public boolean insert(Object object) {
-        return TransfusionDao.insert(object);
+        return transfusionDao.insert(object);
     }
 
     public boolean update(Object object) {
-        return TransfusionDao.update(object);
+        return transfusionDao.update(object);
     }
 
     public boolean delete(Object object) {
-        return TransfusionDao.delete(object);
+        return transfusionDao.delete(object);
     }
 
     public int getCount(String sql) {
-        return TransfusionDao.getCount(sql);
+        return transfusionDao.getCount(sql);
     }
 }

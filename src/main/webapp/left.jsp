@@ -81,12 +81,12 @@ $(function(){
         <span><img src="images/leftico03.png" /></span>门诊处置治疗管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="outpatient/diagnosisResult.jsp" target="rightFrame">诊疗结果单详情</a><i></i></li>
-        <li><cite></cite><a href="outpatient/prescribelist.jsp" target="rightFrame">开药清单管理</a><i></i></li>
+        <li><cite></cite><a href="outpatient/prescribe.jsp" target="rightFrame">开药清单管理</a><i></i></li>
         <li><cite></cite><a href="outpatient/ASTdrug.jsp" target="rightFrame">皮试用药单管理</a><i></i></li>
         <li><cite></cite><a href="outpatient/ASTresultlist.jsp" target="rightFrame">皮试结果单管理</a><i></i></li>
-        <li><cite></cite><a href="#">注射用药单管理</a><i></i></li>
-        <li><cite></cite><a href="#">输液用药单管理</a><i></i></li>
-        <li><cite></cite><a href="#">治疗单管理</a><i></i></li>
+        <li><cite></cite><a href="outpatient/injectdrug.jsp" target="rightFrame">注射用药单管理</a><i></i></li>
+        <li><cite></cite><a href="outpatient/transfusion.jsp" target="rightFrame">输液用药单管理</a><i></i></li>
+        <li><cite></cite><a href="outpatient/treat.jsp" target="rightFrame">治疗单管理</a><i></i></li>
     </ul>
     </dd>
 

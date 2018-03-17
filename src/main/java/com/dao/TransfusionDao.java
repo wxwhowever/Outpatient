@@ -2,6 +2,7 @@ package com.dao;
 
 import com.base.BaseDao;
 import com.entity.Transfusion;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Map;
 
 public interface TransfusionDao extends BaseDao<Transfusion> {
 
+    List<Transfusion> resultMap(String param,int begin,int end);
 
     Map<String, Object> queryMap(String sql, int begin, int end);
 
@@ -24,7 +26,7 @@ public interface TransfusionDao extends BaseDao<Transfusion> {
 
     boolean delete(Object object);
 
-    int getCount(String sql);
+    int getCount(@Param("param1") String sql);
 
     String queryMaxNo();
 }

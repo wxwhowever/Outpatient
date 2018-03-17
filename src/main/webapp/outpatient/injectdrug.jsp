@@ -36,7 +36,7 @@
     </script>
 </head>
 <body>
-<div id="prescribeList">
+<div id="injectdrugList">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
@@ -49,7 +49,7 @@
             <ul class="toolbar">
                 <input id="search" class="form-control" placeholder="输入医生编号或姓名查询">
                 &nbsp; &nbsp; &nbsp;
-                <button class="btn btn-default" onclick="searchCk_info()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
+                <button class="btn btn-default" onclick="searchinjectdrug()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
 
 
@@ -61,29 +61,21 @@
             <th>患者姓名</th>
             <th>医生姓名</th>
             <th>药品名称</th>
-            <th>药品规格</th>
-            <th>发药数量</th>
-            <th>使用方法</th>
             <th>每次用量</th>
-            <th>单个金额</th>
             <th>合计</th>
             <th>备注</th>
             <th>开药时间</th>
             </thead>
 
-            <tr v-for="p in prescribeParam">
-                <td>{{p.pno}}</td>
-                <td>{{p.patientName}}</td>
-                <td>{{p.doctorName}}</td>
-                <td>{{p.drugName}}</td>
-                <td>{{p.drug_spec}}</td>
-                <td>{{p.drugnum}}</td>
-                <td>{{p.drug_use}}</td>
-                <td>{{p.drug_dosage}}</td>
-                <td>{{p.drug_price}}</td>
-                <td>{{p.total}}</td>
-                <td>{{p.remarks}}</td>
-                <td>{{p.date}}</td>
+            <tr v-for="i in injectdrugParam">
+                <td>{{i.ino}}</td>
+                <td>{{i.patientName}}</td>
+                <td>{{i.doctorName}}</td>
+                <td>{{i.drugName}}</td>
+                <td>{{i.drugnum}}</td>
+                <td>{{i.total}}</td>
+                <td>{{i.remarks}}</td>
+                <td>{{i.date}}</td>
             </tr>
         </table>
         <%-- 分页 begin--%>
@@ -112,11 +104,11 @@
 </body>
 <script>
     var pageIndex = 1;
-    var prescribeVue = new Vue({
-        el : "#prescribeList",
+    var injectdrugVue = new Vue({
+        el : "#injectdrugList",
         data : {
-            prescribeParam : [],
-            ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
+            injectdrugParam : [],
+            injectdrug : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
             url : "",
@@ -128,10 +120,10 @@
             queryMap : function () {
                 var _this = this;
                 $.ajax({
-                    url : "/resultmap.action",
+                    url : "/Injectdrug_resultmap.action",
                     type : "post",
                     success : function(data){
-                        _this.prescribeParam = data.listData;
+                        _this.injectdrugParam = data.listData;
                         _this.maxPage = data.maxPage;
                     }
                 })
@@ -140,11 +132,11 @@
 
 //                    隐藏模态框
             hideModal : function(){
-                $("#ck_infoModal").modal("hide");
+                $("#injectdrugModal").modal("hide");
             },
 //                    显示模态框
             showModal : function (){
-                $("#ck_infoModal").modal("show");
+                $("#injectdrugModal").modal("show");
             },
 
         },
@@ -159,7 +151,7 @@
         //    控制每页条数
         $(".page").click(function(){
             var selectPage = $(this).text();
-            var maxPage = prescribeVue._data.maxPage;
+            var maxPage = injectdrugVue._data.maxPage;
             if(selectPage == "首页"){
                 pageIndex = 1;
                 $("#lastpage").removeClass("pageBackground");
@@ -193,13 +185,13 @@
             var searchValue = $("#search").val();//得到搜索框中的值
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/resultmap.action",
+                url : "/Injectdrug_resultmap.action",
                 data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    injectdrugVue._data.injectdrugParam = data.listData;
+                    injectdrugVue._data.maxPage = data.maxPage;
+                    injectdrugVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -208,13 +200,13 @@
         $(".pagedown").change(function(){
             var selectPageCount = $(".pagedown").val();//得到每页显示条数
             $.ajax({
-                url : "/resultmap.action",
+                url : "/Injectdrug_resultmap.action",
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
-                    prescribeVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
+                    injectdrugVue._data.injectdrugParam = data.listData;
+                    injectdrugVue._data.maxPage = data.maxPage;
+                    injectdrugVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
             })
         })
@@ -223,19 +215,17 @@
 
 
     //            模糊查询的方法
-    function searchCk_info () {
+    function searchinjectdrug () {
         var searchValue = $("#search").val();//得到搜索框中的值
-        if(searchValue != null && searchValue != ""){
+        if(searchValue != null){
             $.ajax({
-                url : "/resultmap.action",
+                url : "/Injectdrug_resultmap.action",
                 data : {search : searchValue},
                 success : function(data){
-                    prescribeVue._data.prescribeParam = data.listData;
-                    prescribeVue._data.maxPage = data.maxPage;
+                    injectdrugVue._data.injectdrugParam = data.listData;
+                    injectdrugVue._data.maxPage = data.maxPage;
                 }
             })
-        }else{
-            alert("请输入你要搜索的值");
         }
     }
 

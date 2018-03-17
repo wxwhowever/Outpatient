@@ -9,6 +9,8 @@ import java.util.Map;
 
 public interface InjectdrugBiz extends BaseBiz<Injectdrug> {
 
+    List<Injectdrug> resultMap(String param,int begin,int end);
+
     Map<String, Object> queryMap(String sql, int begin, int end);
 
     List<Injectdrug> queryList();

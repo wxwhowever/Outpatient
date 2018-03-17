@@ -11,17 +11,26 @@ public class Treat {
 
     private Doctor doctor_dno;//医生
 
-    private String date;//治疗时间
+    private String startdate;//开始时间
+
+    private String enddate;//结束时间
+
+    private String result;//治疗结果
+
+    private String type;//治疗类型
 
     public Treat() {
     }
 
-    public Treat(int id, String tno, Patient patient_pno, Doctor doctor_dno, String date) {
+    public Treat(int id, String tno, Patient patient_pno, Doctor doctor_dno, String startdate, String enddate, String result, String type) {
         this.id = id;
         this.tno = tno;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
-        this.date = date;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.result = result;
+        this.type = type;
     }
 
     public int getId() {
@@ -56,11 +65,35 @@ public class Treat {
         this.doctor_dno = doctor_dno;
     }
 
-    public String getDate() {
-        return date;
+    public String getStartdate() {
+        return startdate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+
+    public String getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

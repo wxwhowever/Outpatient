@@ -1,23 +1,23 @@
 package com.biz;
 
 import com.base.BaseBiz;
-import com.entity.Transfusion;
+import com.entity.Treat;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface TransfusionBiz extends BaseBiz<Transfusion> {
+public interface TreatBiz extends BaseBiz<Treat> {
 
-    List<Transfusion> resultMap(String param,int begin,int end);
+    List<Treat> resultMap(String param, int begin, int end);
 
     Map<String, Object> queryMap(String sql, int begin, int end);
 
-    List<Transfusion> queryList();
+    List<Treat> queryList();
 
-    List<Transfusion> queryLists(String sql, int begin, int end);
+    List<Treat> queryLists(String sql, int begin, int end);
 
-    Transfusion queryById(Serializable serializable);
+    Treat queryById(Serializable serializable);
 
     String queryMaxNo();
 

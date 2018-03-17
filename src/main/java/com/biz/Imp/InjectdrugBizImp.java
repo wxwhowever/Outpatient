@@ -18,6 +18,10 @@ public class InjectdrugBizImp implements InjectdrugBiz {
     InjectdrugDao InjectdrugDao;
 
 
+    public List<Injectdrug> resultMap(String param, int begin, int end) {
+        return InjectdrugDao.resultMap(param, begin, end);
+    }
+
     public Map<String, Object> queryMap(String sql, int begin, int end) {
         Map<String, Object> map = new HashMap<String, Object>();
         List<Injectdrug> list = InjectdrugDao.queryLists(sql,begin,end);

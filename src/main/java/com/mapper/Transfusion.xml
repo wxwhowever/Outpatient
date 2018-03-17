@@ -4,6 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.TransfusionDao">
+
+    <resultMap id="resultList" type="java.util.Map">
+        <result property="tno" column="tno"></result>
+        <result property="patientName"  column="patientName"></result>
+        <result property="doctorName" column="doctorName"></result>
+        <result property="drugName" column="drugName"></result>
+        <result property="drugnum" column="drugnum"></result>
+        <result property="total" column="total"></result>
+        <result property="remarks" column="remarks"></result>
+        <result property="date" column="date"></result>
+    </resultMap>
+    <select id="resultMap" resultMap="resultList">
+        select tf.tno,pa.`name` patientName,doc.`name` doctorName,dr.drug_name drugName,tf.drugnum,tf.total,tf.remarks,tf.date
+        from transfusion tf left join patient pa on tf.patient_pno = pa.pno
+        left join doctor doc on tf.doctor_dno = doc.dno
+        left join drug dr on tf.drug_dno = dr.drug_dno
+        <where>
+            <if test="param1 != null and param1 != ''">
+               and pa.`name` like '%${param1}%' or doc.`name` like '%${param1}%'
+            </if>
+        </where>
+        limit #{param2},#{param3}
+    </select>
+
     <!--查询所有-->
     <select id="queryList" resultType="com.entity.Transfusion">
         select * from Transfusion
@@ -52,9 +76,11 @@
 
     <!--查询表总行数-->
     <select id="getCount" parameterType="java.lang.String" resultType="int">
-        select  count(*) from Transfusion
-        <if test="_parameter != null and _parameter != ''">
-            where name like '%${_parameter}%' OR ckno like '%${_parameter}%'  or sex like '%${_parameter}%'
+        select  count(*) from transfusion tf left join patient pa on tf.patient_pno = pa.pno
+        left join doctor doc on tf.doctor_dno = doc.dno
+        left join drug dr on tf.drug_dno = dr.drug_dno
+        <if test="param1 != null and param1 != ''">
+            where pa.`name` like '%${param1}%' OR doc.`name` like '%${param1}%'
         </if>
     </select>
 

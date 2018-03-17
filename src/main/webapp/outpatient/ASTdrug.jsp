@@ -49,7 +49,7 @@
             <ul class="toolbar">
                 <input id="search" class="form-control" placeholder="输入医生编号或姓名查询">
                 &nbsp; &nbsp; &nbsp;
-                <button class="btn btn-default" onclick="searchCk_info()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
+                <button class="btn btn-default" onclick="searchastdrug()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
 
 
@@ -73,8 +73,8 @@
                 <td>{{a.patientName}}</td>
                 <td>{{a.doctorName}}</td>
                 <td>{{a.drugName}}</td>
+                <td>{{a.mmol}}</td>
                 <td>{{a.drugnum}}</td>
-                <td>{{a.drug_price}}</td>
                 <td>{{a.total}}</td>
                 <td>{{a.remarks}}</td>
                 <td>{{a.date}}</td>
@@ -110,7 +110,7 @@
         el : "#astdrugList",
         data : {
             astdrugParam : [],
-            ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
+            astdrug : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
             url : "",
@@ -134,11 +134,11 @@
 
 //                    隐藏模态框
             hideModal : function(){
-                $("#ck_infoModal").modal("hide");
+                $("#astdrugModal").modal("hide");
             },
 //                    显示模态框
             showModal : function (){
-                $("#ck_infoModal").modal("show");
+                $("#astdrugModal").modal("show");
             },
 
         },
@@ -217,9 +217,9 @@
 
 
     //            模糊查询的方法
-    function searchCk_info () {
+    function searchastdrug () {
         var searchValue = $("#search").val();//得到搜索框中的值
-        if(searchValue != null && searchValue != ""){
+        if(searchValue != null){
             $.ajax({
                 url : "/astdrug_resultmap.action",
                 data : {search : searchValue},
@@ -228,8 +228,6 @@
                     astdrugVue._data.maxPage = data.maxPage;
                 }
             })
-        }else{
-            alert("请输入你要搜索的值");
         }
     }
 

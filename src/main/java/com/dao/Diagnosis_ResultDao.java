@@ -2,6 +2,7 @@ package com.dao;
 
 import com.base.BaseDao;
 import com.entity.Diagnosis_result;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
@@ -72,7 +73,7 @@ public interface Diagnosis_ResultDao extends BaseDao<Diagnosis_result> {
      * @param sql
      * @return
      */
-    int getCount(String sql);
+    int getCount(@Param("param1") String sql);
 
     int prescribeCount();
 

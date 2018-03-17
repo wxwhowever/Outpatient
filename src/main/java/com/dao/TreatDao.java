@@ -1,24 +1,24 @@
 package com.dao;
 
 import com.base.BaseDao;
-import com.entity.ASTdrug;
+import com.entity.Treat;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface ASTdrugDao extends BaseDao<ASTdrug> {
+public interface TreatDao extends BaseDao<Treat> {
 
-    List<ASTdrug> resultMap(String param,int begin,int end);
+    List<Treat> resultMap(String param, int begin, int end);
 
     Map<String, Object> queryMap(String sql, int begin, int end);
 
-    List<ASTdrug> queryList();
+    List<Treat> queryList();
 
-    List<ASTdrug> queryLists(String sql, int begin, int end);
+    List<Treat> queryLists(String sql, int begin, int end);
 
-    ASTdrug queryById(Serializable serializable);
+    Treat queryById(Serializable serializable);
 
     boolean insert(Object object);
 

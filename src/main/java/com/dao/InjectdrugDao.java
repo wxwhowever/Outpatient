@@ -2,12 +2,15 @@ package com.dao;
 
 import com.base.BaseDao;
 import com.entity.Injectdrug;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 public interface InjectdrugDao extends BaseDao<Injectdrug> {
+
+    List<Injectdrug> resultMap(String param,int begin,int end);
 
     Map<String, Object> queryMap(String sql, int begin, int end);
 
@@ -23,7 +26,7 @@ public interface InjectdrugDao extends BaseDao<Injectdrug> {
 
     boolean delete(Object object);
 
-    int getCount(String sql);
+    int getCount(@Param("param1") String sql);
 
     String queryMaxNo();
 }

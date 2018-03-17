@@ -62,12 +62,12 @@
     <div class="rightinfo">
         <div class="tools form-inline">
             <ul class="toolbar">
-                <button class="btn btn-default" id="insertCk_info" v-on:click="insertCk_info()">
+                <button class="btn btn-default" id="insertdiagnosis" v-on:click="insertdiagnosis()">
                     <img src="../images/t01.png" />新建开药单</button>
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <input id="search" class="form-control" placeholder="输入医生姓名或患者姓名查询">
                 &nbsp; &nbsp; &nbsp;
-                <button class="btn btn-default" onclick="searchCk_info()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
+                <button class="btn btn-default" onclick="searchdiagnosis()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
 
 
@@ -92,12 +92,12 @@
                 <td>{{d.patientName}}</td>
                 <td>{{d.doctorName}}</td>
                 <td>{{d.endDate}}</td>
-                <td>开药单<b>{{prescribeCount}}</b></td>
-                <td>皮试用药单<b>{{ASTdrugCount}}</b></td>
+                <td><a href="">开药单</a><b>{{prescribeCount}}</b></td>
+                <td><a href="">皮试用药单</a><b>{{ASTdrugCount}}</b></td>
                 <td>皮试结果单<b>{{ASTresultCount}}</b></td>
-                <td>注射用药单<b>{{injectDrugCount}}</b></td>
-                <td>输液用药单<b>{{transfusionCount}}</b></td>
-                <td>治疗单<b>{{treatCount}}</b></td>
+                <td><a href="">注射用药单</a><b>{{injectDrugCount}}</b></td>
+                <td><a href="">输液用药单</a><b>{{transfusionCount}}</b></td>
+                <td><a href="">治疗单</a><b>{{treatCount}}</b></td>
             </tr>
         </table>
         <%-- 分页 begin--%>
@@ -117,7 +117,7 @@
         <%-- 分页 end--%>
 
         <!-- 模态弹出框 begin -->
-        <div class="modal fade" id="ck_infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="diagnosisModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -128,22 +128,22 @@
                         <form>
                             <div class="form-group form-inline">
                                 <label class="control-label">姓名:</label>
-                                <input type="text" class="form-control" id="name" v-model="ck_info.name">
+                                <input type="text" class="form-control" id="name" v-model="diagnosis.name">
                             </div>
                             <div class="form-group form-inline">
                                 <label class="control-label">性别:</label>
-                                <input type="text" class="form-control" id="sex" v-model="ck_info.sex">
+                                <input type="text" class="form-control" id="sex" v-model="diagnosis.sex">
                                 <div style="float: right;">
                                     <label class="control-label">年龄:</label>
-                                    <input type="text" class="form-control" id="age" v-model="ck_info.age">
+                                    <input type="text" class="form-control" id="age" v-model="diagnosis.age">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label  class="control-label">职位:</label>
-                                <input type="text" class="form-control" id="position" v-model="ck_info.position">
+                                <input type="text" class="form-control" id="position" v-model="diagnosis.position">
                                 <div style="float: right;">
                                     <label class="control-label">科室编号:</label>
-                                    <input type="text" class="form-control" id="officeno" v-model="ck_info.officeno">
+                                    <input type="text" class="form-control" id="officeno" v-model="diagnosis.officeno">
                                 </div>
                             </div>
                         </form>
@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="tipbtn">
-                <input name="" type="button"  class="sure" value="确定" v-on:click="deleteCk_info()"/>&nbsp;
+                <input name="" type="button"  class="sure" value="确定" v-on:click="deletediagnosis()"/>&nbsp;
                 <input name="" type="button"  class="cancel" value="取消" />
             </div>
         </div>
@@ -188,7 +188,7 @@
         el : "#diagnosisList",
         data : {
             diagnosisParam : [],
-            ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
+            diagnosis : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
             prescribeCount : "",
@@ -223,11 +223,11 @@
 
 //                    隐藏模态框
             hideModal : function(){
-                $("#ck_infoModal").modal("hide");
+                $("#diagnosisModal").modal("hide");
             },
 //                    显示模态框
             showModal : function (){
-                $("#ck_infoModal").modal("show");
+                $("#diagnosisModal").modal("show");
             },
 
         },
@@ -305,9 +305,9 @@
 
 
     //            模糊查询的方法
-    function searchCk_info () {
+    function searchdiagnosis () {
         var searchValue = $("#search").val();//得到搜索框中的值
-        if(searchValue != null && searchValue != ""){
+        if(searchValue != null){
             $.ajax({
                 url : "/diagnosisResult.action",
                 data : {search : searchValue},
@@ -316,8 +316,6 @@
                     diagnosisVue._data.maxPage = data.maxPage;
                 }
             })
-        }else{
-            alert("请输入你要搜索的值");
         }
     }
 

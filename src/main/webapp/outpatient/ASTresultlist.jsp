@@ -49,7 +49,7 @@
             <ul class="toolbar">
                 <input id="search" class="form-control" placeholder="输入医生编号或姓名查询">
                 &nbsp; &nbsp; &nbsp;
-                <button class="btn btn-default" onclick="searchCk_info()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
+                <button class="btn btn-default" onclick="searchastresult()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
 
 
@@ -66,7 +66,7 @@
             </thead>
 
             <tr v-for="a in ASTresultParam">
-                <td>{{a.pno}}</td>
+                <td>{{a.resultno}}</td>
                 <td>{{a.patientName}}</td>
                 <td>{{a.doctorName}}</td>
                 <td>{{a.starttime}}</td>
@@ -104,7 +104,7 @@
         el : "#ASTresultList",
         data : {
             ASTresultParam : [],
-            ck_info : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
+            astresult : {jzno:"", name:"", sex:"", age:"", position:"", officeno:""},
             modalTitle : "",
             maxPage : "",
             url : "",
@@ -128,11 +128,11 @@
 
 //                    隐藏模态框
             hideModal : function(){
-                $("#ck_infoModal").modal("hide");
+                $("#astresultModal").modal("hide");
             },
 //                    显示模态框
             showModal : function (){
-                $("#ck_infoModal").modal("show");
+                $("#astresultModal").modal("show");
             },
 
         },
@@ -211,9 +211,9 @@
 
 
     //            模糊查询的方法
-    function searchCk_info () {
+    function searchastresult () {
         var searchValue = $("#search").val();//得到搜索框中的值
-        if(searchValue != null && searchValue != ""){
+        if(searchValue != null){
             $.ajax({
                 url : "/astresult_resultmap.action",
                 data : {search : searchValue},
@@ -222,8 +222,6 @@
                     ASTresultVue._data.maxPage = data.maxPage;
                 }
             })
-        }else{
-            alert("请输入你要搜索的值");
         }
     }
 

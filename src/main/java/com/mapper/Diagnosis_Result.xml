@@ -5,20 +5,14 @@
 
 <mapper namespace="com.dao.Diagnosis_ResultDao">
 
-    <resultMap id="resultList" type="java.util.Map">
-        <result property="drno" column="drno"></result>
-        <result property="endDate" column="endDate"></result>
-        <result property="patientName" column="patientName"></result>
-        <result property="doctorName" column="doctorName"></result>
-    </resultMap>
-    <select id="queryResult" resultMap="resultList">
+
+    <select id="queryResult" resultType="java.util.Map">
         select di.drno,di.endDate,pa.`name` patientName,doc.`name` doctorName
-        from diagnosis_result di,patient pa,doctor doc where
-        di.patient_pno = pa.pno and
-        di.doctor_dno = doc.dno
+        from diagnosis_result di left join patient pa on di.patient_pno = pa.pno
+        left join doctor doc on di.doctor_dno = doc.dno
         <where>
             <if test="param1 != null and param1 != ''">
-                patientName like '%${param1}%' or doctorName like '%${param1}%'
+               and pa.`name` like '%${param1}%' or doc.`name` like '%${param1}%'
             </if>
         </where>
         order by endDate ASC  limit #{param2},#{param3}
@@ -72,9 +66,11 @@
 
     <!--查询表总行数-->
     <select id="getCount" parameterType="java.lang.String" resultType="int">
-        select  count(*) from diagnosis_result
-        <if test="_parameter != null and _parameter != ''">
-            where name patient_pno '%${_parameter}%' OR drno like '%${_parameter}%'
+        select  count(*) from diagnosis_result di
+        left join patient pa on di.patient_pno = pa.pno
+        left join doctor doc on di.doctor_dno = doc.dno
+        <if test="param1 != null and param1 != ''">
+            where pa.`name` like '%${param1}%' OR doc.`name` like '%${param1}%'
         </if>
     </select>
 

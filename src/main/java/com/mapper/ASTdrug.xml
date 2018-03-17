@@ -17,13 +17,12 @@
         <result property="date" column="date"></result>
     </resultMap>
     <select id="resultMap" resultMap="resultList">
-        select ad.skinno,pa.`name` patientName,doc.`name` doctorName,dr.drug_name drugName,ad.mmol,ad.drugnum,ad.total,ad.remarks,ad.date from astdrug ad,patient pa,doctor doc,drug dr where
-        ad.patient_pno = pa.pno and
-        ad.doctor_dno = doc.dno and
-        ad.drug_dno = dr.drug_dno
+        select ad.skinno,pa.`name` patientName,doc.`name` doctorName,dr.drug_name drugName,ad.mmol,ad.drugnum,ad.total,ad.remarks,ad.date
+        from astdrug ad left join patient pa on ad.patient_pno = pa.pno left join doctor doc
+        on ad.doctor_dno = doc.dno left join drug dr on ad.drug_dno = dr.drug_dno
         <where>
             <if test="param1 != null and param1 != ''">
-                patientName like '%${param1}%' or doctorName like '%${param1}%'
+               and pa.`name` like '%${param1}%' or doc.`name` like '%${param1}%'
             </if>
         </where>
         limit #{param2},#{param3}
@@ -39,7 +38,7 @@
         select * from ASTdrug
         <where>
             <if test="param1 != null and param1 != ''">
-                 name like '%${param1}%' or ckno like '%${param1}%' or sex like '%${param1}%'
+                 name like '%${param1}%' or ckno like '%${param1}%'
             </if>
         </where>
          limit #{param2},#{param3}
@@ -77,10 +76,13 @@
 
     <!--查询表总行数-->
     <select id="getCount" parameterType="java.lang.String" resultType="int">
-        select  count(*) from ASTdrug
-        <if test="_parameter != null and _parameter != ''">
-            where name like '%${_parameter}%' OR ckno like '%${_parameter}%'  or sex like '%${_parameter}%'
-        </if>
+        select  count(*) from astdrug ad left join patient pa on ad.patient_pno = pa.pno left join doctor doc
+        on ad.doctor_dno = doc.dno left join drug dr on ad.drug_dno = dr.drug_dno
+        <where>
+            <if test="param1 != null and param1 != ''">
+               and pa.`name` like '%${param1}%' or doc.`name` like '%${param1}%'
+            </if>
+        </where>
     </select>
 
 </mapper>
