@@ -35,7 +35,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
+      <version>5.1.44</version>
     </dependency>
     <!-- SpringMVC 、Spring 的依赖-->
     <dependency>
@@ -91,6 +91,44 @@
       <version>4.0.0</version>
     </dependency>
 
+    <!--引入Redis依赖-->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.40</version>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>javax.servlet.jsp.jstl</groupId>-->
+      <!--<artifactId>jstl</artifactId>-->
+      <!--<version>1.2</version>-->
+    <!--</dependency>-->
+
+
+    <!--*************************** shiro 权限验证相关依赖 *********************-->
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-core</artifactId>-->
+      <!--<version>1.3.2</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-web</artifactId>-->
+      <!--<version>1.3.2</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-spring</artifactId>-->
+      <!--<version>1.3.2</version>-->
+    <!--</dependency>-->
 
 
   </dependencies>
@@ -104,7 +142,19 @@
           <include>**/*.xml</include>
         </includes>
       </resource>
+
+      <!--解决mybatis-generator-maven-plugin运行时没有将jdbc.properites文件放入target文件夹的问题-->
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <!--<include>jdbc.properties</include>-->
+          <include>*.properties</include>
+          <include>*.xml</include>
+        </includes>
+      </resource>
     </resources>
+
+
 
   </build>
 </project>
