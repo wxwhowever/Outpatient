@@ -1,8 +1,10 @@
 package com.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.biz.DoctorBiz;
 import com.entity.Doctor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shiro.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -17,29 +22,25 @@ public class DoctorController {
 
     @Autowired
     DoctorBiz doctorBiz;
-
+    @Autowired
+    RedisCache redisCache;
 
     @ResponseBody
     @RequestMapping("queryMap-doctor")
-    public Map<String,Object> queryMap(HttpServletRequest request){
-        String search = request.getParameter("search");
-        String page = request.getParameter("page");
-        String count = request.getParameter("count");
-        String sql = "";
-        int begin = 0;
-        int end = 5;
-        if(page != null && page != ""){
-            begin = (Integer.parseInt(page)-1)*end;
+    public List<Doctor> queryMap(HttpServletRequest request){
+        List<Doctor> list = new ArrayList<Doctor>();
+        String key = "com.dao.DoctorDao.queryMap";
+        String str = redisCache.getDataFromRedis(key);
+        if(str == null){
+            list = doctorBiz.queryList();
+            String newStr = JSON.toJSONString(list);
+            redisCache.setDataToRedis(key,newStr);
         }
-        if(search != null && search != ""){
-            sql = search;
+        else{
+            list = JSON.parseArray(str,Doctor.class);
+            System.out.println(list);
         }
-        if(count != null && count!= ""){
-            end = Integer.parseInt(count);
-        }
-        Map<String,Object> map = doctorBiz.queryMap(sql,begin, end);
-
-        return map;
+        return list;
     }
 
     @ResponseBody

@@ -14,10 +14,11 @@
 <script language="JavaScript" src="..//js/jquery.js"></script>
 
 <script type="text/javascript">
-$(function(){	
+$(function(){
+
 	//导航切换
 	$(".menuson li").click(function(){
-		$(".menuson li.active").removeClass("active")
+		$(".menuson li.active").removeClass("active");
 		$(this).addClass("active");
 	});
 	
@@ -37,26 +38,28 @@ $(function(){
 </head>
 
 <body style="background:#f0f9fd;">
+<div id="powerVue">
 	<div class="lefttop"><span></span>门急诊系统</div>
     
     <dl class="leftmenu">
-        
-    <dd>
-    <div class="title">
-    <span><img src="images/leftico01.png" /></span>建卡挂号管理
-    </div>
-    	<ul class="menuson">
-        <li class="active"><cite></cite><a href="registration/medicalcard.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
-        <li><cite></cite><a href="registration/registration.jsp" target="rightFrame">挂号管理</a><i></i></li>
-        <li><cite></cite><a href="registration/patient.jsp" target="rightFrame">病人管理</a><i></i></li>
-        <li><cite></cite><a href="registration/medical.jsp" target="rightFrame">病案管理</a><i></i></li>
-        <li><cite></cite><a href="registration/medicarecard.jsp" target="rightFrame">医保卡</a><i></i></li>
-        <li><cite></cite><a href="registration/doctorcard.jsp" target="rightFrame">银医卡</a><i></i></li>
-        </ul>
-    </dd>
 
 
-    <dd>
+
+        <dd id="jkgamanager" style="display : none">
+            <div class="title">
+                <span><img src="images/leftico01.png" /></span>建卡挂号管理
+            </div>
+            <ul class="menuson">
+                <li class="active"><cite></cite><a href="registration/medicalcard.jsp" target="rightFrame">就诊卡管理</a><i></i></li>
+                <li><cite></cite><a href="registration/registration.jsp" target="rightFrame">挂号管理</a><i></i></li>
+                <li><cite></cite><a href="registration/patient.jsp" target="rightFrame">病人管理</a><i></i></li>
+                <li><cite></cite><a href="registration/medical.jsp" target="rightFrame">病案管理</a><i></i></li>
+                <li><cite></cite><a href="registration/medicarecard.jsp" target="rightFrame">医保卡</a><i></i></li>
+                <li><cite></cite><a href="registration/doctorcard.jsp" target="rightFrame">银医卡</a><i></i></li>
+            </ul>
+        </dd>
+
+    <dd id="fzjhmanager" style="display : none">
     <div class="title">
     <span><img src="images/leftico02.png" /></span>分诊叫号管理
     </div>
@@ -77,7 +80,7 @@ $(function(){
     </dd>
 
 
-    <dd><div class="title">
+    <dd id="mzczmanager" style="display : none"><div class="title">
         <span><img src="images/leftico03.png" /></span>门诊处置治疗管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="outpatient/diagnosisResult.jsp" target="rightFrame">诊疗结果单详情</a><i></i></li>
@@ -91,16 +94,60 @@ $(function(){
     </dd>
 
 
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>药房管理</div>
+    <dd id="yfmanager" style="display : none"><div class="title"><span><img src="images/leftico04.png" /></span>药房管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="yp/drug.jsp" target="rightFrame">查询药品</a><i></i></li>
         <li><cite></cite><a href="hois/ek_wait.jsp" target="rightFrame">常用资料</a><i></i></li>
         <li><cite></cite><a href="#">信息列表</a><i></i></li>
         <li><cite></cite><a href="#">其他</a><i></i></li>
     </ul>
-    
-    </dd>   
+    </dd>
     
     </dl>
+</div>
+
+
 </body>
+
+<script src="js/vue.js"></script>
+<script>
+    var powerVue = new Vue({
+        el : "#powerVue",
+        data : {
+            powerList : [],
+        },
+        methods : {
+            query : function () {
+                var _this = this;
+                $.ajax({
+                    url : "/powerList.action",
+                    dataType : "JSON",
+                    success : function(data){
+                        _this.powerList = $.parseJSON(data);
+                        $.each($.parseJSON(data),function (index,obj) {
+                            if(obj.pname == "建卡挂号管理"){
+                                $("#jkgamanager").css('display','block');
+                            }
+                            if(obj.pname == "分诊叫号管理"){
+                                $("#fzjhmanager").css('display','block');
+                            }
+                            if(obj.pname == "门诊处置治疗管理"){
+                                $("#mzczmanager").css('display','block');
+                            }
+                            if(obj.pname == "药房管理"){
+                                $("#yfmanager").css('display','block');
+                            }
+                        })
+                    }
+                })
+
+            }
+        },
+        created:function () {
+           this.query();
+        }
+    })
+
+
+</script>
 </html>

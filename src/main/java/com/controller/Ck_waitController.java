@@ -78,17 +78,13 @@ public class Ck_waitController {
     @ResponseBody
     @RequestMapping("deleteCk_wait")
     public String delete(HttpServletRequest request) throws IOException {
-//        得到分配的具体单
-        String results = request.getParameter("result");
-//        得到病人编号
-        String pno = request.getParameter("pno");
 //        得到id
         String id = request.getParameter("id");
         String result = "";
-//        boolean delete = ck_waitBiz.delete(id);
-//        if(delete) {
-//            result = "success";
-//        }
+        boolean delete = ck_waitBiz.delete(Integer.parseInt(id));
+        if(delete) {
+            result = "success";
+        }
         return result;
     }
 

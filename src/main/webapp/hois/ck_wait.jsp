@@ -59,7 +59,7 @@ $(document).ready(function(){
         </div>
     </div>
 
-    <table class="tablelist table">
+    <table class="table table-hover text-nowrap">
     	<thead>
         <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
         <th>病人编号</th>
@@ -237,7 +237,7 @@ $(document).ready(function(){
         </div>
         </div>
         <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+        <input name="" type="button"  class="sure" value="确定" v-on:click="deleteCk_wait()"/>&nbsp;
         <input name="" type="button"  class="cancel" value="取消" />
         </div>
     </div>

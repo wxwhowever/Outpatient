@@ -62,7 +62,7 @@ $(document).ready(function(){
 
     </div>
     
-    <table class="tablelist table">
+    <table class="table table-hover text-nowrap">
     	<thead>
         <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
         <th>姓名</th>
@@ -86,21 +86,21 @@ $(document).ready(function(){
         </td>
         </tr>
     </table>
-        <%-- 分页 begin--%>
-        <div class="form-inline page-style">
-            <div style="float: left;">
-            <h4>每页条数:<select class="pagedown" >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-            </select></h4></div>
-            <button class="btn btn-default page pageBackground" id="firstpage">首页</button>
-            <button class="btn btn-default page">上一页</button>
-            <input class="form-control" v-bind:value = "currnetIndex +'/'+ maxPage" readonly="readonly" style="width: 100px;text-align: center">
-            <button class="btn btn-default page">下一页</button>
-            <button class="btn btn-default page " id="lastpage">末页</button>
-        </div>
-        <%-- 分页 end--%>
+        <%--&lt;%&ndash; 分页 begin&ndash;%&gt;--%>
+        <%--<div class="form-inline page-style">--%>
+            <%--<div style="float: left;">--%>
+            <%--<h4>每页条数:<select class="pagedown" >--%>
+                <%--<option value="5">5</option>--%>
+                <%--<option value="10">10</option>--%>
+                <%--<option value="15">15</option>--%>
+            <%--</select></h4></div>--%>
+            <%--<button class="btn btn-default page pageBackground" id="firstpage">首页</button>--%>
+            <%--<button class="btn btn-default page">上一页</button>--%>
+            <%--<input class="form-control" v-bind:value = "currnetIndex +'/'+ maxPage" readonly="readonly" style="width: 100px;text-align: center">--%>
+            <%--<button class="btn btn-default page">下一页</button>--%>
+            <%--<button class="btn btn-default page " id="lastpage">末页</button>--%>
+        <%--</div>--%>
+        <%--&lt;%&ndash; 分页 end&ndash;%&gt;--%>
 
         <!-- 模态弹出框 begin -->
         <div class="modal fade" id="doctorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -189,7 +189,7 @@ $(document).ready(function(){
                             url : "/queryMap-doctor.action",
                             type : "post",
                             success : function(data){
-                                _this.doctor_List = data.listData;
+                                _this.doctor_List = data;
                                 _this.maxPage = data.maxPage;
                             }
                         })
@@ -262,40 +262,6 @@ $(document).ready(function(){
 
 //            分页
             $(function(){
-                //    控制每页条数
-                $(".page").click(function(){
-                    var selectPage = $(this).text();
-                    var maxPage = doctorVue._data.maxPage;
-                    if(selectPage == "首页"){
-                        pageIndex = 1;
-                        $("#lastpage").removeClass("pageBackground");
-                        $("#firstpage").addClass("pageBackground");
-                    }
-                    else if(selectPage == "上一页"){
-                        if(pageIndex > 1){
-                            pageIndex = pageIndex - 1;
-                        }
-                       if(pageIndex == 1){
-                            $("#lastpage").removeClass("pageBackground");
-                            $("#firstpage").addClass("pageBackground");
-                        }
-                    }
-                    else if(selectPage == "下一页"){
-                        if(pageIndex < maxPage){
-                            pageIndex = pageIndex + 1;
-                        }
-                        if(pageIndex == maxPage){
-                            $("#lastpage").addClass("pageBackground");
-                            $("#firstpage").removeClass("pageBackground");
-                        }
-                    }
-                    else if(selectPage == "末页"){
-                        if(pageIndex !=  maxPage){
-                            pageIndex = maxPage;
-                            $("#lastpage").addClass("pageBackground");
-                            $("#firstpage").removeClass("pageBackground");
-                        }
-                    }
                     var searchValue = $("#search").val();//得到搜索框中的值
                     var selectPageCount = $(".pagedown").val();//得到每页显示条数
                     $.ajax({
@@ -303,29 +269,12 @@ $(document).ready(function(){
                         data : "page="+pageIndex+"&search="+searchValue+"&count="+selectPageCount,
                         type : "post",
                         success : function(data){
-                            doctorVue._data.doctor_List = data.listData;
+                            doctorVue._data.doctor_List = data;
                             doctorVue._data.maxPage = data.maxPage;
                             doctorVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                         }
                     })
                 })
-
-//                控制每页条数
-                $(".pagedown").change(function(){
-                    var selectPageCount = $(".pagedown").val();//得到每页显示条数
-                    $.ajax({
-                        url : "/queryMap-doctor.action",
-                        data : "count="+selectPageCount,
-                        type : "post",
-                        success : function(data){
-                            doctorVue._data.doctor_List = data.listData;
-                            doctorVue._data.maxPage = data.maxPage;
-                            doctorVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
-                        }
-                    })
-                })
-            })
-
 
 
 //            模糊查询的方法
@@ -337,7 +286,7 @@ $(document).ready(function(){
                         url : "/queryMap-doctor.action",
                         data : {search : searchValue},
                         success : function(data){
-                            doctorVue._data.doctor_List = data.listData;
+                            doctorVue._data.doctor_List = data;
                             doctorVue._data.maxPage = data.maxPage;
                         }
                     })

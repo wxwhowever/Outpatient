@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.MedicarecardDao">
+
     <!--查询所有-->
     <select id="queryList" resultType="com.entity.Medicarecard">
         select * from medicarecard

@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                           http://www.springframework.org/schema/beans/spring-beans.xsd
                           http://www.springframework.org/schema/context
-                          http://www.springframework.org/schema/context/spring-context.xsd">
+    http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 引入 c3p0 连接池-->
     <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
@@ -19,7 +19,7 @@
         <!--配置对应的连接词-->
         <property name="jdbcUrl" value="${url}"></property>
         <!--配置对应的驱动类-->
-        <property name="driverClass" value="${driverClass}"></property>
+        <property name="driverClass" value="${driver}"></property>
         <!--初始化连接池的大小-->
         <property name="initialPoolSize" value="${initPoolSize}"></property>
         <!--配置连接池的最大同时连接数-->
@@ -40,4 +40,17 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.dao"></property>
     </bean>
+
+
+
+    <!--redis配置-->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="host" value="192.168.174.130"></constructor-arg>
+        <constructor-arg name="port" value="6379"></constructor-arg>
+    </bean>
+
+    <bean id="redisCache" class="com.shiro.RedisCache">
+        <property name="jedisPool" ref="jedisPool"></property>
+    </bean>
+
 </beans>

@@ -45,7 +45,7 @@ $(document).ready(function(){
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">建卡挂号管理</a></li>
+    <li><a href="../left.jsp">建卡挂号管理</a></li>
     <li><a href="#">已挂号数据展示</a></li>
     </ul>
     </div>
@@ -67,7 +67,7 @@ $(document).ready(function(){
 
     </div>
     
-    <table class="tablelist table">
+    <table class="table table-hover text-nowrap">
     	<thead>
         <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
         <th>姓名</th>
@@ -85,6 +85,7 @@ $(document).ready(function(){
         <th>操作</th>
         </thead>
 
+        <tbody>
         <tr v-for="registration in registration_List">
         <td>{{registration.rsno}}</td>
         <td>{{registration.name}}</td>
@@ -104,6 +105,7 @@ $(document).ready(function(){
             <button class="btn btn-default"><img src="../images/t03.png" v-on:click="deleteById(deleteId=registration.id)"> 退号</button>
         </td>
         </tr>
+        </tbody>
     </table>
         <%-- 分页 begin--%>
         <div class="form-inline page-style">

@@ -35,7 +35,7 @@
     <insert id="insert" parameterType="com.entity.Patient">
         INSERT INTO patient
         (pno, name, type,remark, card, sex, age, profession, address,createdate, phone, yyno, ybno, jzno,rsno) VALUES
-        (#{pno},#{name},#{type},#{remark},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{yyno},#{ybno},#{jzno},#{registration.rsno})
+        (#{pno},#{name},#{type},#{remark},#{card},#{sex},#{age},#{profession},#{address},#{createdate},#{phone},#{yyno},#{ybno},#{jzno},#{rsno})
     </insert>
 
     <!--修改-->

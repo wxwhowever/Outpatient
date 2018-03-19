@@ -18,6 +18,10 @@ public class RegistrationController {
 
     @Autowired
     RegistrationBiz registrationBiz;
+    @Autowired
+    TriageBiz triageBiz;
+    @Autowired
+    PatientBiz patientBiz;
 
     @ResponseBody
     @RequestMapping("queryMap-registration")
@@ -66,6 +70,47 @@ public class RegistrationController {
         if(insert) {
             result = "success";
         }
+
+//        挂号增加的同时 增加到分诊台
+        Triage triage = new Triage();
+        int tno = Integer.parseInt(triageBiz.queryMaxNo())+1;
+        triage.setTno("TNO2018"+tno);
+        triage.setState(0);
+        triage.setAge(registration.getAge());
+        triage.setName(registration.getName());
+        triage.setPhone(registration.getPhone());
+        triage.setSex(registration.getSex());
+        triage.setType(registration.getType());
+        triage.setJzno(registration.getJzno());
+        triage.setRsno(registration.getRsno());
+        triage.setYyno(registration.getYyno());
+        triage.setYbno(registration.getYbno());
+        triage.setCreatedate(new Date().toLocaleString());
+        System.out.println(triage);
+        triageBiz.insert(triage);
+
+//        挂号增加的同时，增加到病人表
+        Patient patient = new Patient();
+        String pno = patientBiz.queryMaxNo();
+        int newPno = Integer.parseInt(pno)+1;
+        patient.setPno("P2018"+newPno);
+        patient.setAddress(registration.getAddress());
+        patient.setAge(registration.getAge());
+        patient.setCard(registration.getCard());
+        patient.setSex(registration.getSex());
+        patient.setName(registration.getName());
+        patient.setRemark("");//备注
+        patient.setProfession(registration.getProfession());
+        patient.setPhone(registration.getPhone());
+        patient.setType(registration.getType());
+        patient.setJzno(registration.getJzno());
+        patient.setRsno(registration.getRsno());
+        patient.setYyno(registration.getYyno());
+        patient.setYbno(registration.getYbno());
+        patient.setCreatedate(new Date().toLocaleString());
+        System.out.println(patient);
+        patientBiz.insert(patient);
+
         return result;
     }
 
