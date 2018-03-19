@@ -22,12 +22,12 @@ public class ASTdrug {
 
     private String date;//开单时间
 
-    private String state;
+    private Integer state;
 
     public ASTdrug() {
     }
 
-    public ASTdrug(String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String drugnum, String total, String remarks, String date, String state) {
+    public ASTdrug(String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String drugnum, String total, String remarks, String date, Integer state) {
         this.skinno = skinno;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
@@ -40,7 +40,7 @@ public class ASTdrug {
         this.state = state;
     }
 
-    public ASTdrug(int id, String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String drugnum, String total, String remarks, String date, String state) {
+    public ASTdrug(int id, String skinno, String patient_pno, String doctor_dno, String drug_dno, String mmol, String drugnum, String total, String remarks, String date, Integer state) {
         this.id = id;
         this.skinno = skinno;
         this.patient_pno = patient_pno;
@@ -54,11 +54,11 @@ public class ASTdrug {
         this.state = state;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -155,6 +155,7 @@ public class ASTdrug {
                 ", total='" + total + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", date='" + date + '\'' +
+                ", state=" + state +
                 '}';
     }
 }

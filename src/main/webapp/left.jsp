@@ -86,7 +86,6 @@ $(function(){
         <li><cite></cite><a href="outpatient/diagnosisResult.jsp" target="rightFrame">诊疗结果单详情</a><i></i></li>
         <li><cite></cite><a href="outpatient/prescribe.jsp" target="rightFrame">开药清单管理</a><i></i></li>
         <li><cite></cite><a href="outpatient/ASTdrug.jsp" target="rightFrame">皮试用药单管理</a><i></i></li>
-        <li><cite></cite><a href="outpatient/ASTresultlist.jsp" target="rightFrame">皮试结果单管理</a><i></i></li>
         <li><cite></cite><a href="outpatient/injectdrug.jsp" target="rightFrame">注射用药单管理</a><i></i></li>
         <li><cite></cite><a href="outpatient/transfusion.jsp" target="rightFrame">输液用药单管理</a><i></i></li>
         <li><cite></cite><a href="outpatient/treat.jsp" target="rightFrame">治疗单管理</a><i></i></li>

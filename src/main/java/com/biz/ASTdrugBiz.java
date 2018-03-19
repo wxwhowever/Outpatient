@@ -19,6 +19,8 @@ public interface ASTdrugBiz extends BaseBiz<ASTdrug> {
 
     ASTdrug queryById(Serializable serializable);
 
+    Map<String,Object> getByid(Serializable serializable);
+
     String queryMaxNo();
 
     boolean insert(Object object);

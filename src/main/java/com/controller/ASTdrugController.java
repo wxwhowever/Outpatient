@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -43,5 +44,18 @@ public class ASTdrugController {
         map.put("maxPage",maxPage);
         return map;
     }
+
+
+    @RequestMapping("astdrug_queryById")
+    public ModelAndView queryById(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        String id = request.getParameter("id");
+        System.out.println("id------"+id);
+        Map<String,Object> asTdrug = asTdrugBiz.getByid(Integer.parseInt(id));
+        modelAndView.addObject("map", asTdrug);
+        modelAndView.setViewName("/outpatient/ASTdruglist");
+        return modelAndView;
+    }
+
 
 }

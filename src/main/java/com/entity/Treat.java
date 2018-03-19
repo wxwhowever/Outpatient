@@ -5,13 +5,11 @@ public class Treat {
 
     private int id;
 
-    private String tno;//编号
+    private String treatno;//编号
 
-    private Patient patient_pno;//患者
+    private String patient_pno;//患者
 
-    private Doctor doctor_dno;//医生
-
-    private String startdate;//开始时间
+    private String doctor_dno;//医生
 
     private String enddate;//结束时间
 
@@ -19,18 +17,20 @@ public class Treat {
 
     private String type;//治疗类型
 
+    private Integer state;
+
     public Treat() {
     }
 
-    public Treat(int id, String tno, Patient patient_pno, Doctor doctor_dno, String startdate, String enddate, String result, String type) {
+    public Treat(int id, String treatno, String patient_pno, String doctor_dno, String enddate, String result, String type, Integer state) {
         this.id = id;
-        this.tno = tno;
+        this.treatno = treatno;
         this.patient_pno = patient_pno;
         this.doctor_dno = doctor_dno;
-        this.startdate = startdate;
         this.enddate = enddate;
         this.result = result;
         this.type = type;
+        this.state = state;
     }
 
     public int getId() {
@@ -41,36 +41,28 @@ public class Treat {
         this.id = id;
     }
 
-    public String getTno() {
-        return tno;
+    public String gettreatno() {
+        return treatno;
     }
 
-    public void setTno(String tno) {
-        this.tno = tno;
+    public void settreatno(String treatno) {
+        this.treatno = treatno;
     }
 
-    public Patient getPatient_pno() {
+    public String getPatient_pno() {
         return patient_pno;
     }
 
-    public void setPatient_pno(Patient patient_pno) {
+    public void setPatient_pno(String patient_pno) {
         this.patient_pno = patient_pno;
     }
 
-    public Doctor getDoctor_dno() {
+    public String getDoctor_dno() {
         return doctor_dno;
     }
 
-    public void setDoctor_dno(Doctor doctor_dno) {
+    public void setDoctor_dno(String doctor_dno) {
         this.doctor_dno = doctor_dno;
-    }
-
-    public String getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
     }
 
     public String getEnddate() {
@@ -95,5 +87,13 @@ public class Treat {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

@@ -44,6 +44,10 @@ public class ASTdrugBizImp implements ASTdrugBiz {
         return asTdrugDao.queryById(serializable);
     }
 
+    public Map<String, Object> getByid(Serializable serializable) {
+        return asTdrugDao.getByid(serializable);
+    }
+
     public String queryMaxNo() {
         return asTdrugDao.queryMaxNo();
     }

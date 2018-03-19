@@ -75,7 +75,7 @@ public class ResultController {
             asTdrugAdd.setTotal(astdrug.getTotal());
             asTdrugAdd.setRemarks(astdrug.getRemarks());
             asTdrugAdd.setDate(new Date().toLocaleString());
-            asTdrugAdd.setState("0");
+            asTdrugAdd.setState(0);
             boolean insert = asTdrugBiz.insert(asTdrugAdd);
             if(insert){
                 result = "success";

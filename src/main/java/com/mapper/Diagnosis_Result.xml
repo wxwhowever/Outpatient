@@ -7,7 +7,7 @@
 
 
     <select id="queryResult" resultType="java.util.Map">
-        select di.drno,di.endDate,pa.`name` patientName,doc.`name` doctorName
+        select di.id,di.drno,di.endDate,pa.`name` patientName,pa.id pid,doc.`name` doctorName
         from diagnosis_result di left join patient pa on di.patient_pno = pa.pno
         left join doctor doc on di.doctor_dno = doc.dno
         <where>

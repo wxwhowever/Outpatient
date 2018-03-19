@@ -47,8 +47,8 @@
     <!--增加-->
     <insert id="insert" parameterType="com.entity.Treat">
         INSERT INTO Treat
-        (skinno, patient_pno, doctor_dno,`date`,state) VALUES
-        (#{skinno},#{patient_pno.pno},#{doctor_dno.dno},#{date},#{state})
+        (treatno, patient_pno, doctor_dno,enddate,result,`type`,state) VALUES
+        (#{treatno},#{patient_pno},#{doctor_dno},#{enddate},#{result},#{type},#{state})
     </insert>
 
     <!--修改-->

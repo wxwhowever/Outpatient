@@ -45,9 +45,19 @@
     </select>
 
     <!--查询单个-->
-    <select id="queryById" parameterType="int" resultType="com.entity.ASTdrug">
-             select * from ASTdrug where id = #{id}
+    <select id="queryById" resultType="com.entity.ASTdrug">
+        select ad.id,ad.skinno,pa.`name` patientName,pa.pno,doc.`name` doctorName,doc.dno,dr.drug_name drugName,ad.mmol,ad.drugnum,ad.total,ad.remarks,ad.date,ad.state
+        from astdrug ad left join patient pa on ad.patient_pno = pa.pno left join doctor doc
+        on ad.doctor_dno = doc.dno left join drug dr on ad.drug_dno = dr.drug_dno where ad.id = #{id}
     </select>
+
+    <!--查询单个-->
+    <select id="getByid" resultType="java.util.Map">
+        select ad.id,ad.skinno,pa.`name` patientName,pa.pno,doc.`name` doctorName,doc.dno,dr.drug_name drugName,ad.mmol,ad.drugnum,ad.total,ad.remarks,ad.date,ad.state
+        from astdrug ad left join patient pa on ad.patient_pno = pa.pno left join doctor doc
+        on ad.doctor_dno = doc.dno left join drug dr on ad.drug_dno = dr.drug_dno where pa.id = #{id}
+    </select>
+
 
     <!--查询最大的编号-->
     <select id="queryMaxNo" resultType="java.lang.String">
@@ -65,8 +75,8 @@
     <!--修改-->
     <update id="update" parameterType="com.entity.ASTdrug">
         update ASTdrug SET
-         name = #{name}, pno = #{pno}, height = #{height}, weight = #{weight},
-         date = #{date}, jzno = #{yyno}, dno = #{dno} where id = #{id}
+         skinno = #{skinno}, patient_pno = #{patient_pno}, doctor_dno = #{doctor_dno}, drug_dno = #{drug_dno},mmol = #{mmol},
+         drugnum = #{drugnum}, total = #{total},remarks = #{remarks},date = #{date}, state = #{state},where id = #{id}
     </update>
 
     <!--删除-->

@@ -20,6 +20,9 @@ public interface ASTdrugDao extends BaseDao<ASTdrug> {
 
     ASTdrug queryById(Serializable serializable);
 
+    Map<String,Object> getByid(Serializable serializable);
+
+
     boolean insert(Object object);
 
     boolean update(Object object);
