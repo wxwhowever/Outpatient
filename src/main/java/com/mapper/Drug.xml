@@ -19,6 +19,7 @@
         <result property="bank_id" column="bank_id" ></result>
         <result property="bank_count" column="bank_count" ></result>
     </resultMap>
+
     <!--查询所有-->
     <select id="queryList" resultType="com.entity.Drug">
        SELECT * from drug
@@ -39,7 +40,7 @@
 
     <!--查询单个-->
     <select id="queryById" parameterType="int" resultType="com.entity.Drug">
-             select * from drug where id = #{id}
+        select * from drug where drug_id = #{id}
     </select>
 
     <!--查询最大的编号-->
@@ -48,29 +49,26 @@
     </select>
 
     <!--增加-->
-    <insert id="insert" parameterType="com.entity.Drug">
-        INSERT INTO drug
-        (drug_dno, drug_name, drug_type,drug_price,drug_spec,drug_use,drug_dosage,bank_id,drug_time,) VALUES
-        (#{drug_dno},#{drug_name},#{drug_type},#{drug_price},#{drug_spec},#{drug_use},#{drug_dosage},#{Bank.bank_id},#{drug_time})
-    </insert>
+    <insert id="insert" parameterType="com.entity.Drug"></insert>
 
     <!--修改-->
     <update id="update" parameterType="com.entity.Drug">
         update drug SET
-         drug_dno = #{drug_dno}, drug_name = #{drug_name}, drug_type = #{drug_type}, drug_price = #{drug_price},drug_use = #{drug_use}, drug_dosage = #{drug_dosage},
-         bank_id = #{Bank.bank_id}, drug_time = #{drug_time} where id = #{id}
+        drug_name = #{drug_name},drug_price = #{drug_price},drug_use = #{drug_use}, drug_dosage = #{drug_dosage} where drug_id = #{drug_id}
     </update>
 
     <!--删除-->
     <delete id="delete" parameterType="int">
-        delete from drug where id = #{id}
+        delete from drug where drug_id = #{id}
     </delete>
 
     <!--查询表总行数-->
     <select id="getCount" parameterType="java.lang.String" resultType="int">
-    select count(*) from drug
+        SELECT COUNT(*)
+        FROM bank ba JOIN drug dg JOIN drug_type dgt
+        ON ba.bank_id=dg.bank_id and dg.drug_type=dgt.type_id
     <if test="_parameter != null and _parameter != ''">
-    where name like '%${_parameter}%' OR drug_dno like '%${_parameter}%'  or drug_name like '%${_parameter}%'
+    where drug_name like '%${_parameter}%' OR type_name like '%${_parameter}%'
     </if>
     </select>
 

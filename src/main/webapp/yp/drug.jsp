@@ -7,38 +7,25 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(".click").click(function(){
-                $(".tip").fadeIn(200);
-            });
-
-            $(".tiptop a").click(function(){
-                $(".tip").fadeOut(200);
-            });
-
-            $(".sure").click(function(){
-                $(".tip").fadeOut(100);
-            });
-
-            $(".cancel").click(function(){
-                $(".tip").fadeOut(100);
-            });
-
-        });
-    </script>
 <body>
     <div id="durglist">
         <div class="tools form-inline">
             <ul class="toolbar">
-                <input id="search" class="form-control" placeholder="输入候诊编号或姓名查询">
+                <input id="search" class="form-control" placeholder="请输入药品名或药品类型">
                 &nbsp; &nbsp; &nbsp;
                 <button class="btn btn-default" onclick="searchDrug()"><img src="../images/ico06.png" style="margin-top: -5px"/>搜索</button>
             </ul>
+
+            <div style="float: right;">
+                <button class="btn btn-default" v-on:click="queryMap()"><img src="../images/time.png" style="margin-top: -5px"/>刷新
+                </button>
+            </div>
+
         </div>
 
-    <table class="tablelist table">
+    <table class="table table-hover text-nowrap">
         <thead>
+        <th>药品id</th>
         <th>药品编号<i class="sort"><img src="../images/px.gif" /></i></th>
         <th>药品名称</th>
         <th>药品类型</th>
@@ -48,9 +35,11 @@
         <th>药品用量</th>
         <th>药品库房</th>
         <th>有效日期</th>
+        <th>操作</th>
         </thead>
 
         <tr v-for="drugs in Drug_list">
+            <td>{{drugs.drug_id}}</td>
             <td>{{drugs.drug_dno}}</td>
             <td>{{drugs.drug_name}}</td>
             <td>{{drugs.type_name}}</td>
@@ -61,8 +50,7 @@
             <td>{{drugs.bank_count}}</td>
             <td>{{drugs.drug_time}}</td>
             <td class="toolbar" style="text-align: center">
-                <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updateKq_wait(kq_wait.id)">修改</button>
-                <button class="btn btn-default"><img src="../images/t03.png" v-on:click="">增加</button>
+                <button class="btn btn-default"><img src="../images/t02.png" v-on:click="updatedrug(drugs.drug_id)">修改</button>
             </td>
         </tr>
     </table>
@@ -81,10 +69,48 @@
             <button class="btn btn-default page " id="lastpage">末页</button>
         </div>
         <%-- 分页 end--%>
+
+        <!-- 模态弹出框 begin -->
+        <div class="modal fade" id="drugModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{modalTitle}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品名称:</label>
+                                <input type="text" class="form-control" id="drug_name" v-model="Drug.drug_name">
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品价格:</label>
+                                <input type="text" class="form-control" id="drug_price" v-model="Drug.drug_price">
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品规格:</label>
+                                <input type="text" class="form-control" id="drug_spec" v-model="Drug.drug_spec">
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品方法:</label>
+                                <input type="text" class="form-control" id="drug_use" v-model="Drug.drug_use">
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="control-label">药品用量:</label>
+                                <input type="text" class="form-control" id="drug_dosage" v-model="Drug.drug_dosage">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模态弹出框 end -->
     </div>
-    <script type="text/javascript">
-        $('.tablelist tbody tr:odd').addClass('odd');
-    </script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/vue.js"></script>
 </body>
@@ -113,6 +139,44 @@
                         _this.maxPage = data.maxPage;
                     }
                 })
+            },
+            //查询单个
+            queryById : function (id) {
+                var _this = this;
+                $.ajax({
+                    url : "../queryById-drug.action",
+                    data :{id:id},
+                    type : "post",
+                    success : function(data){
+                        _this.Drug = data;
+                    }
+                })
+            },
+            //修改
+            save :function(){
+                var _this = this;
+                $.ajax({
+                    url : _this.url,
+                    data :{drug : JSON.stringify(_this.Drug)},
+                    success : function(data){
+                        _this.hideModal();//隐藏modal
+                        _this.queryMap();//刷新页面
+                    }
+                })
+            },
+            updatedrug : function(id){
+                this.modalTitle = "修改药品";//设置 modal 标题
+                this.url = "../updateDrug.action";//设置请求路径
+                this.queryById(id);
+                this.showModal();//调用显示modal的方法
+            },
+            //隐藏模态框
+            hideModal : function(){
+                $("#drugModal").modal("hide");
+            },
+            //显示模态框
+            showModal : function (){
+                $("#drugModal").modal("show");
             }
 
         },
@@ -181,7 +245,7 @@
                 data : "count="+selectPageCount,
                 type : "post",
                 success : function(data){
-                    DrugVue._data.kq_wait_List = data.listData;
+                    DrugVue._data.Drug_list = data.listData;
                     DrugVue._data.maxPage = data.maxPage;
                     DrugVue._data.currnetIndex = pageIndex;//设置当前页码为选中的页码
                 }
@@ -200,7 +264,7 @@
                 url : "../queryMap-drug.action",
                 data : {search : searchValue},
                 success : function(data){
-                    DrugVue._data.kq_wait_List = data.listData;
+                    DrugVue._data.Drug_list = data.listData;
                     DrugVue._data.maxPage = data.maxPage;
                 }
             })

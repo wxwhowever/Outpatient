@@ -41,7 +41,7 @@
   </select>
 
     <select id="queryPower" resultType="java.util.Map">
-    select p.pname
+    select u.name, p.pname
     from user u , user_role ur , role r, role_power rp, power p
     where u.uid = ur.uid and ur.rid = r.rid and r.rid = rp.rid and p.pid = rp.pid
     and u.uid = #{uid}

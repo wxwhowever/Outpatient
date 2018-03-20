@@ -1,4 +1,4 @@
-package com.test;
+package com;
 
 import com.dao.MedicalcardDao;
 import com.entity.Medicalcard;

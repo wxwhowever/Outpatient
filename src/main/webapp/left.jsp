@@ -95,10 +95,10 @@ $(function(){
 
     <dd id="yfmanager" style="display : none"><div class="title"><span><img src="images/leftico04.png" /></span>药房管理</div>
     <ul class="menuson">
-        <li><cite></cite><a href="yp/drug.jsp" target="rightFrame">查询药品</a><i></i></li>
-        <li><cite></cite><a href="hois/ek_wait.jsp" target="rightFrame">常用资料</a><i></i></li>
-        <li><cite></cite><a href="#">信息列表</a><i></i></li>
-        <li><cite></cite><a href="#">其他</a><i></i></li>
+        <li><cite></cite><a href="yp/bank.jsp" target="rightFrame">药品库房</a><i></i></li>
+        <li><cite></cite><a href="yp/drug.jsp" target="rightFrame">药品信息</a><i></i></li>
+        <li><cite></cite><a href="yp/drug.jsp" target="rightFrame">购药记录</a><i></i></li>
+        <li><cite></cite><a href="yp/drug.jsp" target="rightFrame">退药记录</a><i></i></li>
     </ul>
     </dd>
     

@@ -26,7 +26,7 @@ $(function(){
 </head>
 
 <body style="background:url(images/topbg.gif) repeat-x;">
-
+<div id = "powerVue">
     <div class="topleft">
     <a href="main.jsp" target="_parent"><img src="images/logo.png" title="系统首页" /></a>
     </div>
@@ -46,12 +46,44 @@ $(function(){
     <li><a href="login.jsp" target="_parent">退出</a></li>
     </ul>
      
-    <div class="user">
-    <span>admin</span>
-    <i>消息</i>
-    <b>5</b>
+    <div class="user">亲爱的
+    <span v-html="username" style="color: red"></span>，欢迎您!
+    <%--<i>消息</i>--%>
+    <%--<b>5</b>--%>
     </div>    
     
     </div>
+</div>
 </body>
+<script src="js/vue.js"></script>
+<script>
+
+    var powerVue = new Vue({
+        el : "#powerVue",
+        data : {
+            powerList : [],
+            username : "",
+        },
+        methods : {
+            query : function () {
+                var _this = this;
+                $.ajax({
+                    url : "/powerList.action",
+                    dataType : "JSON",
+                    success : function(data){
+                        _this.powerList = $.parseJSON(data);
+                        $.each($.parseJSON(data),function (index,obj) {
+                            _this.username = obj.name;
+                        })
+                    }
+                })
+
+            }
+        },
+        created:function () {
+            this.query();
+        }
+    })
+
+</script>
 </html>
